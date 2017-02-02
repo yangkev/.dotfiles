@@ -28,4 +28,4 @@ do
 	ln -s $dir/$file ~/$file
 done
 
-source ~/.bashrc
+# source ~/.bashrc
