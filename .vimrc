@@ -27,7 +27,8 @@ set t_Co=256
 set background=dark
 colorscheme elflord
 
-
+" 
+set so=8
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tabs
@@ -98,3 +99,12 @@ set hlsearch
 
 " makes search act like search in the browser
 set incsearch                       
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Commands/Mappings
+" 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Make :make command be silent except for errors
+noremap <leader>m :silent make\|redraw!\|cw<CR>
