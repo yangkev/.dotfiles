@@ -11,7 +11,7 @@
 
 dir=~/.dotfiles				# new dotfiles
 olddir=~/.dotfiles_old		# old dotfiles backup
-files=".vimrc"
+files=".vimrc .gitconfig .gdbinit"
 
 # Create dotfiles_old directory
 echo "Creating $olddir for backup of dotfiles in ~ that will be overwritten"
