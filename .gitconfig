@@ -1,0 +1,14 @@
+[user]
+    name = Kevin yang
+    email = yangke@umich.edu
+
+[core]
+    editor = vim
+
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+
+[alias]
+    lo = log --oneline
