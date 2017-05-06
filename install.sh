@@ -27,6 +27,8 @@ elif [[ $1 = "-h" ]] || [[ $1 = "--help" ]]; then
     echo -e "-u, --uninstall\tRemove symlinks from $HOME"
 # Install
 else
+    OLD_FILES="$HOME/.old_dotfiles"
+    mkdir -p "$OLD_FILES"
     if [[ "${STOW_INSTALLED}" -eq "0" ]]; then
         for SUB_MOD in $(ls -d */)
         do
@@ -35,13 +37,40 @@ else
             read USERINPUT
             case $USERINPUT in
                 y)
-                    ( stow -R ${TEMP} )
+                    FILE=$( stow ${TEMP} 2>&1 >/dev/null | sed -ne 's/^.*directory: //p' )
+                    if [[ -n ${FILE} ]]; then
+                        echo -ne    "The following files could not be linked because"\
+                                    "they are files/directories and already exist.\n"
+                        for ITEM in ${FILE}
+                        do
+                            echo "${ITEM}"
+                        done
+                        echo -ne "Move existing files to ${OLD_FILES} and install new links (y/n)?"
+                        read MOVE_FILES
+                        case $MOVE_FILES in
+                            y)
+                                for ITEM in ${FILE}
+                                do
+                                    DIR_NAME=$( echo ${ITEM} | sed -ne 's/\/.*$//p' )
+                                    if [[ -n ${DIR_NAME} ]]; then
+                                        mv "${HOME}/${DIR_NAME}" $OLD_FILES
+                                    else
+                                        mv "${HOME}/${ITEM}" $OLD_FILES
+                                    fi
+                                done
+                                ;;
+                            *)
+                                echo "Skipping ${TEMP}$"
+                                ;;
+                        esac
+                    fi
                     ;;
                 *)
                     echo "Skipping ${TEMP}"
                     ;;
             esac
         done
+        echo "Installation ... complete!"
     fi
 fi
 
