@@ -25,7 +25,7 @@ set number
 " make colors compatible
 set t_Co=256           
 set background=dark
-colorscheme elflord
+colorscheme gruvbox
 
 " 
 set so=8
