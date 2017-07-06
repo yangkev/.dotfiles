@@ -80,6 +80,9 @@ set ruler
 " display line numbers
 set number			
 
+" highlight the line that the cursor is on
+set cursorline
+
 " set how many lines of history VIM has to remember
 set history=500
 
@@ -179,6 +182,10 @@ set incsearch
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " Switch buffers without forcing a save
 set hidden
+
+" Open new split panes to the right and bottom
+set splitbelow
+set splitright
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
