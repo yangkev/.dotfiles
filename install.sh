@@ -79,13 +79,3 @@ else
         echo "dotfiles NOT installed"
     fi
 fi
-
-
-
-
-
-
-
-
-
-# Stow commands
