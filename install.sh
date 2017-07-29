@@ -1,8 +1,12 @@
 #!/bin/bash
 
 # Check if GNU stow is installed
-dpkg -s stow > /dev/null 2>&1
+which stow > /dev/null 2>&1
 STOW_INSTALLED=$?
+
+if [[ "${STOW_INSTALLED}" -ne "0" ]]; then
+    echo "stow is NOT installed"
+fi
 
 # Uninstall
 if [[ $1 = "-u" ]] || [[ $1 = "--uninstall" ]]; then
@@ -71,6 +75,8 @@ else
             esac
         done
         echo "Installation ... complete!"
+    else
+        echo "dotfiles NOT installed"
     fi
 fi
 
