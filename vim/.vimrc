@@ -72,6 +72,9 @@ set showcmd
 " Show 2 status lines
 set laststatus=2
 
+" Plugin for statusline already shows insert, so don't show it status
+set noshowmode
+
 " Set to auto read when a file is changed from the outside
 set autoread
 
@@ -193,8 +196,8 @@ set splitright
 " Netrw
 " 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set with of Netrw window
-let g:netrw_winsize = 25
+" Set width of Netrw window
+let g:netrw_winsize = 50
 
 " Close Netrw Banner
 let g:netrw_banner = 0
