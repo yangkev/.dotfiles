@@ -5,7 +5,7 @@
 [core]
     editor = vim
     whitespace = trailing-space, space-before-tab
-    excludesfile = .gitexcludes
+	excludesfile = ~/.gitexcludes
 [color]
     ui = auto
     branch = auto
@@ -16,7 +16,7 @@
     local = yellow
     remote = green
 [color "diff"]
-    meta = yellow bold
+    meta = normal 
     frag = magenta bold
     old = red bold
     new = green bold
