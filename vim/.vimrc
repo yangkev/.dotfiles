@@ -6,34 +6,16 @@ set nocompatible
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off                  
 
-" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
-" plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
-
-" Better typescript
+Plugin 'scrooloose/nerdtree'
 Plugin 'leafgarland/typescript-vim'
-
-" Lightline status line
-" Plugin 'itchyny/lightline.vim'
-
-" Airline status line
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-let g:airline_powerline_fonts=1
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_inactive_collapse=1
-let g:airline_theme="angr"
 
-" All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -73,6 +55,9 @@ set ruler
 " display line numbers
 set number			
 
+" make line numbers relative to current line
+set relativenumber
+
 " highlight the line that the cursor is on
 set cursorline
 
@@ -84,6 +69,9 @@ set so=8
 
 " Enable wildmenu 
 set wildmenu
+
+" Faster switching between INSERT/NORMAL modes
+set ttimeoutlen=10
 
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
@@ -181,27 +169,54 @@ set splitbelow
 set splitright
 
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugins
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Airline
+let g:airline_powerline_fonts=1
+let g:airline_inactive_collapse=1
+let g:airline_theme="bubblegum"
+
+" NERDTree
+let NERDTreeMinimalUI = 1
+
+" Open NERDTree on opening vim
+autocmd vimenter * NERDTree
+
+" Open NERDTree when opening vim on a file and switch to file window
+autocmd VimEnter * NERDTree | wincmd p
+
+" Open NERDTree when entering vim on nothing or on a directory
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
+" Close vim if the only window left is NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " Netrw
 " 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set width of Netrw window
-let g:netrw_winsize = 50
+" let g:netrw_winsize = 50
 
 " Close Netrw Banner
-let g:netrw_banner = 0
+" let g:netrw_banner = 0
 
 " Tree view of files
-let g:netrw_liststyle = 3
+" let g:netrw_liststyle = 3
 
 " Open files in previous window
-let g:netrw_browse_split = 4
+" let g:netrw_browse_split = 0
 
 " Split left
-let g:netrw_altv = 1
+" let g:netrw_altv = 1
 
 " Don't save history to .netrwhist file
-let g:netrw_dirhistmax = 0
+" let g:netrw_dirhistmax = 0
 
 " Launch right after vim is entered
 " augroup ProjectDrawer
@@ -214,6 +229,10 @@ let g:netrw_dirhistmax = 0
 " Commands/Mappings
 " 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Open NERDTree
+map <C-n> :NERDTreeToggle<CR>
+
 " Make :make command be silent except for errors
 noremap <leader>m :silent make\|redraw!\|cw<CR>
 
@@ -224,6 +243,3 @@ command! Bd bp | sp | bn | bd
 " Other
 " 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
-" Typescript syntax highlighting
-" autocmd BufNewFile,BufRead *.ts set syntax=typescript
-
