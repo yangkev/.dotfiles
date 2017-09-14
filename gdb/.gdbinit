@@ -2,7 +2,7 @@
 winheight SRC -10
 
 # Include STL pretty printer
-source .gdb/.stl_pretty
+source ~/.gdb/.stl_pretty
 
 # Enable local .gdbinit loading
 set auto-load safe-path ~/
