@@ -24,6 +24,9 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
+# enable forward search
+stty -ixon
+
 # draw UTF8 lines correctly
 export NCURSES_NO_UTF8_ACS=1
 
