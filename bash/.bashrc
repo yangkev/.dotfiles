@@ -7,7 +7,7 @@
 [[ $- != *i* ]] && return
 
 # path
-PATH="$HOME/bin:$PATH"
+PATH="$HOME/usr/bin:$PATH"
 
 # colorized manpages and elsewhere
 export LESS=-R
@@ -36,10 +36,13 @@ shopt -s cmdhist
 HISTCONTROL=ignoredups
 export HISTIGNORE="&:ls:[bf]g:exit"
 
+# Save and reload the history after each command finishes
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
 # enable forward search
 stty -ixon
 
 # draw UTF8 lines correctly
 export NCURSES_NO_UTF8_ACS=1
 
-source .bash_aliases
+source ~/.bash_aliases
