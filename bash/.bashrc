@@ -46,4 +46,6 @@ stty -ixon
 export NCURSES_NO_UTF8_ACS=1
 
 source ~/.bash_aliases
-source ~/.bash_local
+if [ -f ~/.bash_local ]; then
+    source ~/.bash_local
+fi
