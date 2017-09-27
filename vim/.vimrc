@@ -103,9 +103,9 @@ colorscheme gruvbox
 " TODO- make specific .vim files for different file types
 " INTERFERES WITH smartindent       
 
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 
 " use spaces instead of tabs
 set expandtab			            
