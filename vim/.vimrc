@@ -241,6 +241,9 @@ noremap <leader>m :silent make\|redraw!\|cw<CR>
 " Close buffer without closing window
 command! Bd bp | sp | bn | bd
 
+" Insert literal tab
+inoremap <S-Tab> <C-V><Tab>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " Other
 " 
