@@ -9,6 +9,9 @@
 # path
 PATH="$HOME/usr/bin:$PATH"
 
+# Prompt
+PS1='\u@\h:\w\$ '
+
 # colorized manpages and elsewhere
 export LESS=-R
 export LESS_TERMCAP_mb=$'\E[1;31m'     # begin bold
