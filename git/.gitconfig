@@ -30,3 +30,5 @@
     mnemonicprefix = true
 [merge]
     stat = true
+[push]
+	default = simple
