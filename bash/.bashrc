@@ -27,6 +27,11 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
+# git init
+if [ -f ~/.gitconfig.sh ] ; then
+    . ~/.gitconfig.sh
+fi
+
 # history
 export HISTFILESIZE=20000
 export HISTSIZE=10000
