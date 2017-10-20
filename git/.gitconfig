@@ -30,3 +30,10 @@
     mnemonicprefix = true
 [merge]
     stat = true
+[branch]
+# rebase on pull rather than merge
+    autosetuprebase = always
+
+[alias]
+    lg = log --color --graph --pretty=format:'%C(yellow)%h%Creset -%C(green)%d%Creset %s %C(magenta)(%cr) %C(bold blue)[%an]%Creset' --abbrev-commit --
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --numstat
