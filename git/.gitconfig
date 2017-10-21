@@ -33,8 +33,10 @@
 [branch]
 # rebase on pull rather than merge
     autosetuprebase = always
+# when branching off a remote, automatically let local track remote
+    autosetupmerge = true
 [push]
-    default = simple
+    default = tracking
 [alias]
 # Basics
     a = add
