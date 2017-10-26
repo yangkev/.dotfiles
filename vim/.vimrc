@@ -186,14 +186,13 @@ let NERDTreeMinimalUI = 1
 let NERDTreeWinSize = 25
 
 " Open NERDTree on opening vim
-autocmd vimenter * NERDTree
+" autocmd vimenter * NERDTree
 
-" Open NERDTree when opening vim on a file and switch to file window
-autocmd VimEnter * NERDTree | wincmd p
+" Open NERDTree when opening vim on one or more files and switch to window 
+autocmd VimEnter * if argc() >= 1 | NERDTree | wincmd p | endif
 
-" Open NERDTree when entering vim on nothing or on a directory
+" Open NERDTree when entering vim on a directory
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
 " Close vim if the only window left is NERDTree
