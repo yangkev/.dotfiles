@@ -16,6 +16,7 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vimwiki/vimwiki'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -231,6 +232,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Commands/Mappings
 " 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
+let mapleader = " "
 
 " Open NERDTree
 map <C-n> :NERDTreeToggle<CR>
