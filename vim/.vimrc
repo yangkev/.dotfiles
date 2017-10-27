@@ -78,9 +78,9 @@ set ttimeoutlen=10
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
 if has("win16") || has("win32")
-    set wildignore+=.git\*,.hg\*,.svn\*
+  set wildignore+=.git\*,.hg\*,.svn\*
 else
-    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+  set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
@@ -197,6 +197,29 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 
 " Close vim if the only window left is NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Vimwiki
+let wiki_1 = {}
+let wiki_1.path = "~/Dropbox/code/wiki/"
+" Auto update table of contents on saving wiki page
+let wiki_1.auto_toc = 1
+" Use markdown
+let wiki_1.syntax = 'markdown'
+let wiki_1.ext = '.md'
+let wiki_1.nested_syntaxes = {
+      \'python': 'python', 
+      \'c++': 'cpp',
+      \'c': 'c',
+      \'sh': 'sh' }
+" Auto highlight on opening
+let wiki_1.automatic_nested_syntaxes = 1
+
+let g:vimwiki_list = [wiki_1]
+let g:vimwiki_global_ext = 0
+" Highlight checked list items with a special color
+" let g:vimwiki_hl_cb_checked = 1
+"
+let g:markdown_fenced_languages = ['sh', 'bash=sh', 'css', 'c', 'cpp', 'javascript', 'js=javascript', 'json=javascript', 'make', 'python', 'html', 'vim']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " Netrw
