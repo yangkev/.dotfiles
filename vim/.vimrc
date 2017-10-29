@@ -60,6 +60,9 @@ set number
 " make line numbers relative to current line
 set relativenumber
 
+" no wrapping
+set nowrap
+
 " highlight the line that the cursor is on
 set cursorline
 
@@ -125,6 +128,31 @@ set shiftround
 
 " Make backspace behave like it should
 set backspace=eol,start,indent
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Completion
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Omni-completion
+set omnifunc=syntaxcomplete#Complete
+
+" Popup menu inserts the longest common text of all matches, menu comes up if
+" only one match
+set completeopt=longest,menuone
+
+" key maps to make popup menu more intuitive
+inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <C-D> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+inoremap <expr> <C-U>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+
+" Always keep a menu item highlighted so that you can continue typing to
+" narrow down matches, and pressing enter will select it
+inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+inoremap <expr> <C-p> pumvisible() ? '<C-p>' :
+  \ '<C-p><C-r>=pumvisible() ? "\<lt>Up>" : ""<CR>'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " Annoying things
@@ -213,12 +241,15 @@ let wiki_1.nested_syntaxes = {
       \'sh': 'sh' }
 " Auto highlight on opening
 let wiki_1.automatic_nested_syntaxes = 1
+let wiki_1.list_margin = 2
 
+" Vimwiki Global options
 let g:vimwiki_list = [wiki_1]
 let g:vimwiki_global_ext = 0
-" Highlight checked list items with a special color
-" let g:vimwiki_hl_cb_checked = 1
-"
+" Highlight checked list items and their children with a special color
+let g:vimwiki_hl_cb_checked = 2
+
+
 let g:markdown_fenced_languages = ['sh', 'bash=sh', 'css', 'c', 'cpp', 'javascript', 'js=javascript', 'json=javascript', 'make', 'python', 'html', 'vim']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -258,6 +289,7 @@ let mapleader = " "
 
 " Open NERDTree
 map <C-n> :NERDTreeToggle<CR>
+map <Leader>r : NERDTreeFind<CR>
 
 " Make :make command be silent except for errors
 noremap <leader>m :silent make\|redraw!\|cw<CR>
@@ -267,6 +299,10 @@ command! Bd bp | sp | bn | bd
 
 " Insert literal tab
 inoremap <S-Tab> <C-V><Tab>
+
+" Vimwiki mappings
+nmap <Leader>vo <Plug>VimwikiVSplitLink
+nmap <Leader>ho <Plug>VimwikiSplitLink
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " Other
