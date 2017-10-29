@@ -287,6 +287,16 @@ let g:markdown_fenced_languages = ['sh', 'bash=sh', 'css', 'c', 'cpp', 'javascri
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader = " "
 
+" Quickly edit/reload the vimrc file
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+nnoremap ; :
+nnoremap j gj
+nnoremap k gk
+
+nmap <silent> // :nohlsearch<CR>
+
 " Open NERDTree
 map <C-n> :NERDTreeToggle<CR>
 map <Leader>r : NERDTreeFind<CR>
