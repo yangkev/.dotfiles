@@ -17,6 +17,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vimwiki/vimwiki'
+Plugin 'morhetz/gruvbox'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -98,7 +99,6 @@ syntax on
 set t_Co=256           
 set background=dark
 colorscheme gruvbox
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " Indentation
@@ -291,7 +291,7 @@ let mapleader = " "
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
-nnoremap ; :
+" nnoremap ; :
 nnoremap j gj
 nnoremap k gk
 
