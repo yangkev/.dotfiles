@@ -212,6 +212,7 @@ let g:airline_theme="bubblegum"
 " NERDTree
 let NERDTreeMinimalUI = 1
 let NERDTreeWinSize = 25
+let NERDTreeIgnore = ['\.pyc$', '\.o$']
 
 " Open NERDTree on opening vim
 " autocmd vimenter * NERDTree
