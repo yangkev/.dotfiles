@@ -22,14 +22,6 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " General config
@@ -131,31 +123,6 @@ set shiftround
 set backspace=eol,start,indent
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
-" Completion
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Omni-completion
-set omnifunc=syntaxcomplete#Complete
-
-" Popup menu inserts the longest common text of all matches, menu comes up if
-" only one match
-set completeopt=longest,menuone
-
-" key maps to make popup menu more intuitive
-inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
-inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <C-D> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-inoremap <expr> <C-U>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
-
-" Always keep a menu item highlighted so that you can continue typing to
-" narrow down matches, and pressing enter will select it
-inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-inoremap <expr> <C-p> pumvisible() ? '<C-p>' :
-  \ '<C-p><C-r>=pumvisible() ? "\<lt>Up>" : ""<CR>'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Annoying things
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -199,21 +166,72 @@ set hidden
 set splitbelow
 set splitright
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Completion
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Omni-completion
+set omnifunc=syntaxcomplete#Complete
+
+" Popup menu inserts the longest common text of all matches, menu comes up if
+" only one match
+set completeopt=longest,menuone
+
+" key maps to make popup menu more intuitive
+inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <C-D> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+inoremap <expr> <C-U>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+
+" Always keep a menu item highlighted so that you can continue typing to
+" narrow down matches, and pressing enter will select it
+inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+inoremap <expr> <C-p> pumvisible() ? '<C-p>' :
+  \ '<C-p><C-r>=pumvisible() ? "\<lt>Up>" : ""<CR>'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Commands/Mappings
+" 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+let mapleader = " "
+
+" Quickly edit/reload the vimrc file
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+nnoremap j gj
+nnoremap k gk
+
+nmap <silent> // :nohlsearch<CR>
+
+" Make :make command be silent except for errors
+noremap <leader>m :silent make\|redraw!\|cw<CR>
+
+" Close buffer without closing window
+command! Bd bp | sp | bn | bd
+
+" Insert literal tab
+inoremap <S-Tab> <C-V><Tab>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugins
+" Airline
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Airline
 let g:airline_powerline_fonts=1
 let g:airline_inactive_collapse=1
 let g:airline_theme="bubblegum"
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""
 let NERDTreeMinimalUI = 1
-let NERDTreeWinSize = 25
+" let NERDTreeWinSize = 25
 let NERDTreeIgnore = ['\.pyc$', '\.o$']
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeDirArrows = 1
 
 " Open NERDTree on opening vim
 " autocmd vimenter * NERDTree
@@ -228,7 +246,14 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 " Close vim if the only window left is NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" Open NERDTree
+map <C-n> :NERDTreeToggle<CR>
+map <Leader>nf : NERDTreeFind<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vimwiki
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""
 let wiki_1 = {}
 let wiki_1.path = "~/Dropbox/code/wiki/"
 " Auto update table of contents on saving wiki page
@@ -251,72 +276,8 @@ let g:vimwiki_global_ext = 0
 " Highlight checked list items and their children with a special color
 let g:vimwiki_hl_cb_checked = 2
 
-
 let g:markdown_fenced_languages = ['sh', 'bash=sh', 'css', 'c', 'cpp', 'javascript', 'js=javascript', 'json=javascript', 'make', 'python', 'html', 'vim']
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Netrw
-" 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set width of Netrw window
-" let g:netrw_winsize = 50
-
-" Close Netrw Banner
-" let g:netrw_banner = 0
-
-" Tree view of files
-" let g:netrw_liststyle = 3
-
-" Open files in previous window
-" let g:netrw_browse_split = 0
-
-" Split left
-" let g:netrw_altv = 1
-
-" Don't save history to .netrwhist file
-" let g:netrw_dirhistmax = 0
-
-" Launch right after vim is entered
-" augroup ProjectDrawer
-"     autocmd!
-"     autocmd VimEnter * :Vexplore
-" augroup END
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Commands/Mappings
-" 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
-let mapleader = " "
-
-" Quickly edit/reload the vimrc file
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
-
-" nnoremap ; :
-nnoremap j gj
-nnoremap k gk
-
-nmap <silent> // :nohlsearch<CR>
-
-" Open NERDTree
-map <C-n> :NERDTreeToggle<CR>
-map <Leader>r : NERDTreeFind<CR>
-
-" Make :make command be silent except for errors
-noremap <leader>m :silent make\|redraw!\|cw<CR>
-
-" Close buffer without closing window
-command! Bd bp | sp | bn | bd
-
-" Insert literal tab
-inoremap <S-Tab> <C-V><Tab>
 
 " Vimwiki mappings
 nmap <Leader>vo <Plug>VimwikiVSplitLink
 nmap <Leader>ho <Plug>VimwikiSplitLink
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Other
-" 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
