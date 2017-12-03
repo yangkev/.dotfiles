@@ -19,6 +19,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vimwiki/vimwiki'
 Plugin 'morhetz/gruvbox'
 Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'nightsense/carbonized'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -75,9 +76,9 @@ set ttimeoutlen=10
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
 if has("win16") || has("win32")
-  set wildignore+=.git\*,.hg\*,.svn\*
+    set wildignore+=.git\*,.hg\*,.svn\*
 else
-  set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
@@ -89,7 +90,7 @@ endif
 syntax on
 
 " make colors compatible
-set t_Co=256           
+" set t_Co=256           
 set background=dark
 colorscheme gruvbox
 
@@ -114,7 +115,7 @@ set smarttab
 set autoindent			            
 
 " intelligently dedent/indent new lines
-set smartindent		            	
+" set smartindent		            	
 
 " tab / shifting moves to closest tabstop
 set shiftround                      
@@ -187,9 +188,9 @@ inoremap <expr> <C-U>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 " Always keep a menu item highlighted so that you can continue typing to
 " narrow down matches, and pressing enter will select it
 inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+            \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 inoremap <expr> <C-p> pumvisible() ? '<C-p>' :
-  \ '<C-p><C-r>=pumvisible() ? "\<lt>Up>" : ""<CR>'
+            \ '<C-p><C-r>=pumvisible() ? "\<lt>Up>" : ""<CR>'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " Commands/Mappings
@@ -221,7 +222,7 @@ inoremap <S-Tab> <C-V><Tab>
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 let g:airline_powerline_fonts=1
 let g:airline_inactive_collapse=1
-let g:airline_theme="bubblegum"
+let g:airline_theme="gruvbox"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree
@@ -262,10 +263,10 @@ let wiki_1.auto_toc = 1
 let wiki_1.syntax = 'markdown'
 let wiki_1.ext = '.md'
 let wiki_1.nested_syntaxes = {
-      \'python': 'python', 
-      \'c++': 'cpp',
-      \'c': 'c',
-      \'sh': 'sh' }
+            \'python': 'python', 
+            \'c++': 'cpp',
+            \'c': 'c',
+            \'sh': 'sh' }
 " Auto highlight on opening
 let wiki_1.automatic_nested_syntaxes = 1
 let wiki_1.list_margin = 2
@@ -281,3 +282,16 @@ let g:markdown_fenced_languages = ['sh', 'bash=sh', 'css', 'c', 'cpp', 'javascri
 " Vimwiki mappings
 nmap <Leader>vo <Plug>VimwikiVSplitLink
 nmap <Leader>ho <Plug>VimwikiSplitLink
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" cpp-enhanced-highlight
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Highlight of class scope
+let g:cpp_class_scope_highlight = 1
+
+" Highlight member variables
+let g:cpp_member_variable_highlight = 1
+
+" Highlight class names in declarations
+let g:cpp_class_decl_highlight = 1
