@@ -216,6 +216,9 @@ command! Bd bp | sp | bn | bd
 " Insert literal tab
 inoremap <S-Tab> <C-V><Tab>
 
+" Automatically format json with =j
+nmap =j :%!python -m json.tool<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " Airline
 "
@@ -238,7 +241,7 @@ let NERDTreeDirArrows = 1
 " autocmd vimenter * NERDTree
 
 " Open NERDTree when opening vim on one or more files and switch to window 
-autocmd VimEnter * if argc() >= 1 | NERDTree | wincmd p | endif
+" autocmd VimEnter * if argc() >= 1 | NERDTree | wincmd p | endif
 
 " Open NERDTree when entering vim on a directory
 autocmd StdinReadPre * let s:std_in=1
