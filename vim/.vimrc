@@ -20,6 +20,7 @@ Plugin 'vimwiki/vimwiki'
 Plugin 'morhetz/gruvbox'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'nightsense/carbonized'
+Plugin 'w0rp/ale'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
