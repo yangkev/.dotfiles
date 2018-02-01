@@ -15,3 +15,6 @@ alias gs="g s"
 alias gc="g c"
 alias gco="g co"
 alias glg="g lg"
+
+# vim
+alias vim="vim --servername VIM"

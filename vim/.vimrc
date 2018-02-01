@@ -21,6 +21,7 @@ Plugin 'morhetz/gruvbox'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'nightsense/carbonized'
 Plugin 'w0rp/ale'
+Plugin 'lervag/vimtex'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -198,6 +199,7 @@ inoremap <expr> <C-p> pumvisible() ? '<C-p>' :
 " 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader = " "
+let maplocalleader = " "
 
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
@@ -234,7 +236,7 @@ let g:airline_theme="gruvbox"
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 let NERDTreeMinimalUI = 1
 " let NERDTreeWinSize = 25
-let NERDTreeIgnore = ['\.pyc$', '\.o$']
+let NERDTreeIgnore = ['\.pyc$', '\.o$', '\.pdf$']
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeDirArrows = 1
 
@@ -299,3 +301,10 @@ let g:cpp_member_variable_highlight = 1
 
 " Highlight class names in declarations
 let g:cpp_class_decl_highlight = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vimtex
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:vimtex_latexmk_options = '-pdf -shell-escape -verbose -file-line-error'
+
