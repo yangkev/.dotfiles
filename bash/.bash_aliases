@@ -18,3 +18,7 @@ alias glg="g lg"
 
 # vim
 alias vim="vim --servername VIM"
+
+# other
+alias za="zathura --fork"
+alias xclip="xclip -selection c"
