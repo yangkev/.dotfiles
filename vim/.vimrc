@@ -17,11 +17,18 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vimwiki/vimwiki'
-Plugin 'morhetz/gruvbox'
 Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'nightsense/carbonized'
 Plugin 'w0rp/ale'
 Plugin 'lervag/vimtex'
+Plugin 'shime/vim-livedown'
+
+" fzf
+set rtp+=~/.fzf
+Plugin 'junegunn/fzf.vim'
+
+" Appearance
+Plugin 'morhetz/gruvbox'
+Plugin 'nightsense/carbonized'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -61,7 +68,7 @@ set relativenumber
 set nowrap
 
 " highlight the line that the cursor is on
-set cursorline
+" set cursorline
 
 " set how many lines of history VIM has to remember
 set history=500
@@ -92,7 +99,7 @@ endif
 syntax on
 
 " make colors compatible
-" set t_Co=256           
+set t_Co=256
 set background=dark
 colorscheme gruvbox
 
@@ -311,3 +318,5 @@ let g:vimtex_matchparen_enabled = 0
 let g:vimtex_complete_enabled = 0
 let g:vimtex_fold_enabled = 0
 
+" vim-livedown - live markdown preview
+let g:livedown_browser = "google-chrome"
