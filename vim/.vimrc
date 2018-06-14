@@ -279,7 +279,8 @@ let wiki_1.nested_syntaxes = {
             \'python': 'python', 
             \'c++': 'cpp',
             \'c': 'c',
-            \'sh': 'sh' }
+            \'sh': 'sh',
+            \'yaml': 'yaml'}
 " Auto highlight on opening
 let wiki_1.automatic_nested_syntaxes = 1
 let wiki_1.list_margin = 2
@@ -319,4 +320,4 @@ let g:vimtex_complete_enabled = 0
 let g:vimtex_fold_enabled = 0
 
 " vim-livedown - live markdown preview
-let g:livedown_browser = "google-chrome"
+let g:livedown_browser = "firefox"
