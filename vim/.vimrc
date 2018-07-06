@@ -168,6 +168,14 @@ set incsearch
 " enhanced tab completion
 " set wildchar=<Tab> wildmenu wildmode=full
 
+" Use ripgrep for vimgreping
+if executable('rg')
+    set grepprg=rg\ --vimgrep\ --no-heading
+    set grepformat=%f:%l:%c:%m
+endif
+
+command! -bang -nargs=* Find call fzf#vim#grep("rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob '!.git/*' --color 'always' '.shellescape(<q-args>).'| tr -d '\017'", 1, <bang>0)
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " Buffers, Tabs, Windows 
 " 
