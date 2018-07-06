@@ -363,3 +363,10 @@ endfunction
 autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
 "autocmd FileType go nmap <Leader>i <Plug>(go-info)
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" fzf
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <silent> <leader>zf :Files<cr>
+nnoremap <silent> <leader>zb :Buffers<cr>
