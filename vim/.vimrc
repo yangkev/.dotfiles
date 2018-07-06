@@ -21,6 +21,7 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'w0rp/ale'
 Plugin 'lervag/vimtex'
 Plugin 'shime/vim-livedown'
+Plugin 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
 " fzf
 set rtp+=~/.fzf
@@ -28,7 +29,6 @@ Plugin 'junegunn/fzf.vim'
 
 " Appearance
 Plugin 'morhetz/gruvbox'
-Plugin 'nightsense/carbonized'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -81,6 +81,9 @@ set wildmenu
 
 " Faster switching between INSERT/NORMAL modes
 set ttimeoutlen=10
+
+" write to file on calling :make
+set autowrite
 
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
@@ -229,6 +232,10 @@ inoremap <S-Tab> <C-V><Tab>
 " Automatically format json with =j
 nmap =j :%!python -m json.tool<CR>
 
+" Quickfix
+map <C-n> :cnext<cr>
+map <C-m> :cprevious<cr>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " Airline
 "
@@ -314,10 +321,45 @@ let g:cpp_class_decl_highlight = 1
 " vimtex
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""
-let g:vimtex_latexmk_options = '-pdf -shell-escape -verbose -file-line-error'
+let g:vimtex_compiler_method='latexmk'
+let g:vimtex_compiler_latexmk = {
+    \ 'background' : 1,
+    \ 'build_dir' : '',
+    \ 'callback' : 1,
+    \ 'continuous' : 1,
+    \ 'executable' : 'latexmk',
+    \ 'options' : [
+    \   '-pdf',
+    \   '-verbose',
+    \   '-file-line-error',
+    \   '-synctex=1',
+    \   '-interaction=nonstopmode',
+    \ ],
+    \}
 let g:vimtex_matchparen_enabled = 0
 let g:vimtex_complete_enabled = 0
 let g:vimtex_fold_enabled = 0
 
 " vim-livedown - live markdown preview
 let g:livedown_browser = "firefox"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-go
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:go_fmt_command = "goimports"
+let g:go_def_mode = "godef"
+
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+"autocmd FileType go nmap <Leader>i <Plug>(go-info)
