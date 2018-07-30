@@ -368,6 +368,7 @@ function! s:build_go_files()
   endif
 endfunction
 
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
 "autocmd FileType go nmap <Leader>i <Plug>(go-info)
@@ -378,3 +379,11 @@ autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <silent> <leader>zf :Files<cr>
 nnoremap <silent> <leader>zb :Buffers<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ale
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
