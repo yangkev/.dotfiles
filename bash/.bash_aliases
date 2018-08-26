@@ -22,3 +22,7 @@ alias vim="vim --servername VIM"
 # other
 alias za="zathura --fork"
 alias xclip="xclip -selection c"
+
+# paths
+alias gowd="cd $GOPATH/src/github.com/yangkev"
+alias wd="cd ~/src"
