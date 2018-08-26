@@ -4,7 +4,7 @@ set nocompatible
 " Vundle
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""
-filetype off                  
+filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -44,7 +44,7 @@ let $LANG='en'
 set langmenu=en
 
 " shows partial commands in the last line of the screen
-set showcmd 
+set showcmd
 
 " Show 2 status lines
 set laststatus=2
@@ -56,10 +56,10 @@ set noshowmode
 set autoread
 
 " display cursor position in the status line
-set ruler				            
+set ruler
 
 " display line numbers
-set number			
+set number
 
 " make line numbers relative to current line
 set relativenumber
@@ -76,7 +76,7 @@ set history=500
 " Scrolloff 8 lines when moving with cursor
 set so=8
 
-" Enable wildmenu 
+" Enable wildmenu
 set wildmenu
 
 " Faster switching between INSERT/NORMAL modes
@@ -110,27 +110,24 @@ colorscheme gruvbox
 " Indentation
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""
-" TODO- make specific .vim files for different file types
-" INTERFERES WITH smartindent       
-
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 
 " use spaces instead of tabs
-set expandtab			            
+set expandtab
 
 " tab key inserts tab stops, bksp deletes tabs
-set smarttab			   
+set smarttab
 
 " match indents on new lines
-set autoindent			            
+set autoindent
 
 " intelligently dedent/indent new lines
-" set smartindent		            	
+" set smartindent
 
 " tab / shifting moves to closest tabstop
-set shiftround                      
+set shiftround
 
 " Make backspace behave like it should
 set backspace=eol,start,indent
@@ -140,7 +137,7 @@ set backspace=eol,start,indent
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " Stop using swap files
-set noswapfile          
+set noswapfile
 
 " get rid of annoying error notifiations
 set noerrorbells
@@ -148,22 +145,22 @@ set novisualbell
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " Searching
-" 
+"
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " case insensitive search
-set ignorecase                      
+set ignorecase
 
 " if there are uppercase letters, become case-sensitive
-set smartcase                       
+set smartcase
 
 " Show bracket pairs
-set showmatch           
+set showmatch
 
 " highlight search results
-set hlsearch                        
+set hlsearch
 
 " makes search act like search in the browser
-set incsearch                       
+set incsearch
 
 " enhanced tab completion
 " set wildchar=<Tab> wildmenu wildmode=full
@@ -174,11 +171,9 @@ if executable('rg')
     set grepformat=%f:%l:%c:%m
 endif
 
-command! -bang -nargs=* Find call fzf#vim#grep("rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob '!.git/*' --color 'always' '.shellescape(<q-args>).'| tr -d '\017'", 1, <bang>0)
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""
-" Buffers, Tabs, Windows 
-" 
+" Buffers, Tabs, Windows
+"
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " Switch buffers without forcing a save
 set hidden
@@ -214,7 +209,7 @@ inoremap <expr> <C-p> pumvisible() ? '<C-p>' :
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " Commands/Mappings
-" 
+"
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader = " "
 let maplocalleader = " "
@@ -251,6 +246,7 @@ map <C-m> :cprevious<cr>
 let g:airline_powerline_fonts=1
 let g:airline_inactive_collapse=1
 let g:airline_theme="gruvbox"
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree
@@ -261,12 +257,6 @@ let NERDTreeMinimalUI = 1
 let NERDTreeIgnore = ['\.pyc$', '\.o$', '\.pdf$']
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeDirArrows = 1
-
-" Open NERDTree on opening vim
-" autocmd vimenter * NERDTree
-
-" Open NERDTree when opening vim on one or more files and switch to window 
-" autocmd VimEnter * if argc() >= 1 | NERDTree | wincmd p | endif
 
 " Open NERDTree when entering vim on a directory
 autocmd StdinReadPre * let s:std_in=1
@@ -283,22 +273,20 @@ map <Leader>nf : NERDTreeFind<CR>
 " Vimwiki
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""
-let wiki_1 = {}
-let wiki_1.path = "~/Dropbox/code/wiki/"
-" Auto update table of contents on saving wiki page
-let wiki_1.auto_toc = 1
-" Use markdown
-let wiki_1.syntax = 'markdown'
-let wiki_1.ext = '.md'
-let wiki_1.nested_syntaxes = {
-            \'python': 'python', 
-            \'c++': 'cpp',
-            \'c': 'c',
-            \'sh': 'sh',
-            \'yaml': 'yaml'}
-" Auto highlight on opening
-let wiki_1.automatic_nested_syntaxes = 1
-let wiki_1.list_margin = 2
+let wiki_1 = {
+      \ "path": "~/vimwiki/",
+      \ "auto_toc": 1,
+      \ "auto_tags": 1,
+      \ "syntax": 'markdown',
+      \ "ext": '.md',
+      \ "nested_syntaxes": {
+              \'python': 'python',
+              \'c++': 'cpp',
+              \'c': 'c',
+              \'sh': 'sh',
+              \'yaml': 'yaml'},
+      \ "list_margin": 2,
+      \ }
 
 " Vimwiki Global options
 let g:vimwiki_list = [wiki_1]
@@ -377,8 +365,47 @@ autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
 " fzf
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+let g:fzf_buffers_jump = 1
+
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+command! -bang -nargs=* Find
+    \ call fzf#vim#grep('rg --column --line-number --no-heading  --smart-case --hidden --follow --glob "!.git/*" --color=always '. shellescape(<q-args>).'| tr -d "\017"', 1,
+    \   <bang>0 ? fzf#vim#with_preview('up:40%')
+    \           : fzf#vim#with_preview('right:40%'),
+    \   <bang>0)
+
+" magic. add a '!' after typing <C-p> for preview mode, similar to :grep!
+map <C-p> :Find
 nnoremap <silent> <leader>zf :Files<cr>
 nnoremap <silent> <leader>zb :Buffers<cr>
+
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Insert mode completion
+imap <c-x><c-l> <plug>(fzf-complete-buffer-line)
+
+" Advanced customization using autoload functions
+inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " ale
@@ -386,4 +413,3 @@ nnoremap <silent> <leader>zb :Buffers<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
