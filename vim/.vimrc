@@ -223,6 +223,9 @@ nnoremap k gk
 
 nmap <silent> // :nohlsearch<CR>
 
+" highlight previously pasted text
+nnoremap gp `[v`]
+
 " Make :make command be silent except for errors
 noremap <leader>m :silent make\|redraw!\|cw<CR>
 
