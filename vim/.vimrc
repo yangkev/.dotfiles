@@ -385,17 +385,18 @@ let g:fzf_colors =
 
 let g:fzf_buffers_jump = 1
 
-command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+" command! -bang -nargs=? -complete=dir Files
+"     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
+" if no bang specified, use '?' to toggle preview window
 command! -bang -nargs=* Find
     \ call fzf#vim#grep('rg --column --line-number --no-heading  --smart-case --hidden --follow --glob "!.git/*" --color=always '. shellescape(<q-args>).'| tr -d "\017"', 1,
-    \   <bang>0 ? fzf#vim#with_preview('up:40%')
-    \           : fzf#vim#with_preview('right:40%'),
+    \   <bang>0 ? fzf#vim#with_preview('up:50%')
+    \           : fzf#vim#with_preview('right:50%:hidden', '?'),
     \   <bang>0)
 
 " magic. add a '!' after typing <C-p> for preview mode, similar to :grep!
-map <C-p> :Find
+map <C-p> :Find<Space>
 nnoremap <silent> <leader>zf :Files<cr>
 nnoremap <silent> <leader>zb :Buffers<cr>
 
