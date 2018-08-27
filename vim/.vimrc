@@ -78,6 +78,7 @@ set so=8
 
 " Enable wildmenu
 set wildmenu
+set wildmode=list:longest,list:full
 
 " Faster switching between INSERT/NORMAL modes
 set ttimeoutlen=10
@@ -341,6 +342,9 @@ let g:vimtex_fold_enabled = 0
 
 " vim-livedown - live markdown preview
 let g:livedown_browser = "firefox"
+
+" ignore files
+set wildignore+=*.aux,*.fdb_latexmk,*.fls,*.gz
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-go
