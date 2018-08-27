@@ -26,3 +26,4 @@ alias xclip="xclip -selection c"
 # paths
 alias gowd="cd $GOPATH/src/github.com/yangkev"
 alias wd="cd ~/src"
+alias path="echo $PATH"

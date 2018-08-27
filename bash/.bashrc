@@ -7,7 +7,14 @@
 [[ $- != *i* ]] && return
 
 # path
-PATH="$HOME/usr/bin:$PATH"
+export PATH="$PATH:$HOME/bin"
+
+# golang
+export GOPATH="$HOME/go"
+export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
+
+# rust
+export PATH="$PATH:$HOME/.cargo/bin"
 
 # Prompt
 PS1='\u@\h:\w\$ '
