@@ -8,5 +8,6 @@ elif [ -f ~/.git-completion.bash ]; then
   __git_complete gco _git_checkout
   __git_complete gm __git_merge
   __git_complete gp _git_pull
+  __git_complete glg _git_log
 fi
 
