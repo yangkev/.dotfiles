@@ -18,6 +18,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vimwiki/vimwiki'
 Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'justinmk/vim-syntax-extra'
 Plugin 'w0rp/ale'
 Plugin 'lervag/vimtex'
 Plugin 'shime/vim-livedown'
@@ -421,3 +422,4 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+let g:ale_echo_msg_format = '%linter% says %s'
