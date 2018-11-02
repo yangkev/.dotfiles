@@ -304,6 +304,8 @@ let g:markdown_fenced_languages = ['sh', 'bash=sh', 'css', 'c', 'cpp', 'javascri
 " Vimwiki mappings
 nmap <Leader>vo <Plug>VimwikiVSplitLink
 nmap <Leader>ho <Plug>VimwikiSplitLink
+nmap <Leader>mcr <Plug>VimwikiTableMoveColumnRight
+nmap <Leader>mcl <Plug>VimwikiTableMoveColumnLeft
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " cpp-enhanced-highlight
@@ -420,6 +422,9 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 " ale
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ale_linters = {
+    \ 'python': ['flake8'],
+    \ }
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 let g:ale_echo_msg_format = '%linter% says %s'
