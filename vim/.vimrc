@@ -12,13 +12,10 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'pangloss/vim-javascript'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vimwiki/vimwiki'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'justinmk/vim-syntax-extra'
+Plugin 'sheerun/vim-polyglot'
 Plugin 'w0rp/ale'
 Plugin 'lervag/vimtex'
 Plugin 'shime/vim-livedown'
@@ -67,9 +64,6 @@ set relativenumber
 
 " no wrapping
 set nowrap
-
-" highlight the line that the cursor is on
-" set cursorline
 
 " set how many lines of history VIM has to remember
 set history=500
@@ -241,8 +235,8 @@ inoremap <S-Tab> <C-V><Tab>
 nmap =j :%!python -m json.tool<CR>
 
 " Quickfix
-map <C-n> :cnext<cr>
-map <C-m> :cprevious<cr>
+" map <C-n> :cnext<cr>
+" map <C-m> :cprevious<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " Airline
@@ -272,7 +266,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 " Open NERDTree
 map <C-n> :NERDTreeToggle<CR>
-map <Leader>nf : NERDTreeFind<CR>
+map <Leader>nf :NERDTreeFind<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " Vimwiki
