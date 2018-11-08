@@ -84,6 +84,9 @@ if [ -f ~/.bash_functions ]; then
     source ~/.bash_functions
 fi
 
+# ssh agent
+[ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)"
+
 # fzf completion and ripgrep (rg)
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -x "$(command -v rg)" ] && export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
