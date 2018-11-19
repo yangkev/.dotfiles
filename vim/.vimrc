@@ -301,6 +301,9 @@ nmap <Leader>ho <Plug>VimwikiSplitLink
 nmap <Leader>mcr <Plug>VimwikiTableMoveColumnRight
 nmap <Leader>mcl <Plug>VimwikiTableMoveColumnLeft
 
+" Change cwd to current file
+nmap <Leader>cd :cd %:p:h<CR>:pwd<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " cpp-enhanced-highlight
 "
