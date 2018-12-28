@@ -15,11 +15,12 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vimwiki/vimwiki'
-Plugin 'sheerun/vim-polyglot'
 Plugin 'w0rp/ale'
 Plugin 'lervag/vimtex'
 Plugin 'shime/vim-livedown'
 Plugin 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plugin 'sheerun/vim-polyglot'
+let g:polyglot_disabled = ['go']
 
 " fzf
 set rtp+=~/.fzf
