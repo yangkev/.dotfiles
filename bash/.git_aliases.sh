@@ -1,10 +1,6 @@
-# git bash completion
-
-if [ -f /etc/bash_completion.d/git ]; then
-  . /etc/bash_completion.d/git
-  __git_complete gch _git_checkout
-elif [ -f ~/.git-completion.bash ]; then
-  . ~/.git-completion.bash 
+# Enable completion for git aliases
+if [[ -f "$DOTFILES/bash/.git-completion.bash" ]] ; then
+  source "$DOTFILES/bash/.git-completion.bash"
   __git_complete gco _git_checkout
   __git_complete gm _git_merge
   __git_complete gp _git_pull
@@ -13,4 +9,3 @@ elif [ -f ~/.git-completion.bash ]; then
   __git_complete gd _git_diff
   __git_complete gds _git_diff
 fi
-
