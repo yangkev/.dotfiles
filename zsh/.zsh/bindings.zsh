@@ -1,6 +1,3 @@
-# Use Emacs bindings. This is evil but its closer to the bash defaults.
-bindkey -e
-
 autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
