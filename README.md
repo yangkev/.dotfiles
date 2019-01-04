@@ -16,6 +16,7 @@ $ ./install.sh -h
 - [fzf](https://github.com/junegunn/fzf)
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy)
+- [base16-shell](https://github.com/chriskempson/base16-shell)
 
 #### zsh
 - [zsh-auto-suggestions](https://github.com/zsh-users/zsh-autosuggestions)
