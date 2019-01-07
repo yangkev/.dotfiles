@@ -28,7 +28,7 @@ stty -ixon
 
 # bash completion
 [[ -f "/etc/bash_completion" ]] && source "/etc/bash_completion"
-[[ -f "$DOTFILES/bash/.git_aliases.sh" ]] && source "$DOTFILES/bash/.git_aliases.sh"
+[[ -f "$DOTFILES/bash/.bash/.git_aliases.sh" ]] && source "$DOTFILES/bash/.bash/.git_aliases.sh"
 
 # fzf binding
 [[ -f "$HOME/.fzf.bash" ]] && source "$HOME/.fzf.bash" && bind -x '"\C-p": vim $(fzf);'

@@ -1,6 +1,6 @@
 # Enable completion for git aliases
-if [[ -f "$DOTFILES/bash/.git-completion.bash" ]] ; then
-  source "$DOTFILES/bash/.git-completion.bash"
+if [[ -f "$DOTFILES/bash/.bash/.git-completion.bash" ]] ; then
+  source "$DOTFILES/bash/.bash/.git-completion.bash"
   __git_complete gco _git_checkout
   __git_complete gm _git_merge
   __git_complete gp _git_pull
