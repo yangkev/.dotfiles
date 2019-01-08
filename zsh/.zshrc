@@ -46,8 +46,17 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command "ps -u $USER -o pid,user,%cpu,cmd"
+zstyle ':completion:*' rehash true
 
-# Fzf bindings
+# Settings from other files
+[ -f "$DOTFILES/zsh/.zsh/bindings.zsh" ] && source "$DOTFILES/zsh/.zsh/bindings.zsh"
+[ -f "$DOTFILES/zsh/.zsh/prompt.zsh" ] && source "$DOTFILES/zsh/.zsh/prompt.zsh"
+
+# Source other locations of zsh and shell settings
+[ -f "$HOME/.shell_local" ] && source "$HOME/.shell_local"
+[ -f "$HOME/.zsh_local" ] && source "$HOME/.zsh_local"
+
+# fzf
 [ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
 
 # fish-like autocompletion
@@ -56,8 +65,3 @@ if [ -f "$ZSH/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
     ZSH_AUTOSUGGEST_USE_ASYNC=1
     source "$ZSH/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
-
-# Source other locations of zsh and shell settings
-[ -f "$DOTFILES/zsh/.zsh/bindings.zsh" ] && source "$DOTFILES/zsh/.zsh/bindings.zsh"
-[ -f "$HOME/.shell_local" ] && source "$HOME/.shell_local"
-[ -f "$HOME/.zsh_local" ] && source "$HOME/.zsh_local"
