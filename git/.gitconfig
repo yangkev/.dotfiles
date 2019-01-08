@@ -29,19 +29,17 @@
     newNormal = green bold
     newHighlight = green bold 22
 [color "status"]
-    added = yellow
-    changed = green
-    untracked = cyan
+    added = green 
+    changed = yellow 
+    untracked = red 
 [diff]
     renames = copies
     mnemonicprefix = true
 [merge]
     stat = true
 [branch]
-# rebase on pull rather than merge
-    autosetuprebase = always
-# when branching off a remote, automatically let local track remote
-    autosetupmerge = true
+    autosetuprebase = always    # rebase on pull rather than merge
+    autosetupmerge = true       # when branching off a remote, automatically let local track remote
 [push]
     default = tracking
 [url "git@github.com:"]
