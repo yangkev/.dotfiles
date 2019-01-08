@@ -20,3 +20,5 @@ $ ./install.sh -h
 
 #### zsh
 - [zsh-auto-suggestions](https://github.com/zsh-users/zsh-autosuggestions)
+- [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+- [command-not-found](https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/command-not-found)

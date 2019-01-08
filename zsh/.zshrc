@@ -59,6 +59,9 @@ zstyle ':completion:*' rehash true
 # fzf
 [ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
 
+# suggestions when command isn't found
+[ -f "/etc/zsh_command_not_found" ] && source "/etc/zsh_command_not_found"
+
 # fish-like autocompletion
 if [ -f "$ZSH/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
     ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
