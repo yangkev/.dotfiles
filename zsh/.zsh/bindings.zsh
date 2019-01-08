@@ -6,7 +6,7 @@ bindkey "^X^E" edit-command-line
 bindkey -M menuselect '^M' .accept-line
 #
 # [Ctrl-o] to accept a completion and continue completing (helpful for completing long paths)
-bindkey -M menuselect '^o' .accept-and-infer-next-history
+bindkey -M menuselect '^o' accept-and-infer-next-history
 
 # [Shift-Tab] - move through the completion menu backwards
 if [[ "${terminfo[kcbt]}" != "" ]]; then
