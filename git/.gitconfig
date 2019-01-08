@@ -1,13 +1,12 @@
 [user]
     name = Kevin Yang
     email = yangke@umich.edu
-
 [core]
     editor = vim
     whitespace = trailing-space, space-before-tab
     excludesfile = ~/.gitexcludes
     pager = "diff-so-fancy | less -RFEX"
-	fileMode = false
+    fileMode = false
 [color]
     ui = true
     branch = auto
@@ -18,14 +17,14 @@
     local = yellow
     remote = green
 [color "diff"]
-    meta = yellow 
+    meta = yellow
     frag = magenta bold
     commit = yellow bold
     old = red bold
     new = green bold
     whitespace = red reverse
 [color "diff-highlight"]
-	oldNormal = red bold
+    oldNormal = red bold
     oldHighlight = red bold 52
     newNormal = green bold
     newHighlight = green bold 22
@@ -45,19 +44,5 @@
     autosetupmerge = true
 [push]
     default = tracking
-[alias]
-# Basics
-    a = add
-    c = commit
-    s = status
-    co = checkout
-    d = diff
-    b = branch
-
-# Logging
-    lg1 = log --graph --abbrev-commit --decorate --pretty=format:'%C(bold yellow)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(bold cyan)%d%C(reset)' 
-    lg2 = log --graph --abbrev-commit --decorate --pretty=format:'%C(bold yellow)%h%C(reset) - %C(bold blue)%aD%C(reset) %C(bold green)(%cr)%C(reset) %C(bold red)[%an]%C(reset)%C(bold cyan)%d%C(reset)%n''          %C(white)%s%C(reset)%n' --all
-    ll = log --pretty=format:'%C(bold cyan)%d%C(reset)%n''%C(bold yellow)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(bold red)[%cn]%C(reset)' --numstat
-    lg = !"git lg1"
 [url "git@github.com:"]
-	insteadOf = https://github.com/
+    insteadOf = https://github.com/
