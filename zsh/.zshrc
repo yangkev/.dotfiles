@@ -12,6 +12,7 @@ zmodload -i zsh/complist
 setopt NO_BEEP
 setopt NUMERIC_GLOB_SORT
 setopt EXTENDED_GLOB
+unsetopt NO_MATCH
 # Use Emacs bindings. This is evil but its closer to the bash defaults.
 bindkey -e
 
