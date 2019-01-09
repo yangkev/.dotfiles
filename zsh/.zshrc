@@ -3,12 +3,14 @@ ZSH="$HOME/.zsh"
 DOTFILES="$HOME/.dotfiles"
 source "$DOTFILES/shell/bootstrap.sh"
 fpath+=("$ZSH/themes")
-fpath+=("$HOME/src/pure")
 
 autoload -Uz promptinit compinit
 promptinit
 compinit
 zmodload -i zsh/complist
+
+# Prompt
+prompt kevin
 
 # General options
 setopt NO_BEEP
