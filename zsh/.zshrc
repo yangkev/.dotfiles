@@ -55,7 +55,6 @@ zstyle ':completion:*' rehash true
 
 # Settings from other files
 [ -f "$DOTFILES/zsh/.zsh/bindings.zsh" ] && source "$DOTFILES/zsh/.zsh/bindings.zsh"
-# [ -f "$DOTFILES/zsh/.zsh/prompt.zsh" ] && source "$DOTFILES/zsh/.zsh/prompt.zsh"
 
 # Source other locations of zsh and shell settings
 [ -f "$HOME/.shell_local" ] && source "$HOME/.shell_local"
