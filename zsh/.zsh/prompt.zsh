@@ -1,4 +1,5 @@
 # Prompt inspired by https://joshdick.net/2017/06/08/my_git_prompt_for_zsh_revisited.html
+ZSH="$HOME/.zsh"
 
 setopt prompt_subst
 autoload -U colors && colors # Enable colors in prompt
@@ -61,12 +62,76 @@ git_info() {
   [[ ${#FLAGS[@]} -ne 0 ]] && GIT_INFO+=( "${(j::)FLAGS}" )
   GIT_INFO+=( "%{\e[90m%}$GIT_LOCATION%{$reset_color%}" )
   echo "${(j: :)GIT_INFO}"
-
 }
 
-# Use ❯ as the non-root prompt character; # for root
-# Change the prompt character color if the last command had a nonzero exit code
-PROMPT='$(ssh_info)'
-PROMPT+='%{$fg[magenta]%}%~%u'
-PROMPT+='$(git_info)'
-PROMPT+=' %(?.%{$fg_bold[cyan]%}.%{$fg_bold[red]%})%(!.#.❯)%{$reset_color%} '
+prompt_kevin_async_git_info() {
+  local worker="$1"
+}
+
+completed_callback() {
+  local job=$1 exit_code=$2 stdout=$3 exec_time=$4 stderr=$5 next_pending=$6
+  ( $exit_code ) && return
+
+  typeset -gA prompt_components
+  local do_render=0
+
+  case $job in
+    prompt_kevin_async_git_info)
+      if [[ -n "${stdout}" ]]; then
+        prompt_components[git_info]=$stdout
+        do_render=1
+      fi
+      ;;
+  esac
+
+  (( do_render )) && prompt_kevin_render
+}
+
+
+prompt_kevin_render() {
+  local -a prompt_parts=()
+
+  prompt_parts+=( '$(ssh_info)' )
+  prompt_parts+=( '%{$fg[magenta]%}%~%f' )
+  prompt_parts+=( '$(git_info)' )
+  prompt_parts+=( '%(?.%{$fg_bold[cyan]%}.%{$fg_bold[red]%})%(!.#.❯)%{$reset_color%} ' )
+
+  PROMPT="${(j: :)prompt_parts}"
+
+  if [[ $1 != "precmd" ]]; then
+    zle reset-prompt
+  fi
+}
+
+prompt_kevin_precmd() {
+  ((!${prompt_init:-0})) && {
+    async_start_worker prompt_worker -u -n
+    async_register_callback prompt_worker completed_callback
+    typeset -g prompt_init=1
+  }
+
+  # start async jobs
+  async_job prompt_worker prompt_kevin_async_git_info
+
+  # render prompt
+  prompt_kevin_render "precmd"
+}
+
+prompt_kevin_setup() {
+  prompt_opts=(subst percent)
+  if [ -f "$ZSH/zsh-async/async.zsh" ]; then
+    source "$ZSH/zsh-async/async.zsh"
+    async_init
+    autoload -Uz zsh/zle
+    autoload -Uz add-zsh-hook
+    add-zsh-hook precmd prompt_kevin_precmd
+    prompt_cleanup 'prompt_kevin_cleanup'
+  fi
+}
+
+prompt_kevin_cleanup() {
+  async_flush_jobs prompt_worker
+  async_stop_worker prompt_worker
+}
+
+prompt_kevin_setup "$@"
