@@ -72,3 +72,6 @@ if [ -f "$ZSH/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
     ZSH_AUTOSUGGEST_USE_ASYNC=1
     source "$ZSH/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
+
+# syntax highlighting in the shell
+[ -f "$ZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && source "$ZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
