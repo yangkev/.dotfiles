@@ -6,7 +6,7 @@ autoload -U colors && colors # Enable colors in prompt
 
 # Echoes a username/host string when connected over SSH (empty otherwise)
 ssh_info() {
-  [[ "$SSH_CONNECTION" != '' ]] && echo '%(!.%{$fg[red]%}.%{$fg[yellow]%})%n%{$reset_color%}@%{$fg[green]%}%m%{$reset_color%}:' || echo ''
+  [[ "$SSH_CONNECTION" != '' ]] && echo '%(!.%F{red}.%F{yellow})%n%f@%F{green}%m%f:' || echo ''
 }
 
 # Echoes information about Git repository status when inside a Git repository
@@ -18,12 +18,12 @@ git_info() {
   # Git branch/tag, or name-rev if on detached head
   local GIT_LOCATION=${$(git symbolic-ref -q HEAD || git name-rev --name-only --no-undefined --always HEAD)#(refs/heads/|tags/)}
 
-  local AHEAD="%{$fg[red]%}⇡NUM%{$reset_color%}"
-  local BEHIND="%{$fg[cyan]%}⇣NUM%{$reset_color%}"
-  local MERGING="%{$fg[magenta]%}⚡︎%{$reset_color%}"
-  local UNTRACKED="%{$fg[red]%}●%{$reset_color%}"
-  local MODIFIED="%{$fg[yellow]%}●%{$reset_color%}"
-  local STAGED="%{$fg[green]%}●%{$reset_color%}"
+  local AHEAD="%F{red}⇡NUM%f"
+  local BEHIND="%F{cyan}⇣NUM%f"
+  local MERGING="%F{magenta}⚡︎%f"
+  local UNTRACKED="%F{red}●%f"
+  local MODIFIED="%F{yellow}●%f"
+  local STAGED="%F{green}●%f"
 
   local -a DIVERGENCES
   local -a FLAGS
@@ -56,11 +56,10 @@ git_info() {
   fi
 
   local -a GIT_INFO
-  GIT_INFO+=( "%{\e[90m%}" )
-  [ -n "$GIT_STATUS" ] && GIT_INFO+=( "$GIT_STATUS" )
+  [ -n "$GIT_STATUS" ] && GIT_INFO+=( "%F{8}$GIT_STATUS%f" )
   [[ ${#DIVERGENCES[@]} -ne 0 ]] && GIT_INFO+=( "${(j::)DIVERGENCES}" )
   [[ ${#FLAGS[@]} -ne 0 ]] && GIT_INFO+=( "${(j::)FLAGS}" )
-  GIT_INFO+=( "%{\e[90m%}$GIT_LOCATION%{$reset_color%}" )
+  GIT_INFO+=( "%F{8}$GIT_LOCATION%f" )
   echo "${(j: :)GIT_INFO}"
 }
 
@@ -92,9 +91,9 @@ prompt_kevin_render() {
   local -a prompt_parts=()
 
   prompt_parts+=( '$(ssh_info)' )
-  prompt_parts+=( '%{$fg[magenta]%}%~%f' )
+  prompt_parts+=( '%F{magenta}%~%f' )
   prompt_parts+=( '$(git_info)' )
-  prompt_parts+=( '%(?.%{$fg_bold[cyan]%}.%{$fg_bold[red]%})%(!.#.❯)%{$reset_color%} ' )
+  prompt_parts+=( '%(?.%B%F{cyan}.%B%F{red})%(!.#.❯)%f%b ' )
 
   PROMPT="${(j: :)prompt_parts}"
 
