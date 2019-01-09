@@ -1,4 +1,7 @@
-# Prompt inspired by https://joshdick.net/2017/06/08/my_git_prompt_for_zsh_revisited.html
+# Prompt inspired by:
+# https://joshdick.net/2017/06/08/my_git_prompt_for_zsh_revisited.html
+# https://github.com/sindresorhus/pure
+
 ZSH="$HOME/.zsh"
 
 setopt prompt_subst
@@ -63,10 +66,12 @@ git_info() {
   echo "${(j: :)GIT_INFO}"
 }
 
+# prompt_kevin_async_git_info is a wrapper around functions for gathering git information
 prompt_kevin_async_git_info() {
-  local worker="$1"
+  echo "$(git_info)"
 }
 
+# completed_callback handles completed async jobs
 completed_callback() {
   local job=$1 exit_code=$2 stdout=$3 exec_time=$4 stderr=$5 next_pending=$6
   ( $exit_code ) && return
@@ -76,38 +81,60 @@ completed_callback() {
 
   case $job in
     prompt_kevin_async_git_info)
-      if [[ -n "${stdout}" ]]; then
-        prompt_components[git_info]=$stdout
-        do_render=1
+      if [[ -n "$stdout" ]]; then
+        prompt_components[git_info]="$stdout"
+      else
+        prompt_components[git_info]=""
       fi
+      do_render=1
       ;;
   esac
 
   (( do_render )) && prompt_kevin_render
 }
 
-
+# prompt_kevin_render builds the $PROMPT variable and draws the prompt if necessary
 prompt_kevin_render() {
   local -a prompt_parts=()
 
-  prompt_parts+=( '$(ssh_info)' )
+  # 0: ssh info
+  local prompt_ssh_info="$(ssh_info)"
+  if [[ -n $prompt_ssh_info ]]; then
+    prompt_parts+=( $prompt_ssh_info )
+  fi
+
+  # 1: current working directory
   prompt_parts+=( '%F{magenta}%~%f' )
-  prompt_parts+=( '$(git_info)' )
+
+  # 2: git info
+  if [[ -n "$prompt_components[git_info]" ]]; then
+    prompt_parts+=( "$prompt_components[git_info]" )
+  fi
+
+  # 3: arrow
   prompt_parts+=( '%(?.%B%F{cyan}.%B%F{red})%(!.#.❯)%f%b ' )
 
   PROMPT="${(j: :)prompt_parts}"
 
-  if [[ $1 != "precmd" ]]; then
-    zle reset-prompt
+  # don't force a re-draw unnecesarily if the new prompt is the same as the previous
+  local expanded_prompt="${(S%%)PROMPT}"
+  if [[ $1 != "precmd" && "$expanded_prompt" != "$prompt_kevin_last_prompt" ]]; then
+    zle && zle reset-prompt
   fi
+  typeset -g prompt_kevin_last_prompt="$expanded_prompt"
 }
 
+# prompt_kevin_precmd is a zsh hook function that is executed before each prompt.
+# This precmd issues async jobs and renders the prompt.
 prompt_kevin_precmd() {
   ((!${prompt_init:-0})) && {
     async_start_worker prompt_worker -u -n
     async_register_callback prompt_worker completed_callback
     typeset -g prompt_init=1
   }
+
+	# Update the current working directory of the async worker.
+	async_worker_eval prompt_worker builtin cd -q $PWD
 
   # start async jobs
   async_job prompt_worker prompt_kevin_async_git_info
@@ -117,14 +144,16 @@ prompt_kevin_precmd() {
 }
 
 prompt_kevin_setup() {
+  autoload -Uz add-zsh-hook
+  autoload -Uz zsh/zle
   prompt_opts=(subst percent)
   if [ -f "$ZSH/zsh-async/async.zsh" ]; then
     source "$ZSH/zsh-async/async.zsh"
     async_init
-    autoload -Uz zsh/zle
-    autoload -Uz add-zsh-hook
     add-zsh-hook precmd prompt_kevin_precmd
     prompt_cleanup 'prompt_kevin_cleanup'
+  else
+    add-zsh-hook precmd prompt_kevin_render
   fi
 }
 
