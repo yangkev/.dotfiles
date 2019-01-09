@@ -133,8 +133,8 @@ prompt_kevin_precmd() {
     typeset -g prompt_init=1
   }
 
-	# Update the current working directory of the async worker.
-	async_worker_eval prompt_worker builtin cd -q $PWD
+  # Update the current working directory of the async worker.
+  async_worker_eval prompt_worker builtin cd -q $PWD
 
   # start async jobs
   async_job prompt_worker prompt_kevin_async_git_info
