@@ -27,6 +27,7 @@ alias python="python3"
 alias za="zathura --fork"
 alias xclip="xclip -selection c"
 alias rgh="rg --hidden"
+alias rg="rg -p"
 
 # paths
 alias gowd="cd $GOPATH/src/github.com/yangkev"
