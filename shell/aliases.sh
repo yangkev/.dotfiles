@@ -10,17 +10,17 @@ alias egrep='egrep --color=always'
 
 # git
 alias g="git"
-alias ga="git add"
-alias gs="git status"
-alias gc="git commit"
-alias gb="git branch"
-alias gf="git fetch"
-alias gco="git checkout"
-alias gd="git diff"
-alias gds="git diff --staged"
-alias glg="git log --graph --abbrev-commit --decorate --pretty=format:'%C(bold yellow)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(bold cyan)%d%C(reset)'"
-alias glg2="git log --graph --abbrev-commit --decorate --pretty=format:'%C(bold yellow)%h%C(reset) - %C(bold blue)%aD%C(reset) %C(bold green)(%cr)%C(reset) %C(bold red)[%an]%C(reset)%C(bold cyan)%d%C(reset)%n''          %C(white)%s%C(reset)%n' --all"
-alias gll="git log --pretty=format:'%C(bold cyan)%d%C(reset)%n''%C(bold yellow)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(bold red)[%cn]%C(reset)' --numstat"
+alias ga="g a"
+alias gs="g s"
+alias gc="g c"
+alias gb="g b"
+alias gf="g f"
+alias gco="g co"
+alias gd="g d"
+alias gds="g d --staged"
+alias glg="g lg"
+alias glg2="g lg2"
+alias gll="g ll"
 
 # other
 alias python="python3"

@@ -29,9 +29,9 @@
     newNormal = green bold
     newHighlight = green bold 22
 [color "status"]
-    added = green 
-    changed = yellow 
-    untracked = red 
+    added = green
+    changed = yellow
+    untracked = red
 [diff]
     renames = copies
     mnemonicprefix = true
@@ -42,5 +42,18 @@
     autosetupmerge = true       # when branching off a remote, automatically let local track remote
 [push]
     default = tracking
+[alias]
+    # Basics
+    a = add
+    c = commit
+    s = status
+    co = checkout
+    d = diff
+    b = branch
+    f = fetch
+    # Logging
+    lg = log --graph --abbrev-commit --decorate --pretty=format:'%C(bold yellow)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(bold cyan)%d%C(reset)'
+    lg2 = log --graph --abbrev-commit --decorate --pretty=format:'%C(bold yellow)%h%C(reset) - %C(bold blue)%aD%C(reset) %C(bold green)(%cr)%C(reset) %C(bold red)[%an]%C(reset)%C(bold cyan)%d%C(reset)%n''          %C(white)%s%C(reset)%n' --all
+    ll = log --pretty=format:'%C(bold cyan)%d%C(reset)%n''%C(bold yellow)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(bold red)[%cn]%C(reset)' --numstat
 [url "git@github.com:"]
     insteadOf = https://github.com/
