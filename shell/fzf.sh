@@ -58,8 +58,8 @@ fzf_git_log() {
     xargs -I@ sh -c 'git show --no-ext-diff --color=always @' $diffviewer")
 
     if [[ -n $commits ]]; then
-        local hashes=$(printf "$commits" | cut -d' ' -f2 | tr '\n' ' ')
-        git show $hashes
+        local hashes=$(printf "$commits" | sed "s/\x1b\[[0-9;]*m//g" |  cut -d' ' -f2 | tr '\n' ' ')
+        git show $(echo $hashes)
     fi
 }
 
