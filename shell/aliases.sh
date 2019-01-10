@@ -26,6 +26,7 @@ alias gll="git log --pretty=format:'%C(bold cyan)%d%C(reset)%n''%C(bold yellow)%
 alias python="python3"
 alias za="zathura --fork"
 alias xclip="xclip -selection c"
+alias rgh="rg --hidden"
 
 # paths
 alias gowd="cd $GOPATH/src/github.com/yangkev"
