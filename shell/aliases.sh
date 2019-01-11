@@ -21,6 +21,11 @@ alias gds="g d --staged"
 alias glg="g lg"
 alias glg2="g lg2"
 alias gll="g ll"
+alias gr="g r"
+alias gri="g r --interactive"
+alias grc="g r --continue"
+alias gra="g r --abort"
+alias garc="git add . ; git rebase --continue"
 
 # other
 alias python="python3"
