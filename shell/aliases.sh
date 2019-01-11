@@ -7,6 +7,7 @@ alias grep="grep -n --color=always"
 alias grep='grep --color=always'
 alias fgrep='fgrep --color=always'
 alias egrep='egrep --color=always'
+alias diffy="diff -y --suppress-common-lines"
 
 # git
 alias g="git"
