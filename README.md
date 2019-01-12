@@ -28,6 +28,7 @@ $ ./install.sh -h
 - [stow](https://www.gnu.org/software/stow/) - quickly symlink and manage dotfiles
 - [fzf](https://github.com/junegunn/fzf) - fuzzy finding anything
 - [ripgrep](https://github.com/BurntSushi/ripgrep) - faster grep
+- [fd](https://github.com/sharkdp/fd) - user friendly `find`
 
 #### vim
 - [Vundle](https://github.com/VundleVim/Vundle.vim) - vim plugin manager
