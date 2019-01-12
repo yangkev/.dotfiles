@@ -1,0 +1,2 @@
+--glob
+!**/{.git,node_modules,bundle,venv,vendor}/*

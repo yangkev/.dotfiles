@@ -21,7 +21,8 @@ export FZF_DEFAULT_OPTS="\
   --bind=$KEYBINDINGS"
 
 if [ ! "$(command -v rg >/dev/null 2>&1)" ]; then
-  export FZF_DEFAULT_COMMAND='\rg --color=auto --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+  export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/rgignore"
+  export FZF_DEFAULT_COMMAND='\rg --color=auto --files --no-ignore --hidden --follow 2> /dev/null'
 fi
 
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
