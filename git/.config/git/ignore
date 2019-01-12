@@ -1,0 +1,9 @@
+.DS_Store
+*.pub
+*rsa
+tags
+.vim/bundle/*
+vendor/*
+node_modules/*
+venv/*
+
