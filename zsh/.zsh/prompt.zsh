@@ -74,7 +74,7 @@ prompt_kevin_async_git_info() {
 # completed_callback handles completed async jobs
 completed_callback() {
   local job=$1 exit_code=$2 stdout=$3 exec_time=$4 stderr=$5 next_pending=$6
-  [[ "$exit_code" -eq 0 ]] && return
+  ( $exit_code ) && return
 
   typeset -gA prompt_components
   local do_render=0
