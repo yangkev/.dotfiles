@@ -7,8 +7,12 @@ $ cd $HOME/.dotfiles
 $ ./install.sh
 ```
 
-`install.sh` will go through all top level directories and ask to install that directory's dotfiles with `stow`. 
-You can also choose to install individual directories with `stow vim` (for example) instead.
+These dotfiles are managed with [GNU Stow](https://www.gnu.org/software/stow/). (See [Using GNU Stow to manage your
+dotfiles](http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html)).
+
+Each of the top level directories represents a package.
+[`install.sh`](https://github.com/yangkev/.dotfiles/blob/master/install.sh) is a convenient installation script that will allow you to interactively install each package and will backup existing dotfiles that will be overwritten to `~/.old_dotfiles`. You can also choose to install individual packages with
+`stow vim` (for example) instead.
 
 Uninstalling can be done with `./install.sh -u` or:
 ```
@@ -22,7 +26,7 @@ For additional help, see:
 $ ./install.sh -h
 ```
 
-### Useful programs
+### Stuff I use
 
 #### cli
 - [stow](https://www.gnu.org/software/stow/) - quickly symlink and manage dotfiles
