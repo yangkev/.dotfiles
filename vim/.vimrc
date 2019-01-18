@@ -19,6 +19,7 @@ Plugin 'w0rp/ale'
 Plugin 'lervag/vimtex'
 Plugin 'shime/vim-livedown'
 Plugin 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plugin 'junegunn/goyo.vim'
 Plugin 'sheerun/vim-polyglot'
 let g:polyglot_disabled = ['go']
 
@@ -426,3 +427,28 @@ let g:ale_linters = {
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 let g:ale_echo_msg_format = '%linter% says %s'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" goyo - distraction free writing
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>g :Goyo<cr>
+map <leader>xg :Goyo!<cr>
+let g:goyo_width="120"
+let g:goyo_height="100%"
+function! s:goyo_enter()
+  silent !tmux set status off
+  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  set noshowmode
+  set noshowcmd
+endfunction
+
+function! s:goyo_leave()
+  silent !tmux set status on
+  silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  set showmode
+  set showcmd
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
