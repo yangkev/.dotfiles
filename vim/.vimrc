@@ -341,6 +341,7 @@ let g:vimtex_compiler_latexmk = {
 let g:vimtex_matchparen_enabled = 0
 let g:vimtex_complete_enabled = 0
 let g:vimtex_fold_enabled = 0
+let g:polyglot_disabled = ['latex']
 
 " vim-livedown - live markdown preview
 let g:livedown_browser = "firefox"
