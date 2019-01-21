@@ -39,7 +39,6 @@ HISTFILE="$ZSH/.zsh_history"
 # Completion
 setopt ALWAYS_TO_END
 setopt COMPLETE_IN_WORD
-setopt MENU_COMPLETE # fill in first completion
 
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' menu select
