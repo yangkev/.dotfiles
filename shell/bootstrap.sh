@@ -5,7 +5,7 @@ export VISUAL=vi
 export EDITOR=$VISUAL
 
 # path stuff
-export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$HOME/.bin"
 export GOPATH="$HOME/go"
 export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
