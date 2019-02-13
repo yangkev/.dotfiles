@@ -12,6 +12,10 @@ ssh_info() {
   [[ "$SSH_CONNECTION" != '' ]] && echo '%(!.%F{red}.%F{yellow})%n%f@%F{green}%m%f:' || echo ''
 }
 
+virtualenv_info() {
+  [[ "$VIRTUAL_ENV" ]] && echo "%F{green}($(basename $VIRTUAL_ENV))%f"
+}
+
 # Echoes information about Git repository status when inside a Git repository
 git_info() {
 
@@ -101,6 +105,12 @@ prompt_kevin_render() {
   local prompt_ssh_info="$(ssh_info)"
   if [[ -n $prompt_ssh_info ]]; then
     prompt_parts+=( $prompt_ssh_info )
+  fi
+
+  # virtualenv info
+  local prompt_virtualenv_info="$(virtualenv_info)"
+  if [[ -n $prompt_virtualenv_info ]]; then
+    prompt_parts+=( $prompt_virtualenv_info )
   fi
 
   # 1: current working directory
