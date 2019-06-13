@@ -6,4 +6,4 @@ tags
 vendor/*
 node_modules/*
 venv/*
-
+Session.vim

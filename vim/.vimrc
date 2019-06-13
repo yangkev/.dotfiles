@@ -22,6 +22,7 @@ Plugin 'shime/vim-livedown'
 Plugin 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plugin 'junegunn/goyo.vim'
 Plugin 'sheerun/vim-polyglot'
+Plugin 'tpope/vim-obsession'
 let g:polyglot_disabled = ['go']
 
 " fzf
