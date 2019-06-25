@@ -1,3 +1,5 @@
 vim/.vim/bundle/*
+vim/.vim/autoload/
+vim/.vim/plugged/
 .netrwhist
 ssh/.ssh/known_hosts

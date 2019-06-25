@@ -4,36 +4,32 @@ set nocompatible
 " Vundle
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""
-filetype off
+call plug#begin('~/.vim/plugged')
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'vimwiki/vimwiki'
-Plugin 'w0rp/ale'
-Plugin 'lervag/vimtex'
-Plugin 'shime/vim-livedown'
-Plugin 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-Plugin 'junegunn/goyo.vim'
-Plugin 'sheerun/vim-polyglot'
-Plugin 'tpope/vim-obsession'
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdcommenter'
+Plug 'itchyny/lightline.vim'
+Plug 'vimwiki/vimwiki'
+Plug 'w0rp/ale'
+Plug 'lervag/vimtex'
+Plug 'shime/vim-livedown'
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'junegunn/goyo.vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'tpope/vim-obsession'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:polyglot_disabled = ['go']
 
 " fzf
 set rtp+=~/.fzf
-Plugin 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim'
 
 " Appearance
-Plugin 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 
-call vundle#end()            " required
-filetype plugin indent on    " required
+call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " General config
@@ -247,13 +243,12 @@ nmap =j :%!python -m json.tool<CR>
 " map <C-m> :cprevious<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
-" Airline
+" Lightline
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""
-let g:airline_powerline_fonts=1
-let g:airline_inactive_collapse=1
-let g:airline_theme="gruvbox"
-let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+let g:lightline = {
+      \ 'colorscheme': 'gruvbox',
+      \ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree
