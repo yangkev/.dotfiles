@@ -1,5 +1,3 @@
-set nocompatible
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle
 "
@@ -123,9 +121,6 @@ set smarttab
 " match indents on new lines
 set autoindent
 
-" intelligently dedent/indent new lines
-" set smartindent
-
 " tab / shifting moves to closest tabstop
 set shiftround
 
@@ -238,10 +233,6 @@ inoremap <S-Tab> <C-V><Tab>
 " Automatically format json with =j
 nmap =j :%!python -m json.tool<CR>
 
-" Quickfix
-" map <C-n> :cnext<cr>
-" map <C-m> :cprevious<cr>
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " Lightline
 "
@@ -324,24 +315,8 @@ let g:cpp_class_decl_highlight = 1
 " vimtex
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""
-let g:vimtex_compiler_method='latexmk'
-let g:vimtex_compiler_latexmk = {
-    \ 'background' : 1,
-    \ 'build_dir' : '',
-    \ 'callback' : 1,
-    \ 'continuous' : 1,
-    \ 'executable' : 'latexmk',
-    \ 'options' : [
-    \   '-pdf',
-    \   '-verbose',
-    \   '-file-line-error',
-    \   '-synctex=1',
-    \   '-interaction=nonstopmode',
-    \ ],
-    \}
 let g:vimtex_matchparen_enabled = 0
 let g:vimtex_complete_enabled = 0
-let g:vimtex_fold_enabled = 0
 let g:polyglot_disabled = ['latex']
 
 " vim-livedown - live markdown preview
@@ -434,10 +409,6 @@ let g:ale_echo_msg_format = '%linter% says %s'
 " goyo - distraction free writing
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>g :Goyo<cr>
-map <leader>xg :Goyo!<cr>
-let g:goyo_width="120"
-let g:goyo_height="100%"
 function! s:goyo_enter()
   silent !tmux set status off
   silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
