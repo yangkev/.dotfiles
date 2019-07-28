@@ -5,6 +5,7 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'scrooloose/nerdtree'
 " Plug 'scrooloose/nerdcommenter'
 Plug 'itchyny/lightline.vim'
