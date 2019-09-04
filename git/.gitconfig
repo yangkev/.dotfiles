@@ -59,3 +59,5 @@
     ll = log --pretty=format:'%C(bold cyan)%d%C(reset)%n''%C(bold yellow)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(bold red)[%cn]%C(reset)' --numstat
 [url "git@github.com:"]
     insteadOf = https://github.com/
+[mergetool]
+	keepBackup = false
