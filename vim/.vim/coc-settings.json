@@ -1,13 +1,41 @@
 {
-  "python.linting.pylintEnabled": false,
-  "python.linting.flake8Enabled": true,
-  "python.linting.enabled": false,
-  "diagnostic.enable": false,
-  "languageserver": {
-    "golang": {
-      "command": "gopls",
-      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["go"]
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": false,
+    "python.jediEnabled": false,
+    "coc.preferences.hoverTarget": "float",
+    "suggest.triggerAfterInsertEnter": true,
+    "suggest.autoTrigger": "always",
+    "diagnostic.displayByAle": true,
+    "languageserver": {
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": [
+                "go.mod",
+                ".vim/",
+                ".git/",
+                ".hg/"
+            ],
+            "filetypes": [
+                "go"
+            ],
+            "disableDiagnostics": true,
+            "settings": {
+                "usePlaceholders": true,
+                "wantCompletionDocumentation": true
+            }
+        },
+        "bash": {
+            "command": "bash-language-server",
+            "args": [
+                "start"
+            ],
+            "filetypes": [
+                "sh"
+            ],
+            "ignoredRootPaths": [
+                "~"
+            ]
+        }
     }
-  }
 }
