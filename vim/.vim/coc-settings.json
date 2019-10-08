@@ -22,8 +22,10 @@
             "disableDiagnostics": true,
             "settings": {
                 "usePlaceholders": true,
-                "wantCompletionDocumentation": true
-            }
+                "wantCompletionDocumentation": true,
+                "enhancedHover": true
+            },
+            "trace.server": "verbose"
         },
         "bash": {
             "command": "bash-language-server",
