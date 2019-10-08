@@ -55,8 +55,8 @@
     r = rebase
     # Logging
     lg = log --graph --abbrev-commit --decorate --pretty=format:'%C(bold yellow)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(bold cyan)%d%C(reset)'
-    lg2 = log --graph --abbrev-commit --decorate --pretty=format:'%C(bold yellow)%h%C(reset) - %C(bold blue)%aD%C(reset) %C(bold green)(%cr)%C(reset) %C(bold red)[%an]%C(reset)%C(bold cyan)%d%C(reset)%n''          %C(white)%s%C(reset)%n' --all
-    ll = log --pretty=format:'%C(bold cyan)%d%C(reset)%n''%C(bold yellow)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(bold red)[%cn]%C(reset)' --numstat
+    lg2 = log --graph --abbrev-commit --decorate --pretty=format:'%C(bold yellow)%h%C(reset) - %C(bold blue)%aD%C(reset) %C(bold green)(%cr)%C(reset) %C(bold red)[%aN]%C(reset)%C(bold cyan)%d%C(reset)%n''          %C(white)%s%C(reset)%n' --all
+    ll = log --pretty=format:'%C(bold cyan)%d%C(reset)%n''%C(bold yellow)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(bold red)[%aN]%C(reset)' --numstat
 [url "git@github.com:"]
     insteadOf = https://github.com/
 [mergetool]
