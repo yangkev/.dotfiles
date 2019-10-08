@@ -399,7 +399,13 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ale_linters = {
     \ 'python': ['flake8'],
+    \ 'go': ['gofmt', 'golint', 'go vet', 'golangci-lint']
     \ }
+let g:ale_go_gometalinter_options = "--fast"
+let g:ale_go_gometalinter_lint_package = 1
+let g:ale_go_golangci_lint_options = ""
+let g:ale_go_golangci_lint_package = 1
+
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 let g:ale_echo_msg_format = '%linter% says %s'
