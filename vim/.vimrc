@@ -10,7 +10,7 @@ Plug 'scrooloose/nerdtree'
 " Plug 'scrooloose/nerdcommenter'
 Plug 'itchyny/lightline.vim'
 Plug 'vimwiki/vimwiki'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'lervag/vimtex'
 Plug 'shime/vim-livedown'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
