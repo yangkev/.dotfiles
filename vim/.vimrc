@@ -234,6 +234,9 @@ inoremap <S-Tab> <C-V><Tab>
 " Automatically format json with =j
 nmap =j :%!python -m json.tool<CR>
 
+" Don't move when searching current word
+nnoremap * *<c-o>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree
 "
