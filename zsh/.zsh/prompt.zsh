@@ -19,7 +19,7 @@ virtualenv_info() {
 kubeconfig_info() {
   if [[ "$KUBECONFIG" ]] then;
     local kubeconfig=$(basename $KUBECONFIG)
-    echo -e "%F{blue}\u2388 ${kubeconfig%%-*}%f"
+    echo -e "%F{blue}\u2388 ${kubeconfig}%f"
   fi
 }
 
