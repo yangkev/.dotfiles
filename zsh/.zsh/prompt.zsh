@@ -16,6 +16,13 @@ virtualenv_info() {
   [[ "$VIRTUAL_ENV" ]] && echo "%F{green}($(basename $VIRTUAL_ENV))%f"
 }
 
+kubeconfig_info() {
+  if [[ "$KUBECONFIG" ]] then;
+    local kubeconfig=$(basename $KUBECONFIG)
+    echo -e "%F{blue}\u2388 ${kubeconfig%%-*}%f"
+  fi
+}
+
 # Echoes information about Git repository status when inside a Git repository
 git_info() {
 
@@ -105,6 +112,12 @@ prompt_kevin_render() {
   local prompt_ssh_info="$(ssh_info)"
   if [[ -n $prompt_ssh_info ]]; then
     prompt_parts+=( $prompt_ssh_info )
+  fi
+
+  # kubeconfig info
+  local prompt_kubeconfig_info="$(kubeconfig_info)"
+  if [[ -n $prompt_kubeconfig_info ]]; then
+    prompt_parts+=( $prompt_kubeconfig_info )
   fi
 
   # virtualenv info
