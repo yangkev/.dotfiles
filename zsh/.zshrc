@@ -1,7 +1,6 @@
 # Bring in common shell settings
 ZSH="$HOME/.zsh"
 DOTFILES="$HOME/.dotfiles"
-source "$DOTFILES/shell/bootstrap.sh"
 fpath+=("$ZSH/themes")
 
 autoload -Uz promptinit compinit
@@ -54,6 +53,7 @@ zstyle ':completion:*:kill:*' command "ps -u $USER -o pid,user,%cpu,cmd"
 zstyle ':completion:*' rehash true
 
 # Settings from other files
+[ -f "$DOTFILES/shell/bootstrap.sh" ] && source "$DOTFILES/shell/bootstrap.sh"
 [ -f "$DOTFILES/zsh/.zsh/bindings.zsh" ] && source "$DOTFILES/zsh/.zsh/bindings.zsh"
 
 # Source other locations of zsh and shell settings
