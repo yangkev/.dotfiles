@@ -31,6 +31,7 @@ $ ./install.sh -h
 - [fzf](https://github.com/junegunn/fzf) - fuzzy finding anything
 - [ripgrep](https://github.com/BurntSushi/ripgrep) - faster grep
 - [fd](https://github.com/sharkdp/fd) - user friendly `find`
+- [shellcheck](https://github.com/koalaman/shellcheck) - shell script static analysis
 
 #### vim
 - [vim-plug](https://github.com/junegunn/vim-plug) - vim plugin manager
