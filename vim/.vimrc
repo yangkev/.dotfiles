@@ -19,6 +19,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-obsession'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'airblade/vim-gitgutter'
 let g:polyglot_disabled = ['go']
 
 " fzf
@@ -76,6 +77,9 @@ set wildmode=list:longest,list:full
 
 " Faster switching between INSERT/NORMAL modes
 set ttimeoutlen=10
+
+" Faster gitgutter updates
+set updatetime=100
 
 " write to file on calling :make
 set autowrite
@@ -575,3 +579,16 @@ function! XTermPasteBegin()
 endfunction
 
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-gitgutter
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:gitgutter_preview_win_floating = 0
+let g:gitgutter_sign_allow_clobber = 0
+
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+nmap ghs <Plug>(GitGutterStageHunk)
+nmap ghu <Plug>(GitGutterUndoHunk)
+nmap ghp <Plug>(GitGutterPreviewHunk)
