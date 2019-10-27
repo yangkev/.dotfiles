@@ -28,6 +28,7 @@ Plug 'junegunn/fzf.vim'
 
 " Appearance
 Plug 'morhetz/gruvbox'
+let g:gruvbox_sign_column = 'bg0'
 
 call plug#end()
 
