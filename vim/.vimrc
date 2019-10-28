@@ -109,6 +109,8 @@ if exists('+termguicolors')
 endif
 set background=dark
 colorscheme gruvbox
+highlight Comment cterm=italic gui=italic
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " Indentation
