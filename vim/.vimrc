@@ -109,8 +109,18 @@ if exists('+termguicolors')
 endif
 set background=dark
 colorscheme gruvbox
-highlight Comment cterm=italic gui=italic
 
+augroup MyColors
+    autocmd!
+    autocmd ColorScheme *
+                \ | highlight clear SignColumn
+                \ | highlight Comment cterm=italic gui=italic
+                \ | highlight LineNr ctermbg=7, guibg=7
+                \ | highlight GitGutterAdd ctermbg=7 guibg=7
+                \ | highlight GitGutterChange ctermbg=7 guibg=7
+                \ | highlight GitGutterDelete ctermbg=7 guibg=7
+                \ | highlight GitGutterChangeDelete ctermbg=7 guibg=7
+augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " Indentation
