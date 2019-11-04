@@ -108,19 +108,21 @@ if exists('+termguicolors')
   set termguicolors
 endif
 set background=dark
-colorscheme gruvbox
+function! MyHighlights() abort
+    highlight clear SignColumn
+    highlight Comment cterm=italic gui=italic
+endfunction
 
 augroup MyColors
     autocmd!
-    autocmd ColorScheme *
-                \ | highlight clear SignColumn
-                \ | highlight Comment cterm=italic gui=italic
-                \ | highlight LineNr ctermbg=7, guibg=7
-                \ | highlight GitGutterAdd ctermbg=7 guibg=7
-                \ | highlight GitGutterChange ctermbg=7 guibg=7
-                \ | highlight GitGutterDelete ctermbg=7 guibg=7
-                \ | highlight GitGutterChangeDelete ctermbg=7 guibg=7
+    autocmd ColorScheme * call MyHighlights()
 augroup END
+
+" these escape codes are for terminal vim to display italics correctly
+set t_ZH=[3m
+set t_ZR=[23m
+colorscheme gruvbox
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " Indentation
