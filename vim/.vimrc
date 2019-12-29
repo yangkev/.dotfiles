@@ -15,12 +15,13 @@ Plug 'lervag/vimtex'
 Plug 'shime/vim-livedown'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'junegunn/goyo.vim'
-Plug 'sheerun/vim-polyglot'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-obsession'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'airblade/vim-gitgutter'
-let g:polyglot_disabled = ['go']
+
+let g:polyglot_disabled = ['go', 'markdown']
+Plug 'sheerun/vim-polyglot', { 'tag': 'v4.1.3' }
 
 " fzf
 set rtp+=~/.fzf
