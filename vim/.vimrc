@@ -257,6 +257,9 @@ nmap =j :%!python -m json.tool<CR>
 " Don't move when searching current word
 nnoremap * *<c-o>
 
+" Force saving files that require root permission
+cnoremap w!! w !sudo tee > /dev/null %
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree
 "
