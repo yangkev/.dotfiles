@@ -42,7 +42,7 @@
 [push]
     default = tracking
 [pull]
-	rebase = preserve
+    rebase = preserve
 [alias]
     # Basics
     a = add
@@ -63,6 +63,6 @@
 [url "git@github.com:"]
     insteadOf = https://github.com/
 [mergetool]
-	keepBackup = false
+    keepBackup = false
 [stash]
-	showPatch = true
+    showPatch = true
