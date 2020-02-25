@@ -37,7 +37,7 @@ alias kdc="kubectl describe cronjobs.batch -n"
 # Logs
 alias klog="kubectl logs -n"
 
-if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
+if [ -n "$($SHELL -c 'echo $ZSH_VERSION')" ]; then
   source <(kubectl completion zsh)
   complete -F __start_kubectl k
   complete -F __start_kubectl ka
