@@ -449,11 +449,14 @@ let g:ale_echo_msg_format = '%linter% says %s'
 " goyo - distraction free writing
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""
+let g:goyo_width=200
+let g:goyo_height='95%'
 function! s:goyo_enter()
   silent !tmux set status off
   silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
   set noshowmode
   set noshowcmd
+  set nolist linebreak wrap
 endfunction
 
 function! s:goyo_leave()
