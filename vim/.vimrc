@@ -350,6 +350,7 @@ set wildignore+=*.aux,*.fdb_latexmk,*.fls,*.gz
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 let g:go_fmt_command = "goimports"
 let g:go_def_mode = "godef"
+let g:go_gopls_enabled = 0
 let g:go_code_completion_enabled = 0
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
