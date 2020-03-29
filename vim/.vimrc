@@ -374,6 +374,7 @@ endfunction
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+autocmd FileType go nmap <leader>t  <Plug>(go-test)
 "autocmd FileType go nmap <Leader>i <Plug>(go-info)
 
 " disable vim-go :GoDef short cut (gd)
@@ -417,6 +418,7 @@ command! -bang -nargs=* Find
 map <C-p> :Find<Space>
 nnoremap <silent> <leader>zf :Files<cr>
 nnoremap <silent> <leader>zb :Buffers<cr>
+nnoremap <silent> <leader>zt :Windows<cr>
 
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
