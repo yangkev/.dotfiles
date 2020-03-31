@@ -94,6 +94,12 @@ else
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 endif
 
+" don't redraw the screen while executing macros
+set lazyredraw
+
+" persist undos across vim sessions
+set undofile
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " Visual look/feel
 "
