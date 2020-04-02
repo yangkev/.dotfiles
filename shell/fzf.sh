@@ -42,6 +42,7 @@ fi
 
 # functions
 
+FZF_GIT_LOG_CMD=('git' 'l')
 # fzf_git_log allows using fzf as a git log browser with the ability to preview commit diffs (with git show).
 # Inspired by https://bluz71.github.io/2018/11/26/fuzzy-finding-in-bash-with-fzf.html
 fzf_git_log() {
@@ -51,17 +52,27 @@ fzf_git_log() {
   if [ ! "$(command -v diff-so-fancy >/dev/null 2>&1)" ]; then
     diffviewer='| diff-so-fancy'
   fi
-  local commits=$(git l --color=always "$@" |
+
+  local commits=$( "${FZF_GIT_LOG_CMD[@]}" --color=always "$@" |
     fzf --ansi --multi --no-sort --reverse --height=100% \
-    --bind ?:toggle-preview \
+    --bind \?:toggle-preview \
     --preview-window=right:60%:hidden \
     --preview="echo {} | grep -o '[a-f0-9]\{7\}' | head -1 |
     xargs -I@ sh -c 'git show --no-ext-diff --color=always @' $diffviewer")
 
     if [[ -n $commits ]]; then
-        local hashes=$(printf "$commits" | sed "s/\x1b\[[0-9;]*m//g" |  cut -d' ' -f2 | tr '\n' ' ')
-        git show $(echo $hashes)
+      # the first sed expression removes escape sequences
+      # the second sed expression captures just the SHA by matching:
+      # "* | | * a8s87w ...." formed git log --graph lines
+      # "a8s87w ..." formed git log lines
+      local hashes=$(
+        printf "$commits" |
+        sed "s/\x1b\[[0-9;]*m//g" |
+        sed -r "s/^[^a-z0-9]*([a-z0-9]+).*/\1 /"
+      )
+      git show $(echo $hashes)
     fi
 }
 
-alias glb="fzf_git_log"
+alias glb="FZF_GIT_LOG_CMD=('git' 'l') fzf_git_log"
+alias glgb="FZF_GIT_LOG_CMD=('git' 'lg') fzf_git_log"
