@@ -51,7 +51,7 @@ fzf_git_log() {
   if [ ! "$(command -v diff-so-fancy >/dev/null 2>&1)" ]; then
     diffviewer='| diff-so-fancy'
   fi
-  local commits=$(git lg --color=always "$@" |
+  local commits=$(git l --color=always "$@" |
     fzf --ansi --multi --no-sort --reverse --height=100% \
     --bind ?:toggle-preview \
     --preview-window=right:60%:hidden \
