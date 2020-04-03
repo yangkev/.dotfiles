@@ -266,6 +266,11 @@ nnoremap * *<c-o>
 " Force saving files that require root permission
 cnoremap w!! w !sudo tee > /dev/null %
 
+" Quit with error out of vimdiff so that git mergetool doesn't mark files as
+" done merging
+if &diff
+    map Q :cquit<CR>
+endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree
 "

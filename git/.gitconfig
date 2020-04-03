@@ -82,5 +82,8 @@
     insteadOf = https://github.com/
 [mergetool]
     keepBackup = false
+    trustExitCode = true
 [stash]
     showPatch = true
+[difftool]
+    trustExitCode = true
