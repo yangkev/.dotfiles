@@ -637,3 +637,5 @@ nmap [h <Plug>(GitGutterPrevHunk)
 nmap ghs <Plug>(GitGutterStageHunk)
 nmap ghu <Plug>(GitGutterUndoHunk)
 nmap ghp <Plug>(GitGutterPreviewHunk)
+
+nnoremap <leader>gd :execute ':Gdiff ' . system('git rev-parse $REVIEW_BASE')<cr>

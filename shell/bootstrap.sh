@@ -34,6 +34,9 @@ VIM_BUNDLE="$HOME/.vim/bundle"
 # ssh agent
 [ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)"
 
+# env variables
+export REVIEW_BASE="master"
+
 # source common shell customizations
 source "$DOTFILES/shell/aliases.sh"
 source "$DOTFILES/shell/functions.sh"
