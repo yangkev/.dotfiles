@@ -446,6 +446,20 @@ imap <c-x><c-l> <plug>(fzf-complete-buffer-line)
 " Advanced customization using autoload functions
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 
+" CTRL-A CTRL-Q to select all and build quickfix list
+
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  copen
+  cc
+endfunction
+
+let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " ale
 "
