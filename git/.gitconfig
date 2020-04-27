@@ -67,6 +67,7 @@
     # The following taken from https://blog.jez.io/cli-code-review/
     # list files which have changed since REVIEW_BASE
     files = !git diff --name-only $(git merge-base HEAD \"$REVIEW_BASE\")
+    stat = !git diff --stat $(git merge-base HEAD \"$REVIEW_BASE\")
 
     # Open all files changed since REVIEW_BASE in Vim tabs
     # Then, run fugitive's :Gdiff in each tab, and finally
