@@ -489,6 +489,7 @@ function! s:goyo_enter()
   set noshowmode
   set noshowcmd
   set nolist linebreak wrap
+  :GitGutterEnable
 endfunction
 
 function! s:goyo_leave()
