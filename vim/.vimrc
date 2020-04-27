@@ -394,6 +394,10 @@ let g:go_def_mapping_enabled = 0
 
 " disable vim-go :GoDoc as doc lookup is handled by coc.nvim
 let g:go_doc_keywordprg_enabled = 0
+
+let g:go_fmt_options = {
+\ 'gofmt': '-s',
+\ }
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " fzf
 "
@@ -448,7 +452,7 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ale_linters = {
     \ 'python': ['flake8'],
-    \ 'go': ['gofmt', 'golint', 'go vet', 'golangci-lint']
+    \ 'go': ['gofmt', 'golint', 'govet', 'gobuild', 'golangci-lint']
     \ }
 let g:ale_go_gometalinter_options = "--fast"
 let g:ale_go_gometalinter_lint_package = 1
