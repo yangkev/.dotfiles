@@ -20,9 +20,6 @@ Plug 'tpope/vim-obsession'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'airblade/vim-gitgutter'
 
-let g:polyglot_disabled = ['go', 'markdown']
-Plug 'sheerun/vim-polyglot', { 'tag': 'v4.1.3' }
-
 " fzf
 set rtp+=~/.fzf
 Plug 'junegunn/fzf.vim'
