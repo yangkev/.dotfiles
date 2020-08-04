@@ -32,6 +32,12 @@ alias grc="git rebase --continue"
 alias gra="git rebase --abort"
 alias garc="git add . ; git rebase --continue"
 
+# https://stackoverflow.com/a/56026209 - prune local branches that have been squashed and merged
+alias gprunesquashed='git checkout -q master && git for-each-ref refs/heads/ "--format=%(refname:short)" | \
+  while read branch; do mergeBase=$(git merge-base master $branch) && [[ $(git cherry master $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == "-"* ]] && git branch -D $branch; done'
+alias gprunedry='git checkout -q master && git for-each-ref refs/heads/ "--format=%(refname:short)" | \
+  while read branch; do mergeBase=$(git merge-base master $branch) && [[ $(git cherry master $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == "-"* ]] && echo "[$branch] is merged into master and can be deleted"; done'
+
 # other
 alias python="python3"
 alias za="zathura --fork"
