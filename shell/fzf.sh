@@ -7,6 +7,7 @@ ctrl-d:half-page-down,\
 ctrl-u:half-page-up,\
 ctrl-f:page-down,\
 ctrl-b:page-up,\
+ctrl-a:select-all,\
 alt-j:preview-down,\
 alt-k:preview-up,\
 alt-f:preview-page-down,\
