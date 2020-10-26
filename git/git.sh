@@ -35,3 +35,9 @@ if typeset -f "__git_complete" > /dev/null; then
   __git_complete gd _git_diff
   __git_complete gds _git_diff
 fi
+
+grm() {
+    # rebase the current branch on latest master
+    BRANCH=$(git rev-parse --abbrev-ref HEAD)
+    git checkout master && git pull origin master && git checkout "$BRANCH" && git rebase master
+}
