@@ -1,2 +1,14 @@
 --glob
-!**/{.git,node_modules,bundle,venv,vendor}/*
+!**/{ \
+.git,
+node_modules,
+bundle,
+venv,
+vendor,
+go/pkg/mod,
+Library,
+.local,
+.cache,
+.pyenv,
+.glide
+}/*
