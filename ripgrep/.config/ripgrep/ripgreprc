@@ -1,0 +1,12 @@
+# ignore these directories
+--glob=!**/.git
+--glob=!**/node_modules
+--glob=!**/bundle
+--glob=!**/venv
+--glob=!**/vendor
+--glob=!**/go/pkg/mod
+--glob=!**/Library
+--glob=!**/.local
+--glob=!**/.cache
+--glob=!**/.pyenv
+--glob=!**/.glide
