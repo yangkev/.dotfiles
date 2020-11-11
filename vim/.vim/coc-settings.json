@@ -1,45 +1,50 @@
 {
-	"python.linting.pylintEnabled": false,
-	"python.linting.flake8Enabled": true,
-	"python.linting.enabled": false,
-	"python.jediEnabled": false,
-	"coc.preferences.hoverTarget": "float",
-	"suggest.triggerAfterInsertEnter": true,
-	"suggest.autoTrigger": "always",
-	"diagnostic.displayByAle": true,
-	"languageserver": {
-		"golang": {
-			"command": "gopls",
-			"rootPatterns": [
-				"go.mod",
-				".vim/",
-				".git/",
-				".hg/"
-			],
-			"filetypes": [
-				"go"
-			],
-			"disableDiagnostics": true,
-			"initializationOptions": {
-				"usePlaceholders": true,
-				"wantCompletionDocumentation": true,
-				"enhancedHover": true,
-				"env": {
-					"GOFLAGS": "-mod=vendor"
-				}
-			}
-		},
-		"bash": {
-			"command": "bash-language-server",
-			"args": [
-				"start"
-			],
-			"filetypes": [
-				"sh"
-			],
-			"ignoredRootPaths": [
-				"~"
-			]
-		}
-	}
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": false,
+    "python.jediEnabled": false,
+    "coc.preferences.hoverTarget": "float",
+    "suggest.triggerAfterInsertEnter": true,
+    "suggest.autoTrigger": "always",
+    "diagnostic.displayByAle": true,
+    "go.goplsOptions": {
+        "buildFlags": ["-tags=integration"],
+        "env": {
+            "GOFLAGS": "-tags=integration"
+        }
+    },
+    "languageserver": {
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": [
+                "go.mod",
+                ".vim/",
+                ".git/",
+                ".hg/"
+            ],
+            "filetypes": [
+                "go"
+            ],
+            "disableDiagnostics": true,
+            "initializationOptions": {
+                "usePlaceholders": true,
+                "completionDocumentation": true,
+                "env": {
+                    "GOFLAGS": "-mod=vendor"
+                }
+            }
+        },
+        "bash": {
+            "command": "bash-language-server",
+            "args": [
+                "start"
+            ],
+            "filetypes": [
+                "sh"
+            ],
+            "ignoredRootPaths": [
+                "~"
+            ]
+        }
+    }
 }
