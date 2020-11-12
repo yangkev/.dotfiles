@@ -3,3 +3,4 @@ vim/.vim/autoload/
 vim/.vim/plugged/
 .netrwhist
 ssh/.ssh/known_hosts
+vim/.vim/sessions/
