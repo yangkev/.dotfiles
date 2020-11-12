@@ -1,12 +1,19 @@
 {
+    "codeLens.enable": true,
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
     "python.linting.enabled": false,
     "python.jediEnabled": false,
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportGeneralTypeIssues": "information"
+    },
     "coc.preferences.hoverTarget": "float",
     "suggest.triggerAfterInsertEnter": true,
     "suggest.autoTrigger": "always",
-    "diagnostic.displayByAle": true,
+    "diagnostic.errorSign": "✘",
+    "diagnostic.messageDelay": 500,
+    "diagnostic.messageTarget": "echo",
+    "diagnostic.virtualText": true,
     "go.goplsOptions": {
         "buildFlags": ["-tags=integration"],
         "env": {
