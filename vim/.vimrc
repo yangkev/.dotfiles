@@ -259,7 +259,8 @@ inoremap <S-Tab> <C-V><Tab>
 nmap =j :%!python -m json.tool<CR>
 
 " Don't move when searching current word
-nnoremap * *<c-o>
+" https://stackoverflow.com/questions/4256697/vim-search-and-highlight-but-do-not-jump
+nnoremap * :keepjumps normal! mi*`i<CR>
 
 " Force saving files that require root permission
 cnoremap w!! w !sudo tee > /dev/null %
