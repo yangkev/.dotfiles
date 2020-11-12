@@ -18,6 +18,7 @@ alias gri="git rebase --interactive"
 alias grc="git rebase --continue"
 alias gra="git rebase --abort"
 alias garc="git add . ; git rebase --continue"
+alias gcl="git clean -dn && git clean -df"
 
 # https://stackoverflow.com/a/56026209 - prune local branches that have been squashed and merged
 alias gprunesquashed='git checkout -q master && git for-each-ref refs/heads/ "--format=%(refname:short)" | \
