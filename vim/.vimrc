@@ -17,8 +17,9 @@ Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'junegunn/goyo.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-obsession'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'yarn install --frozen-lockfile' }
 Plug 'airblade/vim-gitgutter'
+Plug 'antoinemadec/coc-fzf'
 
 " fzf
 set rtp+=~/.fzf
@@ -451,6 +452,9 @@ function! s:build_quickfix_list(lines)
   cc
 endfunction
 
+set mouse=a
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6} }
+
 let g:fzf_action = {
   \ 'ctrl-q': function('s:build_quickfix_list'),
   \ 'ctrl-t': 'tab split',
@@ -601,21 +605,31 @@ let g:lightline = {
 
 " Using CocList
 " Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <space>a  :<C-u>CocFzfList diagnostics<cr>
 " Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+nnoremap <silent> <space>e  :<C-u>CocFzfList extensions<cr>
 " Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+nnoremap <silent> <space>c  :<C-u>CocFzfList commands<cr>
 " Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+nnoremap <silent> <space>o  :<C-u>CocFzfList outline<cr>
 " Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <space>s  :<C-u>CocFzfList -I symbols<cr>
 " Do default action for next item.
 nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+nnoremap <silent> <space>p  :<C-u>CocFzfListResume<CR>
+
+" Show locationlist - depends on coc-list extension
+nnoremap <silent> <space>l  :<C-u>CocFzfList locationlist<cr>
+" Show quickfix - depends on coc-list extension
+nnoremap <silent> <space>q  :<C-u>CocFzfList quickfix<cr>
+" Show searchhistory - depends on coc-list extension
+nnoremap <silent> <space>/  :<C-u>CocFzfList searchhistory<cr>
+
+let g:coc_fzf_preview = 'up:50%'
+let g:coc_fzf_opts = []
 
 " Make pasting in insert mode work better
 " Stolen from https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
