@@ -10,3 +10,7 @@
 --glob=!**/.cache
 --glob=!**/.pyenv
 --glob=!**/.glide
+--glob=!**/.mypy_cache
+--glob=!**/.idea
+--glob=!**/.pytest_cache
+--glob=!**/__pycache__
