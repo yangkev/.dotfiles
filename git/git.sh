@@ -31,6 +31,7 @@ if typeset -f "__git_complete" > /dev/null; then
   __git_complete gm _git_merge
   __git_complete gp _git_pull
   __git_complete glg _git_log
+  __git_complete glb _git_log
   __git_complete gb _git_branch
   __git_complete gd _git_diff
   __git_complete gds _git_diff
