@@ -13,6 +13,7 @@
     "diagnostic.errorSign": "✘",
     "diagnostic.messageDelay": 500,
     "diagnostic.messageTarget": "echo",
+    "diagnostic.showUnused": false,
     "diagnostic.virtualText": true,
     "go.goplsOptions": {
         "buildFlags": ["-tags=integration"],
