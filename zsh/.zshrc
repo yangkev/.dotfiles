@@ -3,6 +3,10 @@ ZSH="$HOME/.zsh"
 DOTFILES="$HOME/.dotfiles"
 fpath+=("$ZSH/themes")
 
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+fi
+
 autoload -Uz promptinit compinit
 promptinit
 compinit
