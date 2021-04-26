@@ -47,4 +47,4 @@ $ ./install.sh -h
 
 #### eye-candy
 - [base16-shell](https://github.com/chriskempson/base16-shell) - terminal themes
-- [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy) - better looking git diffs
+- [delta](https://github.com/dandavison/delta) - better looking git diffs
