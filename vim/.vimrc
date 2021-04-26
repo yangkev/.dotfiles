@@ -623,6 +623,8 @@ let g:lightline = {
 " Using CocList
 " Show all diagnostics
 nnoremap <silent> <space>a  :<C-u>CocFzfList diagnostics<cr>
+" Show diagnostics for buffer
+nnoremap <silent> <space>b  :<C-u>CocFzfList diagnostics --current-buf<cr>
 " Manage extensions
 nnoremap <silent> <space>e  :<C-u>CocFzfList extensions<cr>
 " Show commands
