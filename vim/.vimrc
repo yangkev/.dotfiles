@@ -308,7 +308,7 @@ let wiki_1 = {
               \'c': 'c',
               \'sh': 'sh',
               \'yaml': 'yaml'},
-      \ "list_margin": 2,
+      \ "list_margin": 0,
       \ }
 
 " Vimwiki Global options
