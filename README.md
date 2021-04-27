@@ -1,5 +1,7 @@
 # dotfiles
 
+[![pre-commit](https://github.com/yangkev/.dotfiles/actions/workflows/pre-commit.yml/badge.svg)](https://github.com/yangkev/.dotfiles/actions)
+
 ### Installation
 ```
 $ git clone https://github.com/yangkev/.dotfiles $HOME/.dotfiles
