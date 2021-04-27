@@ -8,6 +8,8 @@ alias l="ls -CF -N"
 alias fgrep='fgrep --color=always'
 alias egrep='egrep --color=always'
 alias diffy="diff -y --suppress-common-lines"
+alias vi="vim"
+alias vim="nvim"
 
 # git
 alias g="git"
