@@ -296,7 +296,7 @@ map <Leader>nf :NERDTreeFind<CR>
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 let wiki_1 = {
-      \ "path": "~/vimwiki/",
+      \ "path": "~/wiki/personal/",
       \ "auto_toc": 1,
       \ "auto_tags": 1,
       \ "syntax": 'markdown',
@@ -310,13 +310,45 @@ let wiki_1 = {
       \ "list_margin": 0,
       \ }
 
+let wiki_2 = {
+      \ "path": "~/wiki/lyft/",
+      \ "auto_toc": 1,
+      \ "auto_tags": 1,
+      \ "syntax": 'markdown',
+      \ "ext": '.md',
+      \ "nested_syntaxes": {
+              \'python': 'python',
+              \'c++': 'cpp',
+              \'c': 'c',
+              \'sh': 'sh',
+              \'yaml': 'yaml',
+              \'go': 'go'},
+      \ "list_margin": 0,
+      \ }
+
+let wiki_3 = {
+      \ "path": "~/wiki/intern/",
+      \ "auto_toc": 1,
+      \ "auto_tags": 1,
+      \ "syntax": 'markdown',
+      \ "ext": '.md',
+      \ "nested_syntaxes": {
+              \'python': 'python',
+              \'c++': 'cpp',
+              \'c': 'c',
+              \'sh': 'sh',
+              \'yaml': 'yaml',
+              \'go': 'go'},
+      \ "list_margin": 0,
+      \ }
+
 " Vimwiki Global options
-let g:vimwiki_list = [wiki_1]
+let g:vimwiki_list = [wiki_2, wiki_1, wiki_3]
 let g:vimwiki_global_ext = 0
 " Highlight checked list items and their children with a special color
 let g:vimwiki_hl_cb_checked = 2
 
-let g:markdown_fenced_languages = ['sh', 'bash=sh', 'css', 'c', 'cpp', 'javascript', 'js=javascript', 'json=javascript', 'make', 'python', 'html', 'vim']
+let g:markdown_fenced_languages = ['sh', 'bash=sh', 'css', 'c', 'cpp', 'javascript', 'js=javascript', 'json=javascript', 'make', 'python', 'html', 'vim', 'go']
 
 " Vimwiki mappings
 nmap <Leader>vo <Plug>VimwikiVSplitLink
