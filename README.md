@@ -48,3 +48,4 @@ $ ./install.sh -h
 #### eye-candy
 - [base16-shell](https://github.com/chriskempson/base16-shell) - terminal themes
 - [delta](https://github.com/dandavison/delta) - better looking git diffs
+- [starship](https://github.com/starship/starship) - prompt
