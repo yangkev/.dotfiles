@@ -13,7 +13,7 @@ compinit
 zmodload -i zsh/complist
 
 # Prompt
-prompt kevin
+# prompt kevin
 
 # General options
 setopt NO_BEEP
@@ -79,3 +79,6 @@ fi
 
 # syntax highlighting in the shell
 [ -f "$ZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && source "$ZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# Starship prompt
+eval "$(starship init zsh)"
