@@ -20,6 +20,11 @@ Plug 'tpope/vim-obsession'
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'yarn install --frozen-lockfile' }
 Plug 'airblade/vim-gitgutter'
 Plug 'antoinemadec/coc-fzf'
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'jparise/vim-graphql'
 
 " fzf
 set rtp+=~/.fzf
@@ -517,8 +522,18 @@ command! BD call fzf#run(fzf#wrap({
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ale_linters = {
     \ 'python': ['flake8'],
-    \ 'go': ['gofmt', 'golint', 'govet', 'gobuild', 'golangci-lint']
+    \ 'go': ['gofmt', 'golint', 'govet', 'gobuild', 'golangci-lint'],
+    \ 'javascript': ['eslint'],
+    \ 'typescript': ['eslint'],
+    \ 'typescriptreact': ['eslint'],
+    \
     \ }
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['prettier', 'eslint'],
+\   'typescript': ['prettier', 'eslint'],
+\   'typescriptreact': ['prettier', 'eslint'],
+\}
 let g:ale_go_gometalinter_options = "--fast"
 let g:ale_go_gometalinter_lint_package = 1
 let g:ale_go_golangci_lint_options = ""
