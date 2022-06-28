@@ -20,6 +20,9 @@ export LESS_TERMCAP_se=$(printf "\e[0m")        # reset reverse video
 export LESS_TERMCAP_us=$(printf "\e[1;32m")     # begin underline
 export LESS_TERMCAP_ue=$(printf "\e[0m")        # reset underline
 
+# Set executables explicitly to green in 'ls' output
+export LSCOLORS="exfxcxdxcxegedabagacad"
+
 # draw UTF8 lines correctly
 export NCURSES_NO_UTF8_ACS=1
 
