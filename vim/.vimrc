@@ -28,6 +28,7 @@ Plug 'jparise/vim-graphql'
 
 " fzf
 set rtp+=~/.fzf
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Appearance
