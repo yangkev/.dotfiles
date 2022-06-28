@@ -1,8 +1,8 @@
 # core
-alias ls="ls --color=always -N"
-alias ll="ls -alhF -N"
-alias la="ls -A -N"
-alias l="ls -CF -N"
+alias ls="ls --color=always"
+alias ll="ls -alhF"
+alias la="ls -A"
+alias l="ls -CF"
 # alias grep="grep -n --color=always"
 # alias grep='grep --color=always'
 alias fgrep='fgrep --color=always'

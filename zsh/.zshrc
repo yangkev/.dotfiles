@@ -46,7 +46,6 @@ setopt COMPLETE_IN_WORD
 
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' menu select
-eval "$(dircolors -b)"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
 zstyle ':completion:*' use-compctl false
