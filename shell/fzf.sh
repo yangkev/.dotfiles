@@ -17,7 +17,7 @@ export FZF_DEFAULT_OPTS="\
   --multi \
   --cycle \
   --height=60% \
-  --preview='head -$LINES {}' \
+  --preview='bat --color=always --style=numbers --line-range=:500 {}' \
   --preview-window=right:50%:hidden \
   --bind=$KEYBINDINGS"
 

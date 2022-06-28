@@ -31,11 +31,15 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 VIM_BUNDLE="$HOME/.vim/bundle"
 [ -n "$PS1" ] && [ -s "$VIM_BUNDLE/gruvbox/gruvbox_256palette.sh" ] && source "$VIM_BUNDLE/gruvbox/gruvbox_256palette.sh"
 
-# ssh agent
 [ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)"
 
 # env variables
 export REVIEW_BASE="master"
+
+# git fuzzy
+export GF_PREFERRED_PAGER="delta --theme=gruvbox --highlight-removed -w __WIDTH__" ssh agent
+export GF_GREP_COLOR='1;30;48;5;15'
+export PATH="/Users/kyang/src/git-fuzzy/bin:$PATH"
 
 # source common shell customizations
 source "$DOTFILES/shell/aliases.sh"

@@ -34,6 +34,14 @@ Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'
 let g:gruvbox_sign_column = 'bg0'
 
+" vim-coverage
+Plug 'google/vim-maktaba'
+Plug 'google/vim-coverage'
+" Also add Glaive, which is used to configure coverage's maktaba flags. See
+" `:help :Glaive` for usage.
+Plug 'google/vim-glaive'
+" call glaive#Install()
+
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
@@ -516,6 +524,12 @@ command! BD call fzf#run(fzf#wrap({
   \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
 \ }))
 
+command! Jumps call my_functions#Jumps()
+command! Changes call my_functions#Changes()
+
+nnoremap <silent> <leader>ju :Jumps<cr>
+nnoremap <silent> <leader>ch :Changes<cr>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " ale
 "
@@ -524,8 +538,8 @@ let g:ale_linters = {
     \ 'python': ['flake8'],
     \ 'go': ['gofmt', 'golint', 'govet', 'gobuild', 'golangci-lint'],
     \ 'javascript': ['eslint'],
-    \ 'typescript': ['eslint'],
-    \ 'typescriptreact': ['eslint'],
+    \ 'typescript': ['eslint', 'tslint'],
+    \ 'typescriptreact': ['eslint', 'tslint'],
     \
     \ }
 let g:ale_fixers = {
@@ -663,7 +677,7 @@ let g:lightline = {
       \ },
       \ 'component_function': {
       \   'cocstatus': 'coc#status',
-      \   'gitbranch': 'fugitive#head'
+      \   'gitbranch': 'FugitiveHead'
       \ },
       \ }
 
@@ -735,3 +749,5 @@ nmap ghu <Plug>(GitGutterUndoHunk)
 nmap ghp <Plug>(GitGutterPreviewHunk)
 
 nnoremap <leader>gd :execute ':Gdiff ' . system('git rev-parse $REVIEW_BASE')<cr>
+
+autocmd BufEnter *.sls :setlocal filetype=sls
