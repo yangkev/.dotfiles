@@ -10,3 +10,4 @@ Session.vim
 *.un~
 *.pyc
 **/__pycache__/*
+.vim/*

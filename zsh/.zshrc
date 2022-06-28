@@ -3,14 +3,16 @@ ZSH="$HOME/.zsh"
 DOTFILES="$HOME/.dotfiles"
 fpath+=("$ZSH/themes")
 
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-fi
+# if type brew &>/dev/null; then
+#   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+# fi
 
 autoload -Uz promptinit compinit
 promptinit
 compinit
 zmodload -i zsh/complist
+autoload bashcompinit
+bashcompinit
 
 # Prompt
 # prompt kevin
@@ -35,7 +37,7 @@ setopt HIST_VERIFY
 setopt SHARE_HISTORY
 setopt INC_APPEND_HISTORY
 
-HISTORY_IGNORE="(ls|cd|pwd|[bf]g|exit)"
+HISTORY_IGNORE="(ls|cd|pwd|[bf]g|exit|gs)"
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE="$ZSH/.zsh_history"
@@ -81,3 +83,4 @@ fi
 
 # Starship prompt
 eval "$(starship init zsh)"
+export PATH="/Users/kyang/src/git-fuzzy/bin:$PATH"

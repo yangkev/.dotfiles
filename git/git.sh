@@ -6,6 +6,7 @@ alias gc="git commit"
 alias gb="git branch"
 alias gf="git fetch"
 alias gco="git checkout"
+alias gcoi='git checkout $(git branch --sort=-committerdate | fzf)'
 alias gd="git diff"
 alias gds="git diff --staged"
 alias glg="git lg"
@@ -19,6 +20,7 @@ alias grc="git rebase --continue"
 alias gra="git rebase --abort"
 alias garc="git add . ; git rebase --continue"
 alias gcl="git clean -dn && git clean -df"
+alias wip="git commit -m \"WIP\" --no-verify"
 
 # https://stackoverflow.com/a/56026209 - prune local branches that have been squashed and merged
 alias gprunesquashed='git checkout -q master && git for-each-ref refs/heads/ "--format=%(refname:short)" | \
