@@ -42,8 +42,6 @@
     autosetupmerge = true       # when branching off a remote, automatically let local track remote
 [push]
     default = current
-[pull]
-    rebase = preserve
 [alias]
     # Basics
     a = add
