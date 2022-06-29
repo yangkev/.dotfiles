@@ -587,6 +587,20 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 " coc.nvim
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""
+let g:coc_global_extensions = [
+    \ 'coc-prettier',
+    \ 'coc-lists',
+    \ 'coc-eslint',
+    \ 'coc-yaml',
+    \ 'coc-vimtex',
+    \ 'coc-tsserver',
+    \ 'coc-sh',
+    \ 'coc-rust-analyzer',
+    \ 'coc-pyright',
+    \ 'coc-json',
+    \ 'coc-go',
+    \ 'coc-docker',
+    \ ]
 " Most settings here stolen from coc.nvim's Github README
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
