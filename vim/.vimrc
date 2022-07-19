@@ -6,6 +6,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-dispatch'
 Plug 'scrooloose/nerdtree'
 " Plug 'scrooloose/nerdcommenter'
 Plug 'itchyny/lightline.vim'
@@ -261,7 +262,7 @@ nmap <silent> // :nohlsearch<CR>
 nnoremap gp `[v`]
 
 " Make :make command be silent except for errors
-noremap <leader>m :silent make\|redraw!\|cw<CR>
+noremap <leader>m :Make<CR>
 
 " Close buffer without closing window
 command! Bd bp | sp | bn | bd
