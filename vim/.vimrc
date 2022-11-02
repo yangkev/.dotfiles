@@ -764,6 +764,6 @@ nmap ghs <Plug>(GitGutterStageHunk)
 nmap ghu <Plug>(GitGutterUndoHunk)
 nmap ghp <Plug>(GitGutterPreviewHunk)
 
-nnoremap <leader>gd :execute ':Gdiff ' . system('git rev-parse $REVIEW_BASE')<cr>
+nnoremap <leader>gd :execute ':Gvdiffsplit ' . system('git rev-parse $REVIEW_BASE')<cr>
 
 autocmd BufEnter *.sls :setlocal filetype=sls
