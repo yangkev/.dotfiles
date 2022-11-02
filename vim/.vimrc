@@ -526,8 +526,7 @@ command! BD call fzf#run(fzf#wrap({
   \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
 \ }))
 
-command! Jumps call my_functions#Jumps()
-command! Changes call my_functions#Changes()
+command! Jumps call functions#Jumps()
 
 nnoremap <silent> <leader>ju :Jumps<cr>
 nnoremap <silent> <leader>ch :Changes<cr>
