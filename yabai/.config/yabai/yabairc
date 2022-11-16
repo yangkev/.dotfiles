@@ -1,0 +1,55 @@
+#!/usr/bin/env sh
+
+# Inspired by:
+# 1. https://github.com/koekeishiya/yabai/blob/206c0d6968210f48363f206526760e5750810a61/examples/yabairc
+# 2. https://d12frosted.io/posts/2022-04-23-yabai-spaces.html
+
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+yabai -m config layout bsp
+
+# floating windows are always on top (default: off)
+yabai -m config window_topmost on
+
+# modify window shadows (default: on, options: on, off, float)
+# example: show shadows only for floating windows
+yabai -m config window_shadow float
+
+setup_space() {
+  idx="$1"
+  name="$2"
+  space=
+  echo "setup space $idx : $name"
+
+  space=$(yabai -m query --spaces --space "$idx")
+  if [ -z "$space" ]; then
+    yabai -m space --create
+  fi
+
+  yabai -m space "$idx" --label "$name"
+}
+
+setup_space 1 terminal
+setup_space 2 web
+setup_space 3 slack
+setup_space 4 other
+setup_space 5 scratch
+
+yabai -m rule --add app="^Alacritty$" space=terminal
+yabai -m rule --add app="^Firefox$" space=web
+yabai -m rule --add app="^Chrome$" space=web
+yabai -m rule --add app="^Slack$" space=slack
+
+yabai -m rule --add app="^System Preferences$" manage=off
+yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^CameraController$" manage=off
+yabai -m rule --add app="^Lyft VPN" manage=off
+yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^Spotify$" manage=off
+
+# signals
+yabai -m signal --add event=window_destroyed active=yes action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null"
+yabai -m signal --add event=window_minimized active=yes action="if \$(yabai -m query --windows --window \$YABAI_WINDOW_ID | jq -r '.\"is-floating\"'); then yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null; fi"
+
+echo "yabai configuration loaded.."
