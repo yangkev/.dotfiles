@@ -14,3 +14,4 @@
 --glob=!**/.idea
 --glob=!**/.pytest_cache
 --glob=!**/__pycache__
+--glob=!**/.vim/plugged
