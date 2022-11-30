@@ -6,7 +6,7 @@ tags
 vendor/*
 node_modules/*
 venv/*
-Session.vim
+Session.vim*
 *.un~
 *.pyc
 **/__pycache__/*
