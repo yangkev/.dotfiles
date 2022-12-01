@@ -7,6 +7,7 @@ export EDITOR=$VISUAL
 # path stuff
 export PATH="$PATH:$HOME/.bin"
 export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$PATH:$HOME/go/bin"
 
 # colorized manpages and elsewhere
 export LESS=-R
