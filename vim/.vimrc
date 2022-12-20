@@ -33,8 +33,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Appearance
-Plug 'morhetz/gruvbox'
-let g:gruvbox_sign_column = 'bg0'
+Plug 'sainnhe/gruvbox-material'
 
 " vim-coverage
 Plug 'google/vim-maktaba'
@@ -141,7 +140,11 @@ augroup END
 " these escape codes are for terminal vim to display italics correctly
 set t_ZH=[3m
 set t_ZR=[23m
-colorscheme gruvbox
+
+" Gruvbox Material
+" For better performance
+let g:gruvbox_material_better_performance = 1
+colorscheme gruvbox-material
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -690,7 +693,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 
 " Add diagnostic info for https://github.com/itchyny/lightline.vim
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
+      \ 'colorscheme': 'gruvbox_material',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ]
