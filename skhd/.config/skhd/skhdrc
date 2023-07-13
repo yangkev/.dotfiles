@@ -44,6 +44,12 @@ lctrl + alt - l : yabai -m window --resize right:50:0; \
 # toggle window split type
 alt - e : yabai -m window --toggle split
 
+# # toggle window fullscreen zoom
+shift + alt - f : yabai -m window --toggle zoom-fullscreen
+
+# toggle window native fullscreen
+# shift + alt - f : yabai -m window --toggle native-fullscreen
+
 # float / unfloat window and center on screen
 alt + shift - space: yabai -m window --toggle float --grid 1:1:0:0:1:1
 ctrl + alt - s : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "stack" else "bsp" end')
