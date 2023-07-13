@@ -19,7 +19,8 @@ export FZF_DEFAULT_OPTS="\
   --height=60% \
   --preview='bat --color=always --style=numbers --line-range=:500 {}' \
   --preview-window=right:50%:hidden \
-  --bind=$KEYBINDINGS"
+  --bind=$KEYBINDINGS \
+  --history=$HOME/.fzf_history"
 
 if [ ! "$(command -v rg >/dev/null 2>&1)" ]; then
   export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
