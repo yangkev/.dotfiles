@@ -23,6 +23,7 @@
     },
     "javascript.implementationsCodeLens.enable": false,
     "javascript.referencesCodeLens.enable": false,
+    "session.saveOnVimLeave": false,
     "typescript.implementationsCodeLens.enable": false,
     "typescript.referencesCodeLens.enable": false
 }
