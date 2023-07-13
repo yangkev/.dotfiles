@@ -473,14 +473,15 @@ let g:fzf_buffers_jump = 1
 "     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 " if no bang specified, use '?' to toggle preview window
-command! -bang -nargs=* Find
-    \ call fzf#vim#grep('rg --column --line-number --no-heading  --smart-case --hidden --follow --glob "!.git/*" --color=always '. shellescape(<q-args>).'| tr -d "\017"', 1,
-    \   <bang>0 ? fzf#vim#with_preview('up:50%')
-    \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-    \   <bang>0)
+" command! -bang -nargs=* Find
+"     \ call fzf#vim#grep('rg --column --line-number --no-heading  --smart-case --hidden --follow --glob "!.git/*" --color=always '. shellescape(<q-args>).'| tr -d "\017"', 1,
+"     \   <bang>0 ? fzf#vim#with_preview('up:50%')
+"     \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+"     \   <bang>0)
 
 " magic. add a '!' after typing <C-p> for preview mode, similar to :grep!
-map <C-p> :Find<Space>
+" map <C-p> :Find<Space>
+map <C-p> :Rg<cr>
 nnoremap <silent> <leader>zf :Files<cr>
 nnoremap <silent> <leader>zb :Buffers<cr>
 nnoremap <silent> <leader>zt :Windows<cr>
@@ -531,6 +532,7 @@ command! BD call fzf#run(fzf#wrap({
 \ }))
 
 command! Jumps call functions#Jumps()
+command! Changes call Changes()
 
 nnoremap <silent> <leader>ju :Jumps<cr>
 nnoremap <silent> <leader>ch :Changes<cr>
