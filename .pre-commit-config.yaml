@@ -12,3 +12,8 @@ repos:
     rev: v1.1.10
     hooks:
     -   id: forbid-tabs
+        exclude: |
+          (?x)(
+              ^gdb/|
+              ^bash/|
+          )
