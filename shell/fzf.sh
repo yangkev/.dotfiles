@@ -78,3 +78,9 @@ fzf_git_log() {
 
 alias glb="FZF_GIT_LOG_CMD=('git' 'l') fzf_git_log"
 alias glgb="FZF_GIT_LOG_CMD=('git' 'lg') fzf_git_log"
+
+# Enable completion for git aliases
+if typeset -f "__git_complete" > /dev/null; then
+  __git_complete glb _git_log
+  __git_complete glgb _git_log
+fi
