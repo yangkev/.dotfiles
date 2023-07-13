@@ -7,6 +7,8 @@
     pager = delta
     fileMode = false
     excludesfile = /Users/kyang/.config/git/ignore
+    fsmonitor = true
+    untrackedCache = true
 [color]
     ui = true
     branch = auto
