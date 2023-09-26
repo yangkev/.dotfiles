@@ -17,3 +17,11 @@ repos:
               ^gdb/|
               ^bash/|
           )
+- repo: https://github.com/JohnnyMorganz/StyLua
+  rev: v0.18.2
+  hooks:
+    - id: stylua-github
+- repo: https://github.com/lunarmodules/luacheck
+  rev: v1.1.1
+  hooks:
+  - id: luacheck
