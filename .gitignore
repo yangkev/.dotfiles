@@ -4,3 +4,7 @@ vim/.vim/plugged/
 .netrwhist
 ssh/.ssh/known_hosts
 vim/.vim/sessions/
+zsh/.zsh/zsh-autosuggestions
+zsh/.zsh/zsh-syntax-highlighting
+**/.zsh_history
+NvChad
