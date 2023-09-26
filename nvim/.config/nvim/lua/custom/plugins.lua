@@ -44,6 +44,7 @@ local plugins = {
             pickers = {
                 find_files = {
                     hidden = true,
+                    follow = true,
                 },
             },
         },
