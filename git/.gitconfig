@@ -39,6 +39,7 @@
     mnemonicprefix = true
 [merge]
     stat = true
+    tool = "nvim"
 [branch]
     autosetuprebase = always    # rebase on pull rather than merge
     autosetupmerge = true       # when branching off a remote, automatically let local track remote
@@ -84,8 +85,11 @@
 [url "git@github.com:"]
     insteadOf = https://github.com/
 [mergetool]
-    keepBackup = false
+	keepBackup = false
     trustExitCode = true
+    prompt = false
+[mergetool "nvim"]
+    cmd = nvim -f -c \"DiffviewOpen\"
 [stash]
     showPatch = true
 [difftool]
