@@ -100,6 +100,49 @@ local plugins = {
             })
         end,
     },
+
+    {
+        "vimwiki/vimwiki",
+        lazy = false,
+        branch = "dev",
+        init = function()
+            vim.g.vimwiki_list = {
+                {
+                    syntax = "markdown",
+                    ext = ".md",
+                    path = "~/wiki/ramp/",
+                    auto_toc = 1,
+                    auto_tags = 1,
+                    list_margin = 0,
+                    nested_syntaxes = {
+                        python = "python",
+                        -- c++ = 'cpp',
+                        c = "c",
+                        sh = "sh",
+                        yaml = "yaml",
+                        go = "go",
+                    },
+                },
+            }
+            vim.g.vimwiki_global_ext = 0
+            vim.g.vimwiki_hl_cb_checked = 2
+            vim.g.markdown_fenced_languages = {
+                "sh",
+                "bash=sh",
+                "css",
+                "c",
+                "cpp",
+                "javascript",
+                "js=javascript",
+                "json=javascript",
+                "make",
+                "python",
+                "html",
+                "vim",
+                "go",
+            }
+        end,
+    },
 }
 
 return plugins
