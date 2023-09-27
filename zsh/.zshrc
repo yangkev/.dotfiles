@@ -7,7 +7,7 @@ fpath+=("$ZSH/themes")
 #   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 # fi
 
-autoload -Uz promptinit compinit
+autoload -Uz promptinit compinit add-zsh-hook
 promptinit
 compinit
 zmodload -i zsh/complist
@@ -83,4 +83,42 @@ fi
 
 # Starship prompt
 eval "$(starship init zsh)"
-export PATH="/Users/kyang/src/git-fuzzy/bin:$PATH"
+
+# nvm (node version manager)
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# pyenv (python version manager)
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$HOME/.pyenv/bin:$PATH"
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+
+if command -v pyenv &> /dev/null; then
+    eval "$(pyenv init --path)"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+
+    # Vim/Neovim don't like to play nicely with Pyright and python tooling unless PYENV_VERSION is set
+    # See https://github.com/microsoft/pyright/discussions/4420
+    _pyenv_version_hook() {
+        local ret=$?
+        if [[ -f ".python-version" ]]; then
+            export PYENV_VERSION="$(cat .python-version)"
+        else
+            unset PYENV_VERSION
+        fi
+        return $ret
+    };
+    add-zsh-hook precmd _pyenv_version_hook
+fi
+
+# pipx Completion
+if command -v pipx &> /dev/null; then
+    eval "$(register-python-argcomplete pipx)"
+fi
+
+# zoxide (faster cd)
+if command -v zoxide &> /dev/null; then
+    eval "$(zoxide init zsh)"
+fi
