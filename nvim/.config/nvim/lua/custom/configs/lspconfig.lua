@@ -25,6 +25,25 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
 
+vim.diagnostic.config({
+    underline = true,
+    virtual_text = false,
+    float = {
+        source = true,
+    },
+})
+
+-- Toggle diagnostics on and off
+local diagnostics_active = true
+vim.keymap.set("n", "<leader>dt", function()
+    diagnostics_active = not diagnostics_active
+    if diagnostics_active then
+        vim.diagnostic.show(nil, 0)
+    else
+        vim.diagnostic.hide()
+    end
+end)
+
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd("LspAttach", {

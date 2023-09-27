@@ -31,10 +31,27 @@ M.mason = {
         "css-lsp",
         "html-lsp",
         "typescript-language-server",
-        "deno",
         "prettier",
 
+        -- python
+        "black",
+        "flake8",
+        "isort",
+        "mypy",
         "pyright",
+        "ruff",
+
+        -- shell
+        "shellcheck",
+
+        -- general/text
+        "jsonlint",
+        "jq",
+        "markdownlint",
+        "misspell",
+        "proselint",
+        "semgrep",
+        "textlint",
     },
 }
 
