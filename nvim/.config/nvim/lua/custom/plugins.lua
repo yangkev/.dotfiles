@@ -2,13 +2,9 @@ local overrides = require("custom.configs.overrides")
 
 ---@type NvPluginSpec[]
 local plugins = {
-
-    -- Override plugin definition options
-
     {
         "neovim/nvim-lspconfig",
         dependencies = {
-            -- format & linting
             {
                 "jose-elias-alvarez/null-ls.nvim",
                 config = function()
@@ -19,10 +15,9 @@ local plugins = {
         config = function()
             require("plugins.configs.lspconfig")
             require("custom.configs.lspconfig")
-        end, -- Override to setup mason-lspconfig
+        end,
     },
 
-    -- override plugin configs
     {
         "williamboman/mason.nvim",
         opts = overrides.mason,
@@ -49,7 +44,17 @@ local plugins = {
             },
         },
     },
-    -- Install a plugin
+
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        enabled = false,
+    },
+
+    {
+        "folke/which-key.nvim",
+        enabled = false,
+    },
+
     {
         "max397574/better-escape.nvim",
         event = "InsertEnter",
