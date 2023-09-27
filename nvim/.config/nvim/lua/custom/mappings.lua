@@ -24,7 +24,6 @@ M.disabled = {
 
 M.general = {
     n = {
-        [";"] = { ":", "enter command mode", opts = { nowait = true } },
         ["<leader>cd"] = { "<cmd> cd %:h <CR> :pwd <CR>", "Change cwd to current file" },
     },
     v = {
