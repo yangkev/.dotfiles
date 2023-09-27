@@ -42,6 +42,24 @@ local plugins = {
                     hidden = true,
                     follow = true,
                 },
+                live_grep = {
+                    additional_args = function()
+                        return { "--hidden" }
+                    end,
+                    file_ignore_patterns = { "node_modules", ".git" },
+                },
+                buffers = {
+                    show_all_buffers = true,
+                    show_lastused = true,
+                    mappings = {
+                        i = {
+                            ["<C-x>"] = "delete_buffer",
+                        },
+                        n = {
+                            ["dd"] = "delete_buffer",
+                        },
+                    },
+                },
             },
         },
     },
