@@ -17,6 +17,13 @@ opt.ttimeoutlen = 10
 opt.lazyredraw = true
 opt.wildignore = "*.o,*~,*.pyc,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store,*.aux,*.fdb_latexmk,*.fls,*.gz"
 opt.fillchars = opt.fillchars + "diff:/"
+opt.swapfile = false
+opt.termguicolors = true
 
 -- Reset clipboard behavior to normal since NvChad uses unnamedplus
 opt.clipboard = ""
+
+vim.cmd([[
+  hi DiagnosticUnderlineError gui=undercurl guisp=red
+  hi DiagnosticUnderlineWarn gui=undercurl guisp=orange
+]])
