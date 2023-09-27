@@ -34,9 +34,7 @@ M.mason = {
         "deno",
         "prettier",
 
-        -- c/cpp stuff
-        "clangd",
-        "clang-format",
+        "pyright",
     },
 }
 

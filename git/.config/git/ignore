@@ -11,3 +11,4 @@ Session.vim*
 *.pyc
 **/__pycache__/*
 .vim/*
+pyrightconfig.json
