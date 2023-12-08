@@ -9,8 +9,6 @@ sudo yabai --load-sa
 
 yabai -m config layout bsp
 
-# floating windows are always on top (default: off)
-yabai -m config window_topmost on
 
 # modify window shadows (default: on, options: on, off, float)
 # example: show shadows only for floating windows
@@ -36,16 +34,19 @@ setup_space 3 slack
 setup_space 4 other
 setup_space 5 scratch
 
-yabai -m rule --add app="^Alacritty$" space=terminal
-yabai -m rule --add app="^Firefox$" space=web
-yabai -m rule --add app="^Chrome$" space=web
-yabai -m rule --add app="^Slack$" space=slack
+# yabai -m rule --add app="^Alacritty$" space=terminal
+# yabai -m rule --add app="^Firefox$" space=web
+# yabai -m rule --add app="^Chrome$" space=web
+# yabai -m rule --add app="^Slack$" space=slack
 
 yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^CameraController$" manage=off
 yabai -m rule --add app="^Lyft VPN" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^Okta Verify$" manage=off
+yabai -m rule --add app="^Installer$" manage=off
+yabai -m rule --add app="^licecap.*$" manage=off
 # yabai -m rule --add app="^Spotify$" manage=off
 
 # signals
@@ -53,3 +54,21 @@ yabai -m signal --add event=window_destroyed active=yes action="yabai -m query -
 yabai -m signal --add event=window_minimized active=yes action="if \$(yabai -m query --windows --window \$YABAI_WINDOW_ID | jq -r '.\"is-floating\"'); then yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null; fi"
 
 echo "yabai configuration loaded.."
+
+# This is taken from https://github.com/koekeishiya/yabai/issues/1156#issuecomment-1262191338 to fix dialog windows for applications
+# applications with custom rules
+applications="(Calendar|Mail|Reminders|Notes|Microsoft Outlook|Discord|Messages|Slack|Firefox|Chrome|Code|Microsoft Word|Preview|Terminal|iTerm2|QuickTime|Player|Spotify|Music|Brave Browser|Kitty|Alacritty|Trello)"
+
+# NOTE: you need to set the settings for the applications in the
+#       list first, or else they don't apply properly and you can end up with
+#       some weird border/float/window behaviours
+
+# everything listed gets sent to below layer to prevent
+# them from covering floating applications/popup windows
+yabai -m rule --add app="^${applications}$"    manage=on layer=below
+
+# floating windows are always on top (default: off)
+yabai -m config window_topmost off
+
+# Make it so popups/dialogs are not in tiled windows
+yabai -m rule --add app="^Firefox.*$" title="^Opening .*$" manage=off
