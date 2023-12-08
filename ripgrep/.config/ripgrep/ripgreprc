@@ -15,3 +15,8 @@
 --glob=!**/.pytest_cache
 --glob=!**/__pycache__
 --glob=!**/.vim/plugged
+--glob=!**/.nvm
+--glob=!**/.npm
+--glob=!**/.node_modules
+--glob=!**/.tmux
+--glob=!**/.zsh_sessions

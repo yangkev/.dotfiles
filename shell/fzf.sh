@@ -51,8 +51,8 @@ fzf_git_log() {
   [ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1 || return 1
 
   local diffviewer=""
-  if [ ! "$(command -v diff-so-fancy >/dev/null 2>&1)" ]; then
-    diffviewer='| diff-so-fancy'
+  if [ ! "$(command -v delta >/dev/null 2>&1)" ]; then
+    diffviewer='| delta'
   fi
 
   local commits=$( "${FZF_GIT_LOG_CMD[@]}" --color=always "$@" |

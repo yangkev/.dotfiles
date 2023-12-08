@@ -22,6 +22,7 @@ alias gra="git rebase --abort"
 alias garc="git add . ; git rebase --continue"
 alias gcl="git clean -dn && git clean -df"
 alias wip="git commit -m \"WIP\" --no-verify"
+alias unwip="git reset HEAD^"
 alias gme="git mergetool"
 
 # https://stackoverflow.com/a/56026209 - prune local branches that have been squashed and merged

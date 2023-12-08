@@ -12,11 +12,14 @@ alias vi="vim"
 alias vim="nvim"
 
 # other
-alias python="python3"
 alias za="zathura --fork"
 alias xclip="xclip -selection c"
 alias rgh="rg --hidden"
 alias rg="rg -p"
+alias dot="cd ~/.dotfiles"
 
 # paths
 alias path="echo $PATH"
+
+# pre-commit (pcc: pre-commit changed)
+alias pcc="pre-commit run --from-ref master --to-ref HEAD"

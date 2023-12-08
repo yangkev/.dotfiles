@@ -4,11 +4,6 @@ DOTFILES=$HOME/.dotfiles
 export VISUAL=vi
 export EDITOR=$VISUAL
 
-# path stuff
-export PATH="$PATH:$HOME/.bin"
-export PATH="$PATH:$HOME/.cargo/bin"
-export PATH="$PATH:$HOME/go/bin"
-
 # colorized manpages and elsewhere
 export LESS=-R
 export LESS_TERMCAP_mb=$(printf "\e[1;31m")     # begin bold
@@ -25,9 +20,11 @@ export LSCOLORS="exfxcxdxcxegedabagacad"
 # draw UTF8 lines correctly
 export NCURSES_NO_UTF8_ACS=1
 
-# Base 16 colors
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+# Base16 Shell https://github.com/chriskempson/base16-shell#bashzsh
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        source "$BASE16_SHELL/profile_helper.sh"
 
 # Gruvbox colors
 VIM_BUNDLE="$HOME/.vim/bundle"
@@ -41,7 +38,6 @@ export REVIEW_BASE="master"
 # git fuzzy
 export GF_PREFERRED_PAGER="delta --theme=gruvbox --highlight-removed -w __WIDTH__" ssh agent
 export GF_GREP_COLOR='1;30;48;5;15'
-export PATH="/Users/kyang/src/git-fuzzy/bin:$PATH"
 
 # source common shell customizations
 source "$DOTFILES/shell/aliases.sh"
