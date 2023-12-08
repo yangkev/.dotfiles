@@ -2,16 +2,31 @@ local M = {}
 
 M.treesitter = {
     ensure_installed = {
-        "vim",
-        "lua",
-        "html",
-        "css",
-        "javascript",
-        "typescript",
-        "tsx",
         "c",
+        "css",
+        "csv",
+        "diff",
+        "elixir",
+        "git_config",
+        "git_rebase",
+        "gitattributes",
+        "gitignore",
+        "go",
+        "html",
+        "ini",
+        "javascript",
+        "json",
+        "latex",
+        "lua",
+        "make",
         "markdown",
         "markdown_inline",
+        "python",
+        "terraform",
+        "tsx",
+        "typescript",
+        "vim",
+        "yaml",
     },
     indent = {
         enable = true,
@@ -43,6 +58,9 @@ M.mason = {
 
         -- shell
         "shellcheck",
+
+        -- terraform
+        "terraform-ls",
 
         -- general/text
         "jsonlint",

@@ -17,6 +17,7 @@ end
 -- Use Mason for auto-installing
 lspconfig.pyright.setup({})
 lspconfig.tsserver.setup({})
+lspconfig.terraformls.setup({})
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
