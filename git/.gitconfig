@@ -89,8 +89,8 @@
     trustExitCode = true
     prompt = false
 [mergetool "nvim"]
-    cmd = nvim -f -c \"DiffviewOpen\"
-[stash]
+    # disable auto-session and open with Diffview
+    cmd = nvim \"+let g:auto_session_enabled = v:false\" -f -c \"DiffviewOpen\" [stash]
     showPatch = true
 [difftool]
     trustExitCode = true

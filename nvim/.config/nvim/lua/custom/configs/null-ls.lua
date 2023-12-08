@@ -9,7 +9,7 @@ local sources = {
 
     -- diagnostics
     b.diagnostics.flake8.with({ extra_args = { "--config", ".flake8" } }),
-    b.diagnostics.mypy,
+    -- b.diagnostics.mypy,
     -- b.diagnostics.ruff,
 
     b.diagnostics.shellcheck.with({ filetypes = { "sh", "zsh", "bash" } }),
@@ -18,7 +18,7 @@ local sources = {
     b.diagnostics.markdownlint,
     b.diagnostics.misspell,
     b.diagnostics.proselint,
-    b.diagnostics.semgrep,
+    -- b.diagnostics.semgrep,
     b.diagnostics.textlint,
 
     -- formatting

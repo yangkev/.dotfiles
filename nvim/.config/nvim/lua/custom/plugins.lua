@@ -37,6 +37,29 @@ local plugins = {
     {
         "nvim-telescope/telescope.nvim",
         opts = {
+            defaults = {
+                mappings = {
+                    i = {
+                        ["<C-p>"] = require("telescope.actions.layout").toggle_preview,
+                        ["<C-h>"] = "which_key",
+                    },
+                    n = {
+                        ["?"] = require("telescope.actions.layout").toggle_preview,
+                        ["<C-h>"] = "which_key",
+                    },
+                },
+                preview = {
+                    hide_on_startup = true, -- hide previewer when picker starts
+                },
+            },
+            -- extensions = {
+            --     fzf = {
+            --         fuzzy = true,
+            --         override_generic_sorter = true,
+            --         override_file_sorter = true,
+            --         case_mode = "smart_case",
+            --     },
+            -- },
             pickers = {
                 find_files = {
                     hidden = true,
@@ -49,8 +72,7 @@ local plugins = {
                     file_ignore_patterns = { "node_modules", ".git" },
                 },
                 buffers = {
-                    show_all_buffers = true,
-                    show_lastused = true,
+                    sort_mru = true,
                     mappings = {
                         i = {
                             ["<C-x>"] = "delete_buffer",
@@ -59,6 +81,12 @@ local plugins = {
                             ["dd"] = "delete_buffer",
                         },
                     },
+                },
+                jumplist = {
+                    fname_width = 60,
+                },
+                treesitter = {
+                    fname_width = 60,
                 },
             },
         },
@@ -103,8 +131,8 @@ local plugins = {
 
     {
         "vimwiki/vimwiki",
-        lazy = false,
         branch = "dev",
+        lazy = false,
         init = function()
             vim.g.vimwiki_list = {
                 {
@@ -143,6 +171,96 @@ local plugins = {
             }
         end,
     },
-}
 
+    {
+        "axkirillov/easypick.nvim",
+        dependencies = { "nvim-telescope/telescope.nvim" },
+        init = function()
+            local easypick = require("easypick")
+            easypick.setup({
+                pickers = {
+                    -- diff current branch with base_branch and show files that changed with respective diffs in preview
+                    {
+                        name = "changed_files",
+                        command = "git diff --name-only",
+                        -- command = "git diff --name-only $(git merge-base HEAD " .. base_branch .. " )",
+                        -- previewer = easypick.previewers.branch_diff({base_branch = base_branch})
+                        previewer = easypick.previewers.file_diff(),
+                    },
+
+                    -- list files that have conflicts with diffs in preview
+                    {
+                        name = "conflicts",
+                        command = "git diff --name-only --diff-filter=U --relative",
+                        previewer = easypick.previewers.file_diff(),
+                    },
+                },
+            })
+        end,
+    },
+
+    {
+        "tpope/vim-fugitive",
+        lazy = false,
+    },
+
+    {
+        "tpope/vim-rhubarb",
+        lazy = false,
+    },
+
+    -- {
+    --     "karb94/neoscroll.nvim",
+    --     lazy = false,
+    --     config = function()
+    --         require('neoscroll').setup()
+    --     end
+    -- }
+
+    {
+        "andythigpen/nvim-coverage",
+        cmd = {
+            "Coverage",
+            "CoverageLoad",
+            "CoverageLoadLcov",
+            "CoverageShow",
+            "CoverageHide",
+            "CoverageToggle",
+            "CoverageClear",
+            "CoverageSummary",
+        },
+        config = function()
+            require("coverage").setup({
+                lang = {
+                    python = {
+                        coverage_file = "/tmp/.coverage",
+                    },
+                },
+            })
+        end,
+    },
+    {
+        "ibhagwan/fzf-lua",
+        -- optional for icon support
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        config = function()
+            require("fzf-lua").setup({
+                winopts = {
+                    preview = { default = "bat_native" },
+                },
+                -- fzf_opts = { ["--ansi"] = false },
+                grep = {
+                    git_icons = false,
+                    file_icons = false,
+                    -- add '--hidden' to defaults
+                    rg_opts = "--hidden --column --line-number --no-heading --color=always --smart-case --max-columns=4096 -e",
+                },
+                files = {
+                    git_icons = false,
+                    file_icons = false,
+                },
+            })
+        end,
+    },
+}
 return plugins

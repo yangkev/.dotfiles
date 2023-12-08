@@ -12,3 +12,4 @@ Session.vim*
 **/__pycache__/*
 .vim/*
 pyrightconfig.json
+.flake8

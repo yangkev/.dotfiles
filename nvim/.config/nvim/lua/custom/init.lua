@@ -20,9 +20,19 @@ opt.fillchars = opt.fillchars + "diff:/"
 opt.swapfile = false
 opt.termguicolors = true
 
+-- show statusline in each window
+opt.laststatus = 2
+
 -- Reset clipboard behavior to normal since NvChad uses unnamedplus
 opt.clipboard = ""
 
+-- Recommended for auto-session: https://github.com/rmagatti/auto-session#recommended-sessionoptions-config
+-- opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
+-- Allow up to 2 signs per line (gitsign, diagnostic)
+opt.signcolumn = "auto:2"
+
+-- Undercurls are cool
 vim.cmd([[
   hi DiagnosticUnderlineError gui=undercurl guisp=red
   hi DiagnosticUnderlineWarn gui=undercurl guisp=orange

@@ -29,7 +29,7 @@ M.treesitter = {
         "yaml",
     },
     indent = {
-        enable = true,
+        enable = false,
         -- disable = {
         --   "python"
         -- },
@@ -50,9 +50,9 @@ M.mason = {
 
         -- python
         "black",
-        "flake8",
+        -- "flake8",
         "isort",
-        "mypy",
+        -- "mypy",
         "pyright",
         "ruff",
 
@@ -73,8 +73,8 @@ M.mason = {
     },
 }
 
--- git support in nvimtree
 M.nvimtree = {
+    -- git support in nvimtree
     git = {
         enable = true,
     },
@@ -87,6 +87,12 @@ M.nvimtree = {
             },
         },
     },
+}
+
+M.gitsigns = {
+    -- show gitsigns above all else
+    -- https://github.com/lewis6991/gitsigns.nvim/issues/95
+    sign_priority = 9999,
 }
 
 return M
