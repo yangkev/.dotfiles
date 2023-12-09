@@ -29,20 +29,22 @@ $ ./install.sh -h
 ### Stuff I use
 
 #### cli
-- [stow](https://www.gnu.org/software/stow/) - quickly symlink and manage dotfiles
-- [fzf](https://github.com/junegunn/fzf) - fuzzy finding anything
-- [ripgrep](https://github.com/BurntSushi/ripgrep) - faster grep
 - [fd](https://github.com/sharkdp/fd) - user friendly `find`
+- [fzf](https://github.com/junegunn/fzf) - fuzzy finding anything
+- [nerdfonts](https://github.com/ryanoasis/nerd-fonts)
+- [ripgrep](https://github.com/BurntSushi/ripgrep) - faster grep
 - [shellcheck](https://github.com/koalaman/shellcheck) - shell script static analysis
+- [stow](https://www.gnu.org/software/stow/) - quickly symlink and manage dotfiles
+- [tmux](https://github.com/tmux/tmux)
 
-#### vim
-- [vim-plug](https://github.com/junegunn/vim-plug) - vim plugin manager
+#### nvim
+- [nvchad](https://github.com/NvChad/NvChad) - neovim config
 
 #### zsh
+- [command-not-found](https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/command-not-found) - suggest where to find a command
+- [zsh-async](https://github.com/mafredri/zsh-async) - allow async components in the prompt
 - [zsh-auto-suggestions](https://github.com/zsh-users/zsh-autosuggestions) - fish like autosuggestion at the prompt
 - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) - syntax highlighting in the shell
-- [zsh-async](https://github.com/mafredri/zsh-async) - allow async components in the prompt
-- [command-not-found](https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/command-not-found) - suggest where to find a command
 
 #### tmux
 - [tpm](https://github.com/tmux-plugins/tpm) - tmux plugin manager
@@ -51,3 +53,8 @@ $ ./install.sh -h
 - [base16-shell](https://github.com/chriskempson/base16-shell) - terminal themes
 - [delta](https://github.com/dandavison/delta) - better looking git diffs
 - [starship](https://github.com/starship/starship) - prompt
+
+#### macos
+- [alacritty](https://github.com/alacritty/alacritty) - terminal
+- [yabai](https://github.com/koekeishiya/yabai) - tiling window manager
+- [skhd](https://github.com/koekeishiya/skhd) - hotkeys for yabai
