@@ -262,5 +262,23 @@ local plugins = {
             })
         end,
     },
+    {
+        "ruifm/gitlinker.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        lazy = false,
+        config = function()
+            require("gitlinker").setup({
+                callbacks = {
+                    ["github-yangkev"] = function(url_data)
+                        url_data.host = "github.com"
+                        return require("gitlinker.hosts").get_github_type_url(url_data)
+                    end,
+                },
+                opts = {
+                    print_url = false,
+                },
+            })
+        end,
+    },
 }
 return plugins
