@@ -2,14 +2,14 @@
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.4.0
+    rev: v4.5.0
     hooks:
     -   id: trailing-whitespace
     -   id: end-of-file-fixer
     -   id: check-yaml
     -   id: check-added-large-files
 -   repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.1.10
+    rev: v1.5.4
     hooks:
     -   id: forbid-tabs
         exclude: |
@@ -18,6 +18,6 @@ repos:
               ^bash/|
           )
 - repo: https://github.com/JohnnyMorganz/StyLua
-  rev: v0.18.2
+  rev: v0.19.1
   hooks:
     - id: stylua-github
