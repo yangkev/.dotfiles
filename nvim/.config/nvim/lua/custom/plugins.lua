@@ -374,5 +374,15 @@ local plugins = {
             sign_priority = 9999,
         },
     },
+    {
+        "hrsh7th/nvim-cmp",
+        config = function(_, opts)
+            local cmp = require("cmp")
+            cmp.setup(opts)
+            cmp.setup.filetype({ "vimwiki" }, {
+                enabled = false,
+            })
+        end,
+    },
 }
 return plugins
