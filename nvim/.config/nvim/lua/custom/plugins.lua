@@ -1,5 +1,3 @@
-local overrides = require("custom.configs.overrides")
-
 ---@type NvPluginSpec[]
 local plugins = {
     {
@@ -20,17 +18,103 @@ local plugins = {
 
     {
         "williamboman/mason.nvim",
-        opts = overrides.mason,
+        opts = {
+            ensure_installed = {
+                -- lua stuff
+                "lua-language-server",
+                "stylua",
+
+                -- web dev stuff
+                "css-lsp",
+                "html-lsp",
+                "typescript-language-server",
+                "prettier",
+
+                -- python
+                "black",
+                -- "flake8",
+                "isort",
+                -- "mypy",
+                "pyright",
+                "ruff",
+
+                -- shell
+                "shellcheck",
+
+                -- sql
+                "sql-formatter",
+
+                -- terraform
+                "terraform-ls",
+
+                -- general/text
+                "jsonlint",
+                "jq",
+                "markdownlint",
+                "misspell",
+                "proselint",
+                "semgrep",
+                "textlint",
+            },
+        },
     },
 
     {
         "nvim-treesitter/nvim-treesitter",
-        opts = overrides.treesitter,
+        opts = {
+            ensure_installed = {
+                "c",
+                "css",
+                "csv",
+                "diff",
+                "elixir",
+                "git_config",
+                "git_rebase",
+                "gitattributes",
+                "gitignore",
+                "go",
+                "html",
+                "ini",
+                "javascript",
+                "json",
+                "latex",
+                "lua",
+                "make",
+                "markdown",
+                "markdown_inline",
+                "python",
+                "terraform",
+                "tsx",
+                "typescript",
+                "vim",
+                "yaml",
+            },
+            indent = {
+                enable = false,
+                -- disable = {
+                --   "python"
+                -- },
+            },
+        },
     },
 
     {
         "nvim-tree/nvim-tree.lua",
-        opts = overrides.nvimtree,
+        opts = {
+            -- git support in nvimtree
+            git = {
+                enable = true,
+            },
+
+            renderer = {
+                highlight_git = true,
+                icons = {
+                    show = {
+                        git = true,
+                    },
+                },
+            },
+        },
         cmd = { "NvimTreeFindFile" },
     },
 
@@ -262,6 +346,7 @@ local plugins = {
             })
         end,
     },
+
     {
         "ruifm/gitlinker.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
@@ -279,6 +364,15 @@ local plugins = {
                 },
             })
         end,
+    },
+
+    {
+        "lewis6991/gitsigns.nvim",
+        opts = {
+            -- show gitsigns above all else
+            -- https://github.com/lewis6991/gitsigns.nvim/issues/95
+            sign_priority = 9999,
+        },
     },
 }
 return plugins
