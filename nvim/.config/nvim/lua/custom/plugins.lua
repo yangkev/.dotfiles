@@ -384,5 +384,11 @@ local plugins = {
             })
         end,
     },
+
+    {
+        "tris203/hawtkeys.nvim",
+        cmd = { "Hawtkeys", "HawtkeysAll", "HawtkeysDupes" },
+        config = true,
+    },
 }
 return plugins
