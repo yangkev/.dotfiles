@@ -2,11 +2,11 @@
     name = Kevin Yang
     email = yangke@umich.edu
 [core]
-    editor = vim
+    editor = nvim
     whitespace = trailing-space, space-before-tab
     pager = delta
     fileMode = false
-    excludesfile = /Users/kyang/.config/git/ignore
+    excludesfile = /Users/kyang/.gitignore
     fsmonitor = true
     untrackedCache = true
 [color]
