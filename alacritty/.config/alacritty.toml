@@ -1,7 +1,4 @@
-dynamic_title = true
-enable_experimental_conpty_backend = false
 live_config_reload = true
-tabspaces = 8
 working_directory = "None"
 
 [bell]
@@ -44,7 +41,6 @@ unfocused_hollow = true
 log_level = "Warn"
 persistent_logging = false
 print_events = false
-ref_test = false
 render_timer = false
 
 [font]
@@ -69,9 +65,6 @@ style = "Regular"
 [font.offset]
 x = 0
 y = 0
-
-[hints.url]
-modifiers = "None"
 
 [[keyboard.bindings]]
 action = "Paste"
@@ -905,16 +898,6 @@ key = "Space"
 mods = "Control"
 
 [[keyboard.bindings]]
-chars = "\u001B`"
-key = "Grave"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B~"
-key = "Grave"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
 chars = "\u001B."
 key = "Period"
 mods = "Alt"
@@ -976,15 +959,7 @@ hide_when_typing = false
 action = "PasteSelection"
 mouse = "Middle"
 
-[mouse.double_click]
-threshold = 300
-
-[mouse.triple_click]
-threshold = 300
-
 [scrolling]
-auto_scroll = false
-faux_multiplier = 3
 history = 10000
 multiplier = 3
 
