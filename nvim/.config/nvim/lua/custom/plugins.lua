@@ -31,7 +31,7 @@ local plugins = {
                 "prettier",
 
                 -- python
-                "black",
+                "black@22.3.0",
                 -- "flake8",
                 "isort",
                 -- "mypy",
@@ -100,6 +100,22 @@ local plugins = {
                 enable = true,
             },
 
+            filters = {
+                git_ignored = false,
+            },
+
+            view = {
+                width = {
+                    min = 30,
+                    max = -1,
+                    padding = 1,
+                },
+            },
+
+            update_focused_file = {
+                enable = false,
+            },
+
             renderer = {
                 highlight_git = true,
                 icons = {
@@ -126,9 +142,13 @@ local plugins = {
                         ["<C-h>"] = "which_key",
                     },
                 },
+                cache_picker = {
+                    ignore_empty_prompt = false,
+                },
                 preview = {
                     hide_on_startup = true, -- hide previewer when picker starts
                 },
+                file_ignore_patterns = { "test_durations.csv", "%.svg", "%.dot", "%.buildkite%" },
             },
             -- extensions = {
             --     fzf = {
@@ -142,12 +162,12 @@ local plugins = {
                 find_files = {
                     hidden = true,
                     follow = true,
+                    no_ignore = true,
                 },
                 live_grep = {
                     additional_args = function()
                         return { "--hidden" }
                     end,
-                    file_ignore_patterns = { "node_modules", ".git" },
                 },
                 buffers = {
                     sort_mru = true,
@@ -163,8 +183,13 @@ local plugins = {
                 jumplist = {
                     fname_width = 60,
                 },
-                treesitter = {
-                    fname_width = 60,
+                lsp_document_symbols = {
+                    symbol_width = 50,
+                    fname_width = 50,
+                    symbol_type_width = 15,
+                },
+                lsp_references = {
+                    fname_width = 50,
                 },
             },
         },
@@ -172,11 +197,6 @@ local plugins = {
 
     {
         "lukas-reineke/indent-blankline.nvim",
-        enabled = false,
-    },
-
-    {
-        "folke/which-key.nvim",
         enabled = false,
     },
 
@@ -227,6 +247,7 @@ local plugins = {
                         sh = "sh",
                         yaml = "yaml",
                         go = "go",
+                        sql = "sql",
                     },
                 },
             }
@@ -259,10 +280,16 @@ local plugins = {
                 pickers = {
                     -- diff current branch with base_branch and show files that changed with respective diffs in preview
                     {
-                        name = "changed_files",
+                        name = "changed_not_staged_files",
                         command = "git diff --name-only",
                         -- command = "git diff --name-only $(git merge-base HEAD " .. base_branch .. " )",
                         -- previewer = easypick.previewers.branch_diff({base_branch = base_branch})
+                        previewer = easypick.previewers.file_diff(),
+                    },
+                    -- diff current branch with base_branch and show files that changed with respective diffs in preview
+                    {
+                        name = "staged_files",
+                        command = "git diff --cached --name-only",
                         previewer = easypick.previewers.file_diff(),
                     },
 
@@ -287,13 +314,12 @@ local plugins = {
         lazy = false,
     },
 
-    -- {
-    --     "karb94/neoscroll.nvim",
-    --     lazy = false,
-    --     config = function()
-    --         require('neoscroll').setup()
-    --     end
-    -- }
+    {
+        "karb94/neoscroll.nvim",
+        config = function()
+            require("neoscroll").setup()
+        end,
+    },
 
     {
         "andythigpen/nvim-coverage",
@@ -370,11 +396,29 @@ local plugins = {
     },
     {
         "hrsh7th/nvim-cmp",
+        dependencies = {
+            "hrsh7th/cmp-cmdline",
+        },
+
         config = function(_, opts)
             local cmp = require("cmp")
             cmp.setup(opts)
             cmp.setup.filetype({ "vimwiki" }, {
                 enabled = false,
+            })
+            cmp.setup.cmdline("/", {
+                mapping = cmp.mapping.preset.cmdline(),
+                sources = {
+                    { name = "buffer" },
+                },
+            })
+            cmp.setup.cmdline(":", {
+                mapping = cmp.mapping.preset.cmdline(),
+                sources = cmp.config.sources({
+                    { name = "path" },
+                }, {
+                    { name = "cmdline" },
+                }),
             })
         end,
     },

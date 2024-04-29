@@ -4,7 +4,7 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 local lspconfig = require("lspconfig")
 
 -- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "tsserver", "clangd" }
+local servers = { "html", "cssls", "tsserver", "clangd", "pyright", "tsserver", "terraformls" }
 
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup({
@@ -13,11 +13,14 @@ for _, lsp in ipairs(servers) do
     })
 end
 
--- Taken from https://github.com/neovim/nvim-lspconfig#Suggested-configuration
--- Use Mason for auto-installing
-lspconfig.pyright.setup({})
-lspconfig.tsserver.setup({})
-lspconfig.terraformls.setup({})
+vim.diagnostic.config({
+    underline = true,
+    virtual_text = false,
+    severity_sort = true,
+    float = {
+        source = true,
+    },
+})
 
 -- Setup lua_ls
 -- Taken from https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#lua_ls
@@ -69,58 +72,5 @@ lspconfig.lua_ls.setup({
             client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
         end
         return true
-    end,
-})
-
--- Global mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
-vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
-vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
-
-vim.diagnostic.config({
-    underline = true,
-    virtual_text = false,
-    severity_sort = true,
-    float = {
-        source = true,
-    },
-})
-
--- Toggle diagnostics on and off
-local diagnostics_active = true
-vim.keymap.set("n", "<leader>dt", function()
-    diagnostics_active = not diagnostics_active
-    if diagnostics_active then
-        vim.diagnostic.show(nil, 0)
-    else
-        vim.diagnostic.hide()
-    end
-end)
-
--- Use LspAttach autocommand to only map the following keys
--- after the language server attaches to the current buffer
-vim.api.nvim_create_autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-    callback = function(ev)
-        -- Enable completion triggered by <c-x><c-o>
-        vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-
-        -- Buffer local mappings.
-        -- See `:help vim.lsp.*` for documentation on any of the below functions
-        local opts = { buffer = ev.buf }
-        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-        vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-        vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
-        vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
-        vim.keymap.set("n", "<space>wl", function()
-            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-        end, opts)
-        vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
-        vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
-        vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
     end,
 })

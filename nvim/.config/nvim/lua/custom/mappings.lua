@@ -2,7 +2,7 @@
 local M = {}
 M.disabled = {
     i = {
-        ["<C-b>"] = "",
+        -- ["<C-b>"] = "",
         ["<C-e>"] = "",
         ["<C-h>"] = "",
         ["<C-l>"] = "",
@@ -10,6 +10,7 @@ M.disabled = {
         ["<C-k>"] = "",
     },
     n = {
+        ["<leader>e"] = "",
         ["<leader>f"] = "",
         ["<leader>h"] = "",
         ["<leader>ff"] = "",
@@ -28,6 +29,7 @@ M.disabled = {
         ["[c"] = "",
         ["<leader>n"] = "",
         ["<leader>rn"] = "",
+        ["<leader>ra"] = "",
     },
 }
 
@@ -39,8 +41,6 @@ M.general = {
         -- Don't move when searching current word
         -- https://stackoverflow.com/questions/4256697/vim-search-and-highlight-but-do-not-jump
         ["*"] = { ":keepjumps normal! mi*`i <CR>" },
-        ["<C-d>"] = { "<C-d>zz" },
-        ["<C-u>"] = { "<C-u>zz" },
         -- yank buffer's file path into unnmaed register
         ["cp"] = { ':let @" = expand("%")<CR>' },
     },
@@ -51,6 +51,31 @@ M.general = {
     c = {
         -- Force saving files that require root permission
         ["w!!"] = { "w !sudo tee > /dev/null %" },
+    },
+}
+
+M.lspconfig = {
+    plugin = true,
+    n = {
+        ["<leader>dt"] = {
+            function()
+                if vim.g.diagnostics_active then
+                    vim.diagnostic.hide()
+                    vim.g.diagnostics_active = false
+                else
+                    vim.diagnostic.show(nil, 0)
+                    vim.g.diagnostics_active = true
+                end
+            end,
+            "Toggle LSP Diagnostics",
+        },
+
+        ["<leader>rn"] = {
+            function()
+                require("nvchad.renamer").open()
+            end,
+            "LSP rename",
+        },
     },
 }
 
@@ -100,12 +125,12 @@ M.telescope = {
             end,
             "Jumplist",
         },
-        ["<leader>ts"] = {
-            function()
-                require("telescope.builtin").treesitter()
-            end,
-            "Treesitter",
-        },
+        -- ["<leader>ts"] = {
+        --     function()
+        --         require("telescope.builtin").treesitter()
+        --     end,
+        --     "Treesitter",
+        -- },
         ["<leader>tr"] = {
             function()
                 require("telescope.builtin").resume()
@@ -113,12 +138,12 @@ M.telescope = {
             "Resume",
         },
         -- LSP mappings, these overwrite NvChad defaults to use telescope instead of buffer
-        ["gd"] = {
-            function()
-                require("telescope.builtin").lsp_definitions()
-            end,
-            "LSP Definitions",
-        },
+        -- ["gd"] = {
+        --     function()
+        --         require("telescope.builtin").lsp_definitions()
+        --     end,
+        --     "LSP Definitions",
+        -- },
         ["gr"] = {
             function()
                 require("telescope.builtin").lsp_references()
@@ -143,16 +168,28 @@ M.telescope = {
             end,
             "LSP Type Definition",
         },
+        ["<leader>ds"] = {
+            function()
+                require("telescope.builtin").lsp_document_symbols()
+            end,
+            "LSP Document Symbols",
+        },
+        ["<leader>ws"] = {
+            function()
+                require("telescope.builtin").lsp_workspace_symbols()
+            end,
+            "LSP Workspace Symbols",
+        },
         ["<leader>ep"] = { "<cmd> Easypick <CR>", "Open Easypick" },
         ["<leader>zg"] = {
             function()
-                require("telescope.builtin").grep_string({
+                require("telescope.builtin").live_grep({
                     shorten_path = true,
                     word_match = "-w",
                     only_sort_text = true,
                     search = "",
                     disable_coordinates = true,
-                    grep_open_files = true,
+                    -- grep_open_files = true,
                 })
             end,
             "Grep open files (buffers)",
@@ -162,7 +199,10 @@ M.telescope = {
 
 M.fzf_lua = {
     n = {
-        ["<C-p>"] = { "<cmd>lua require('fzf-lua').grep_project()<CR>", "Live grep" },
+        ["<C-p>"] = {
+            "<cmd>lua require('fzf-lua').grep_project({ fzf_opts = { ['--nth'] = false } })<CR>",
+            "Live grep",
+        },
         ["<leader>fb"] = { "<cmd>lua require('fzf-lua').buffers()<CR>", "fzf buffers" },
         -- ["<leader>fw"] = { "<cmd>lua require('fzf-lua').grep_cword()<CR>", "fzf current word"},
         ["<leader>fr"] = { "<cmd>lua require('fzf-lua').resume()<CR>", "Resume last fzf-lua" },
@@ -247,23 +287,26 @@ M.diffview = {
 
 M.gitlinker = {
     n = {
-        -- Open line in browser
         ["<leader>gb"] = {
             '<cmd>lua require"gitlinker".get_buf_range_url("n", {action_callback = require"gitlinker.actions".open_in_browser})<cr>',
+            "Open line in browser",
             opts = { silent = true },
         },
-        -- Copy repo base url
-        ["<leader>gY"] = { '<cmd>lua require"gitlinker".get_repo_url()<cr>', opts = { silent = true } },
-        -- Open repo base url in browser
+        ["<leader>gY"] = {
+            '<cmd>lua require"gitlinker".get_repo_url()<cr>',
+            "Copy repo base url",
+            opts = { silent = true },
+        },
         ["<leader>gB"] = {
             '<cmd>lua require"gitlinker".get_repo_url({action_callback = require"gitlinker.actions".open_in_browser})<cr>',
+            "Open repo base url in browser",
             opts = { silent = true },
         },
     },
     v = {
-        -- Open selected line(s) in browser
         ["<leader>gb"] = {
             '<cmd>lua require"gitlinker".get_buf_range_url("v", {action_callback = require"gitlinker.actions".open_in_browser})<cr>',
+            "Open selected line(s) in browser",
             opts = {},
         },
     },
