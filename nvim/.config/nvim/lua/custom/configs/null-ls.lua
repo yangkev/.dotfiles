@@ -22,8 +22,30 @@ local sources = {
     b.diagnostics.textlint,
 
     -- formatting
-    b.formatting.black,
-    b.formatting.isort,
+    b.formatting.black.with({
+        extra_args = {
+            "--target-version",
+            "py310",
+        },
+    }),
+    b.formatting.autoflake.with({
+        extra_args = {
+            "--in-place",
+            "--remove-all-unused-imports",
+        },
+    }),
+    b.formatting.isort.with({
+        extra_args = {
+            "--profile",
+            "black",
+        },
+    }),
+    b.formatting.sql_formatter.with({
+        extra_args = {
+            "--language",
+            "postgresql",
+        },
+    }),
 
     b.formatting.clang_format,
     b.formatting.jq,
@@ -32,6 +54,6 @@ local sources = {
 }
 
 null_ls.setup({
-    debug = true,
+    -- debug = true,
     sources = sources,
 })
