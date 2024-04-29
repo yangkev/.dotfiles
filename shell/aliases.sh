@@ -16,7 +16,7 @@ alias za="zathura --fork"
 alias xclip="xclip -selection c"
 alias rgh="rg --hidden"
 alias rg="rg -p"
-alias dot="cd ~/.dotfiles"
+alias dots="cd ~/.dotfiles"
 
 # paths
 alias path="echo $PATH"
