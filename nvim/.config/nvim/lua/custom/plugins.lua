@@ -89,6 +89,9 @@ local plugins = {
                 "vim",
                 "yaml",
             },
+            indent = {
+                enable = false,
+            },
         },
     },
 
