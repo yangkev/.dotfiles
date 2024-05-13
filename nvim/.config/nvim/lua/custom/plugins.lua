@@ -132,6 +132,11 @@ local plugins = {
     },
 
     {
+        "Vimjas/vim-python-pep8-indent",
+        ft = "python",
+    },
+
+    {
         "nvim-telescope/telescope.nvim",
         opts = {
             defaults = {
