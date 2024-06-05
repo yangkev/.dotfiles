@@ -43,5 +43,5 @@ export GF_GREP_COLOR='1;30;48;5;15'
 source "$DOTFILES/shell/aliases.sh"
 source "$DOTFILES/shell/functions.sh"
 source "$DOTFILES/shell/fzf.sh"
-source "$DOTFILES/shell/kubernetes.sh"
+# source "$DOTFILES/shell/kubernetes.sh"
 source "$DOTFILES/git/git.sh"

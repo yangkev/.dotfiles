@@ -3,19 +3,10 @@ ZSH="$HOME/.zsh"
 DOTFILES="$HOME/.dotfiles"
 fpath+=("$ZSH/themes")
 
-# if type brew &>/dev/null; then
-#   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-# fi
-
 autoload -Uz promptinit compinit add-zsh-hook
 promptinit
 compinit
 zmodload -i zsh/complist
-autoload bashcompinit
-bashcompinit
-
-# Prompt
-# prompt kevin
 
 # General options
 setopt NO_BEEP
@@ -85,9 +76,9 @@ fi
 eval "$(starship init zsh)"
 
 # nvm (node version manager)
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # pyenv (python version manager)
 export PYENV_ROOT="$HOME/.pyenv"
@@ -114,9 +105,9 @@ if command -v pyenv &> /dev/null; then
 fi
 
 # pipx Completion
-if command -v pipx &> /dev/null; then
-    eval "$(register-python-argcomplete pipx)"
-fi
+# if command -v pipx &> /dev/null; then
+#     eval "$(register-python-argcomplete pipx)"
+# fi
 
 # zoxide (faster cd)
 if command -v zoxide &> /dev/null; then
