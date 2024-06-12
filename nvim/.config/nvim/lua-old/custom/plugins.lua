@@ -32,6 +32,7 @@ local plugins = {
 
                 -- python
                 "black@22.3.0",
+                "autoflake",
                 -- "flake8",
                 "isort",
                 -- "mypy",
@@ -58,9 +59,17 @@ local plugins = {
             },
         },
     },
-
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+    },
     {
         "nvim-treesitter/nvim-treesitter",
+        highlight = {
+            enable = true,
+        },
         opts = {
             ensure_installed = {
                 "c",
@@ -87,6 +96,7 @@ local plugins = {
                 "tsx",
                 "typescript",
                 "vim",
+                "vimdoc",
                 "yaml",
             },
             indent = {
@@ -137,6 +147,11 @@ local plugins = {
     },
 
     {
+        "windwp/nvim-autopairs",
+        enabled = true,
+    },
+
+    {
         "nvim-telescope/telescope.nvim",
         opts = {
             defaults = {
@@ -156,7 +171,7 @@ local plugins = {
                 preview = {
                     hide_on_startup = true, -- hide previewer when picker starts
                 },
-                file_ignore_patterns = { "test_durations.csv", "%.svg", "%.dot", "%.buildkite%" },
+                file_ignore_patterns = { "test_durations.csv", "%.svg", "%.dot", "^.buildkite/" },
             },
             -- extensions = {
             --     fzf = {
@@ -402,6 +417,17 @@ local plugins = {
             sign_priority = 9999,
         },
     },
+
+    -- {
+    --     "L3MON4D3/LuaSnip",
+    --     enabled = false,
+    -- },
+
+    {
+        "rafamadriz/friendly-snippets",
+        enabled = false,
+    },
+
     {
         "hrsh7th/nvim-cmp",
         dependencies = {
@@ -435,6 +461,10 @@ local plugins = {
         "tris203/hawtkeys.nvim",
         cmd = { "Hawtkeys", "HawtkeysAll", "HawtkeysDupes" },
         config = true,
+    },
+    {
+        "ranelpadon/python-copy-reference.vim",
+        ft = "python",
     },
 }
 return plugins

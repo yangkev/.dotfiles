@@ -12,12 +12,12 @@ M.disabled = {
     n = {
         ["<leader>e"] = "",
         ["<leader>f"] = "",
-        ["<leader>h"] = "",
         ["<leader>ff"] = "",
         ["<leader>fb"] = "",
         ["<leader>fo"] = "",
         ["<leader>fa"] = "",
         ["<leader>fw"] = "",
+        ["<leader>fm"] = "",
         ["<leader>ca"] = "",
         ["<C-s>"] = "",
         ["<C-c>"] = "",
@@ -75,6 +75,14 @@ M.lspconfig = {
                 require("nvchad.renamer").open()
             end,
             "LSP rename",
+        },
+
+        ["<leader>fm"] = {
+            function()
+                -- format on save by setting async = false
+                vim.lsp.buf.format({ async = false, timeout_ms = 4000 })
+            end,
+            "LSP formatting",
         },
     },
 }
@@ -312,4 +320,15 @@ M.gitlinker = {
     },
 }
 
+M.python_copy_reference = {
+    n = {
+        ["<leader>rd"] = {
+            "<cmd> :PythonCopyReferenceDotted <cr>",
+            "Copy Python Reference Dotted",
+        },
+    },
+    -- nnoremap <Leader>rd :PythonCopyReferenceDotted<CR>
+    -- nnoremap <Leader>rp :PythonCopyReferencePytest<CR>
+    -- nnoremap <Leader>ri :PythonCopyReferenceImport<CR>
+}
 return M

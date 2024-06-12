@@ -37,3 +37,5 @@ vim.cmd([[
   hi DiagnosticUnderlineError gui=undercurl guisp=red
   hi DiagnosticUnderlineWarn gui=undercurl guisp=orange
 ]])
+
+-- vim.cmd[[colorscheme tokyonight]]
