@@ -8,4 +8,4 @@ opt_local.relativenumber = false
 opt_local.number = false
 opt_local.signcolumn = "no"
 
-vim.diagnostic.disable()
+vim.diagnostic.enable(false)

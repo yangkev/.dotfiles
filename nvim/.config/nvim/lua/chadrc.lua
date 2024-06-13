@@ -7,10 +7,27 @@ local M = {}
 M.ui = {
     theme = "everforest",
 
-    -- hl_override = {
-    -- 	Comment = { italic = true },
-    -- 	["@comment"] = { italic = true },
-    -- },
+    statusline = {
+        overriden_modules = function(modules)
+            -- table.remove(modules, 10)
+            table.remove(modules, 8)
+            table.remove(modules, 7)
+            table.remove(modules, 6)
+            table.remove(modules, 5)
+
+            table.insert(
+                modules,
+                5,
+                (function()
+                    return "%m "
+                end)()
+            )
+        end,
+    },
+
+    tabufline = {
+        enabled = false,
+    },
 }
 
 return M
