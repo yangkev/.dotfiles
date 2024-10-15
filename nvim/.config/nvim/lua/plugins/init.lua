@@ -165,14 +165,14 @@ return {
                 },
                 file_ignore_patterns = { "test_durations.csv", "%.svg", "%.dot", "^.buildkite/" },
             },
-            -- extensions = {
-            --     fzf = {
-            --         fuzzy = true,
-            --         override_generic_sorter = true,
-            --         override_file_sorter = true,
-            --         case_mode = "smart_case",
-            --     },
-            -- },
+            extensions = {
+                fzf = {
+                    fuzzy = true,
+                    override_generic_sorter = true,
+                    override_file_sorter = true,
+                    case_mode = "smart_case",
+                },
+            },
             pickers = {
                 find_files = {
                     hidden = true,
@@ -207,6 +207,14 @@ return {
                     fname_width = 50,
                 },
             },
+        },
+        dependencies = {
+            "nvim-telescope/telescope-fzf-native.nvim",
+            build = "make",
+            lazy = false,
+            config = function()
+                require("telescope").load_extension("fzf")
+            end,
         },
     },
 
