@@ -1,30 +1,36 @@
--- This file  needs to have same structure as nvconfig.lua
--- https://github.com/NvChad/NvChad/blob/v2.5/lua/nvconfig.lua
+-- This file needs to have same structure as nvconfig.lua
+-- https://github.com/NvChad/ui/blob/v3.0/lua/nvconfig.lua
+-- Please read that file to know all available options :(
 
 ---@type ChadrcConfig
 local M = {}
 
-M.ui = {
+M.base46 = {
     theme = "everforest",
 
-    statusline = {
-        overriden_modules = function(modules)
-            -- table.remove(modules, 10)
-            table.remove(modules, 8)
-            table.remove(modules, 7)
-            table.remove(modules, 6)
-            table.remove(modules, 5)
-
-            table.insert(
-                modules,
-                5,
-                (function()
-                    return "%m "
-                end)()
-            )
-        end,
+    hl_override = {
+        Comment = { italic = true },
+        ["@comment"] = { italic = true },
     },
+}
 
+M.ui = {
+    statusline = {
+        order = {
+            "mode",
+            "file",
+            "git",
+            "%=",
+            "lsp_msg",
+            "%=",
+            "diagnostics",
+            "cwd",
+            "modified",
+        },
+        modules = {
+            modified = "%m",
+        },
+    },
     tabufline = {
         enabled = false,
     },
