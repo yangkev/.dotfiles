@@ -358,6 +358,17 @@ return {
         },
         config = function()
             require("coverage").setup({
+                auto_reload = true,
+                commands = true, -- create commands
+                highlights = {
+                    -- customize highlight groups created by the plugin
+                    covered = { fg = "#C3E88D" }, -- supports style, fg, bg, sp (see :h highlight-gui)
+                    uncovered = { fg = "#F07178" },
+                },
+                signs = {
+                    covered = { hl = "CoverageCovered", text = "▎", priority = 100 },
+                    uncovered = { hl = "CoverageUncovered", text = "▎", priority = 100 },
+                },
                 lang = {
                     python = {
                         coverage_file = "/tmp/.coverage",

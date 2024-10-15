@@ -1,15 +1,31 @@
--- EXAMPLE
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require("lspconfig")
 
+-- Override lsp mappings from nvchad 2.5 cause it's annoying
+local map = vim.keymap.set
+
+local function attach(client, bufnr)
+    local function opts(desc)
+        return { buffer = bufnr, desc = "LSP " .. desc }
+    end
+
+    map("n", "gr", function()
+        require("telescope.builtin").lsp_references()
+    end)
+
+    map("n", "<leader>rn", function()
+        require("nvchad.lsp.renamer")()
+    end)
+end
+
 -- lsps with default config
-local servers = { "html", "cssls", "tsserver", "clangd", "pyright", "tsserver", "terraformls" }
+local servers = { "html", "cssls", "pyright", "terraformls" }
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup({
-        on_attach = on_attach,
+        on_attach = attach,
         on_init = on_init,
         capabilities = capabilities,
     })
@@ -18,7 +34,7 @@ end
 -- Setup lua_ls
 -- Taken from https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#lua_ls
 lspconfig.lua_ls.setup({
-    on_attach = on_attach,
+    on_attach = attach,
     capabilities = capabilities,
 
     settings = {
@@ -68,11 +84,11 @@ lspconfig.lua_ls.setup({
     end,
 })
 
--- vim.diagnostic.config({
---     underline = true,
---     virtual_text = false,
---     severity_sort = true,
---     float = {
---         source = true,
---     },
--- })
+vim.diagnostic.config({
+    underline = true,
+    virtual_text = false,
+    severity_sort = true,
+    float = {
+        source = "if_many",
+    },
+})

@@ -1,5 +1,11 @@
 require("nvchad.mappings")
 
+-- Disable mappings
+local nomap = vim.keymap.del
+nomap("n", "<tab>")
+nomap("n", "<leader>rn")
+nomap("n", "<leader>h")
+
 -- add yours here
 
 local map = vim.keymap.set
@@ -20,21 +26,14 @@ map("c", "w!!", "w !sudo tee > /dev/null %")
 
 -- LspConfig mappings
 map("n", "<leader>dt", function()
-    if vim.g.diagnostics_active then
-        vim.diagnostic.hide()
-        vim.g.diagnostics_active = false
+    if vim.diagnostic.is_enabled() then
+        vim.diagnostic.disable()
     else
-        vim.diagnostic.show(nil, 0)
-        vim.g.diagnostics_active = true
+        vim.diagnostic.enable()
     end
 end, { desc = "Toggle LSP Diagnostics" })
-
-map("n", "leader>rn", function()
-    require("nvchad.renamer").open()
-end, { desc = "LSP rename" })
-
 map("n", "<leader>fm", function()
-    require("conform").format({ async = true, lsp_fallback = true, range = range })
+    require("conform").format({ async = true, lsp_fallback = true })
 end, { desc = "Format" })
 
 -- Telescope mappings
@@ -59,9 +58,9 @@ end, { desc = "Grep current word" })
 map("n", "<leader>ju", function()
     require("telescope.builtin").jumplist()
 end, { desc = "Jumplist" })
--- map("n", "<leader>ts", function()
---     require("telescope.builtin").treesitter()
--- end, { desc = "Treesitter" })
+map("n", "<leader>ts", function()
+    require("telescope.builtin").treesitter()
+end, { desc = "Treesitter" })
 map("n", "<leader>tr", function()
     require("telescope.builtin").resume()
 end, { desc = "Resume" })
@@ -69,9 +68,6 @@ end, { desc = "Resume" })
 map("n", "gd", function()
     require("telescope.builtin").lsp_definitions()
 end, { desc = "LSP Definitions" })
-map("n", "gr", function()
-    require("telescope.builtin").lsp_references()
-end, { desc = "LSP References" })
 map("n", "<leader>ic", function()
     require("telescope.builtin").lsp_incoming_calls()
 end, { desc = "LSP Incoming Calls" })
@@ -87,7 +83,11 @@ end, { desc = "LSP Document Symbols" })
 map("n", "<leader>ws", function()
     require("telescope.builtin").lsp_workspace_symbols()
 end, { desc = "LSP Workspace Symbols" })
-map("n", "leader>ep", "<cmd> Easypick <CR>", { desc = "Open Easypick" })
+map("n", "<leader>ca", function()
+    vim.lsp.buf.code_action()
+end, { desc = "LSP Code Action" })
+
+map("n", "<leader>ep", "<cmd> Easypick <CR>", { desc = "Open Easypick" })
 map("n", "<leader>zg", function()
     require("telescope.builtin").live_grep({
         shorten_path = true,
@@ -108,47 +108,11 @@ map(
 )
 -- map("n", "<leader>fb", "<cmd>lua require('fzf-lua').buffers()<CR>", {desc= "fzf buffers" },
 map("n", "<leader>fw", "<cmd>lua require('fzf-lua').grep_cword()<CR>", { desc = "fzf current word" })
-map("n", "leader>fr", "<cmd>lua require('fzf-lua').resume()<CR>", { desc = "Resume last fzf-lua" })
+map("n", "<leader>fr", "<cmd>lua require('fzf-lua').resume()<CR>", { desc = "Resume last fzf-lua" })
 
 -- nvim-tree mappings
 map("n", "<leader>nf", "<cmd> NvimTreeFindFile <CR>", { desc = "Find current file in nvimtree" })
 map("n", "<leader>nt", "<cmd> NvimTreeFocus <CR>", { desc = "Focus nvimtree" })
-
--- gitsigns mappings
-map("n", "]h", function()
-    if vim.wo.diff then
-        return "]c"
-    end
-    vim.schedule(function()
-        require("gitsigns").next_hunk()
-    end)
-    return "<Ignore>"
-end, { desc = "Jump to next hunk" })
-
-map("n", "[h", function()
-    if vim.wo.diff then
-        return "[c"
-    end
-    vim.schedule(function()
-        require("gitsigns").prev_hunk()
-    end)
-    return "<Ignore>"
-end, { desc = "Jump to prev hunk" })
-
-map("n", "ghu", function()
-    require("gitsigns").reset_hunk()
-end, { desc = "Reset hunk" })
-
-map("n", "ghp", function()
-    require("gitsigns").preview_hunk()
-end, { desc = "Preview hunk" })
-map("n", "ghs", function()
-    require("gitsigns").stage_hunk()
-end, { desc = "Stage hunk" })
-
-map("n", "gb", function()
-    package.loaded.gitsigns.blame_line()
-end, { desc = "Blame line" })
 
 -- diffview mappings
 map("n", "<leader>dv", ":DiffviewOpen ", { desc = "Open Diffview interactive" })
@@ -162,7 +126,7 @@ map(
     '<cmd>lua require"gitlinker".get_buf_range_url("n", {action_callback = require"gitlinker.actions".open_in_browser})<cr>',
     { desc = "Open line in browser" }
 )
-map("n", "leader>gY", '<cmd>lua require"gitlinker".get_repo_url()<cr>', { desc = "Copy repo base url" })
+map("n", "<leader>gY", '<cmd>lua require"gitlinker".get_repo_url()<cr>', { desc = "Copy repo base url" })
 map(
     "n",
     "<leader>gB",
@@ -178,3 +142,15 @@ map(
 
 -- python_copy_reference mappings
 map("n", "<leader>rd", "<cmd> :PythonCopyReferenceDotted <cr>", { desc = "Copy Python Reference Dotted" })
+map("n", "<leader>rp", "<cmd> :PythonCopyReferencePytest <cr>", { desc = "Copy Python Reference Pytest" })
+
+-- coverage mappings
+map("n", "<leader>ct", function()
+    require("coverage").toggle()
+end, { desc = "Coverage toggle" })
+map("n", "]cn", function()
+    require("coverage").jump_next("uncovered")
+end, { desc = "Coverage jump to next uncovered" })
+map("n", "]cp", function()
+    require("coverage").jump_prev("uncovered")
+end, { desc = "Coverage jump to prev uncovered" })
