@@ -490,10 +490,6 @@ return {
             end,
         },
     },
-    {
-        "rafamadriz/friendly-snippets",
-        enabled = false,
-    },
 
     {
         "hrsh7th/nvim-cmp",
