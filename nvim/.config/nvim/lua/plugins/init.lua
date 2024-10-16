@@ -10,7 +10,6 @@ return {
     {
         "neovim/nvim-lspconfig",
         config = function()
-            require("nvchad.configs.lspconfig").defaults()
             require("configs.lspconfig")
         end,
     },
@@ -474,11 +473,23 @@ return {
         },
     },
 
-    -- {
-    --     "L3MON4D3/LuaSnip",
-    --     enabled = false,
-    -- },
-
+    {
+        "zbirenbaum/copilot-cmp",
+        event = "InsertEnter",
+        config = function()
+            require("copilot_cmp").setup()
+        end,
+        dependencies = {
+            "zbirenbaum/copilot.lua",
+            cmd = "Copilot",
+            config = function()
+                require("copilot").setup({
+                    suggestion = { enabled = false },
+                    panel = { enabled = false },
+                })
+            end,
+        },
+    },
     {
         "rafamadriz/friendly-snippets",
         enabled = false,
@@ -488,6 +499,16 @@ return {
         "hrsh7th/nvim-cmp",
         dependencies = {
             "hrsh7th/cmp-cmdline",
+        },
+        opts = {
+            sources = {
+                { name = "nvim_lsp", group_index = 2 },
+                { name = "copilot", group_index = 2 },
+                { name = "luasnip", group_index = 2 },
+                { name = "buffer", group_index = 2 },
+                { name = "nvim_lua", group_index = 2 },
+                { name = "path", group_index = 2 },
+            },
         },
 
         config = function(_, opts)

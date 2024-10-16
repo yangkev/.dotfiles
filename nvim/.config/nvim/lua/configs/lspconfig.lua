@@ -1,17 +1,12 @@
-local on_attach = require("nvchad.configs.lspconfig").on_attach
-local on_init = require("nvchad.configs.lspconfig").on_init
-local capabilities = require("nvchad.configs.lspconfig").capabilities
+require("nvchad.configs.lspconfig").defaults()
 
 local lspconfig = require("lspconfig")
+local nvlsp = require("nvchad.configs.lspconfig")
 
 -- Override lsp mappings from nvchad 2.5 cause it's annoying
 local map = vim.keymap.set
 
 local function attach(client, bufnr)
-    local function opts(desc)
-        return { buffer = bufnr, desc = "LSP " .. desc }
-    end
-
     map("n", "gr", function()
         require("telescope.builtin").lsp_references()
     end)
@@ -19,6 +14,16 @@ local function attach(client, bufnr)
     map("n", "<leader>rn", function()
         require("nvchad.lsp.renamer")()
     end)
+    -- Hover documentation keymap
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true })
+
+    -- Print diagnostics in floating window on cursor hold
+    vim.api.nvim_create_autocmd("CursorHold", {
+        buffer = bufnr,
+        callback = function()
+            vim.diagnostic.open_float(nil, { focus = false })
+        end,
+    })
 end
 
 -- lsps with default config
@@ -26,68 +31,16 @@ local servers = { "html", "cssls", "pyright", "terraformls" }
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup({
         on_attach = attach,
-        on_init = on_init,
-        capabilities = capabilities,
+        on_init = nvlsp.on_init,
+        capabilities = nvlsp.capabilities,
     })
 end
-
--- Setup lua_ls
--- Taken from https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#lua_ls
-lspconfig.lua_ls.setup({
-    on_attach = attach,
-    capabilities = capabilities,
-
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { "vim" },
-            },
-            workspace = {
-                library = {
-                    [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                    [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-                    [vim.fn.stdpath("data") .. "/lazy/ui/nvchad_types"] = true,
-                    [vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy"] = true,
-                },
-                maxPreload = 100000,
-                preloadFileSize = 10000,
-            },
-        },
-    },
-    on_init = function(client)
-        local path = client.workspace_folders[1].name
-        if not vim.loop.fs_stat(path .. "/.luarc.json") and not vim.loop.fs_stat(path .. "/.luarc.jsonc") then
-            client.config.settings = vim.tbl_deep_extend("force", client.config.settings, {
-                Lua = {
-                    runtime = {
-                        -- Tell the language server which version of Lua you're using
-                        -- (most likely LuaJIT in the case of Neovim)
-                        version = "LuaJIT",
-                    },
-                    -- Make the server aware of Neovim runtime files
-                    workspace = {
-                        checkThirdParty = false,
-                        library = {
-                            vim.env.VIMRUNTIME,
-                            -- "${3rd}/luv/library"
-                            -- "${3rd}/busted/library",
-                        },
-                        -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-                        -- library = vim.api.nvim_get_runtime_file("", true)
-                    },
-                },
-            })
-
-            client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
-        end
-        return true
-    end,
-})
 
 vim.diagnostic.config({
     underline = true,
     virtual_text = false,
     severity_sort = true,
+    update_in_insert = true,
     float = {
         source = "if_many",
     },

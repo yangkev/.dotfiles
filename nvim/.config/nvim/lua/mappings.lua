@@ -26,15 +26,17 @@ map("c", "w!!", "w !sudo tee > /dev/null %")
 
 -- LspConfig mappings
 map("n", "<leader>dt", function()
-    if vim.diagnostic.is_enabled() then
-        vim.diagnostic.disable()
-    else
-        vim.diagnostic.enable()
-    end
+    vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = "Toggle LSP Diagnostics" })
+map("n", "<leader>do", function()
+    vim.diagnostic.show()
+end, { desc = "show lsp diagnostic" })
+map("n", "<leader>lf", function()
+    vim.diagnostic.open_float()
+end, { desc = "LSP Diagnostic Open Float" })
 map("n", "<leader>fm", function()
     require("conform").format({ async = true, lsp_fallback = true })
-end, { desc = "Format" })
+end, { desc = "Conform Format" })
 
 -- Telescope mappings
 map("n", "<leader>t", function()
