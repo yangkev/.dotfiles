@@ -145,6 +145,7 @@ map(
 -- python_copy_reference mappings
 map("n", "<leader>rd", "<cmd> :PythonCopyReferenceDotted <cr>", { desc = "Copy Python Reference Dotted" })
 map("n", "<leader>rp", "<cmd> :PythonCopyReferencePytest <cr>", { desc = "Copy Python Reference Pytest" })
+map("n", "<leader>ri", "<cmd> :PythonCopyReferenceImport <cr>", { desc = "Copy Python Reference Import" })
 
 -- coverage mappings
 map("n", "<leader>ct", function()
