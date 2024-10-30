@@ -557,4 +557,31 @@ return {
         "ranelpadon/python-copy-reference.vim",
         ft = "python",
     },
+
+    {
+        "olimorris/codecompanion.nvim",
+        event = "BufRead",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "hrsh7th/nvim-cmp", -- Optional: For using slash commands and variables in the chat buffer
+            "nvim-telescope/telescope.nvim", -- Optional: For using slash commands
+            { "stevearc/dressing.nvim", opts = {} }, -- Optional: Improves `vim.ui.select`
+        },
+        config = function(_, opts)
+            require("codecompanion").setup({
+                strategies = {
+                    chat = {
+                        adapter = "ollama",
+                    },
+                    inline = {
+                        adapter = "ollama",
+                    },
+                    agent = {
+                        adapter = "ollama",
+                    },
+                },
+            })
+        end,
+    },
 }
