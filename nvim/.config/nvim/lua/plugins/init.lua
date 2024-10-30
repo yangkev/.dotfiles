@@ -510,6 +510,24 @@ return {
         config = function(_, opts)
             local cmp = require("cmp")
             cmp.setup(opts)
+            cmp.setup({
+                preselect = cmp.PreselectMode.None, -- No item pre-selected by default
+                mapping = {
+                    ["<CR>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            local selected_entry = cmp.get_selected_entry()
+                            if selected_entry then
+                                cmp.confirm({ select = true }) -- Confirm the selected item if one is chosen
+                            else
+                                fallback() -- Insert a newline if no item is selected
+                            end
+                        else
+                            fallback() -- Insert a newline if the completion menu isn't visible
+                        end
+                    end, { "i", "s" }),
+                },
+                completion = { completeopt = "noselect" },
+            })
             cmp.setup.filetype({ "vimwiki" }, {
                 enabled = false,
             })
