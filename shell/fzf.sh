@@ -59,7 +59,7 @@ fzf_git_log() {
     fzf --ansi --multi --no-sort --reverse --height=100% \
     --bind \?:toggle-preview \
     --preview-window=right:60%:hidden \
-    --preview="echo {} | grep -o '[a-f0-9]\{7\}' | head -1 |
+    --preview="echo {} | grep -o '[a-f0-9]\{7,\}' | head -1 |
     xargs -I@ sh -c 'git show --no-ext-diff --color=always @' $diffviewer")
 
     if [[ -n $commits ]]; then
@@ -70,7 +70,7 @@ fzf_git_log() {
       local hashes=$(
         printf "$commits" |
         sed "s/\x1b\[[0-9;]*m//g" |
-        sed -r "s/^[^a-z0-9]*([a-z0-9]+).*/\1 /"
+        sed -r "s/^[^a-z0-9]*([a-z0-9]{7,}).*/\1 /"
       )
       git show $(echo $hashes)
     fi

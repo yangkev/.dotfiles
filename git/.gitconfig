@@ -9,8 +9,14 @@
     excludesfile = /Users/kyang/.gitignore
     fsmonitor = true
     untrackedCache = true
+	preloadindex = true
+	fscache = true
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
 [color]
-    ui = true
+    ui = auto
     branch = auto
     diff = auto
     status = auto
@@ -37,6 +43,7 @@
 [diff]
     renames = copies
     mnemonicprefix = true
+    renameLimit = 1571
 [merge]
     stat = true
     tool = "nvim"
@@ -45,6 +52,7 @@
     autosetupmerge = true       # when branching off a remote, automatically let local track remote
 [push]
     autoSetupRemote = true
+    default = simple
 [alias]
     # Basics
     a = add
@@ -71,6 +79,9 @@
     # list files which have changed since REVIEW_BASE
     files = !git diff --name-only $(git merge-base HEAD \"$REVIEW_BASE\")
     stat = !git diff --stat $(git merge-base HEAD \"$REVIEW_BASE\")
+
+    # show diff with upstack branch
+    updiff = "!f() { git diff $(gt parent)..HEAD \"$@\"; }; f"
 
     # Open all files changed since REVIEW_BASE in Vim tabs
     # Then, run fugitive's :Gdiff in each tab, and finally

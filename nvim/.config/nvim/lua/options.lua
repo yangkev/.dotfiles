@@ -12,6 +12,7 @@ opt.shiftround = true
 opt.smartindent = false
 opt.showmatch = true
 opt.incsearch = true
+opt.number = true
 opt.relativenumber = true
 opt.wrap = false
 opt.scrolloff = 8

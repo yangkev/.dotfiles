@@ -42,6 +42,6 @@ vim.diagnostic.config({
     severity_sort = true,
     update_in_insert = true,
     float = {
-        source = "if_many",
+        source = "always",
     },
 })

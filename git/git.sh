@@ -10,6 +10,7 @@ alias gcoi='git checkout $(git branch --sort=-committerdate | fzf)'
 alias gd="git diff"
 alias gds="git diff --staged"
 alias gdu="git diff @{upstream}"
+alias gdp="git updiff"
 alias glg="git lg"
 alias gl="git l"
 alias glg2="git lg2"

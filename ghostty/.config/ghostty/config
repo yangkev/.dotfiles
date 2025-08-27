@@ -1,0 +1,5 @@
+title = " "
+font-family = Hack Nerd Font Mono
+macos-titlebar-proxy-icon = "hidden"
+desktop-notifications = true
+adjust-cell-width = "-4%"

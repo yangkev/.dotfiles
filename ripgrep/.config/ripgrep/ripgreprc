@@ -20,3 +20,4 @@
 --glob=!**/.node_modules
 --glob=!**/.tmux
 --glob=!**/.zsh_sessions
+# --glob=!**/.buildkite

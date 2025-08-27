@@ -10,6 +10,10 @@ nomap("n", "<leader>h")
 
 local map = vim.keymap.set
 
+-- Better j/k navigation for wrapped lines, moves by visual lines when count isn't provided
+map("n", "j", "v:count ? 'j' : 'gj'", { expr = true })
+map("n", "k", "v:count ? 'k' : 'gk'", { expr = true })
+
 -- General mappings
 map("n", "<leader>cd", "<cmd> cd %:h <CR> :pwd <CR>", { desc = "Change cwd to current file" })
 map("n", "//", ":nohlsearch <CR>")
@@ -18,7 +22,7 @@ map("n", "gp", "`[v`]", { desc = "Highlight previously pasted text" })
 -- https://stackoverflow.com/questions/4256697/vim-search-and-highlight-but-do-not-jump
 map("n", "*", ":keepjumps normal! mi*`i <CR>")
 -- yank buffer's file path into unnmaed register
-map("n", "cp", ':let @" = expand("%")<CR>')
+map("n", "cp", ':let @+ = expand("%")<CR>')
 map("v", ">", ">gv", { desc = "indent" })
 
 -- Force saving files that require root permission
@@ -157,3 +161,6 @@ end, { desc = "Coverage jump to next uncovered" })
 map("n", "]cp", function()
     require("coverage").jump_prev("uncovered")
 end, { desc = "Coverage jump to prev uncovered" })
+
+-- codecompanion mappings
+map("n", "<leader>cc", "<cmd> CodeCompanionChat Toggle <cr>", { desc = "CodeCompanion Toggle Chat" })

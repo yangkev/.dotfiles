@@ -8,6 +8,14 @@ return {
     },
 
     {
+        "mfussenegger/nvim-lint",
+        event = { "BufReadPre", "BufNewFile" },
+        config = function()
+            require("configs.lint")
+        end,
+    },
+
+    {
         "neovim/nvim-lspconfig",
         config = function()
             require("configs.lspconfig")
@@ -32,7 +40,7 @@ return {
                 "autoflake",
                 -- "flake8",
                 "isort",
-                -- "mypy",
+                "mypy",
                 "pyright",
                 "ruff",
 
@@ -389,8 +397,8 @@ return {
                 grep = {
                     git_icons = false,
                     file_icons = false,
-                    -- add '--hidden' to defaults
-                    rg_opts = "--hidden --column --line-number --no-heading --color=always --smart-case --max-columns=4096 -e",
+                    -- rg_opts = "--column --line-number --no-heading --color=never --smart-case --max-columns=4096 -e",
+                    RIPGREP_CONFIG_PATH = vim.env.RIPGREP_CONFIG_PATH,
                 },
                 files = {
                     git_icons = false,
@@ -438,7 +446,7 @@ return {
                     if vim.wo.diff then
                         vim.cmd.normal({ "]c", bang = true })
                     else
-                        gitsigns.nav_hunk("next")
+                        gitsigns.nav_hunk("next", { target = "all" })
                     end
                 end)
 
@@ -446,7 +454,7 @@ return {
                     if vim.wo.diff then
                         vim.cmd.normal({ "[c", bang = true })
                     else
-                        gitsigns.nav_hunk("prev")
+                        gitsigns.nav_hunk("prev", { target = "all" })
                     end
                 end)
                 -- Actions
@@ -504,6 +512,7 @@ return {
                 { name = "buffer", group_index = 2 },
                 { name = "nvim_lua", group_index = 2 },
                 { name = "path", group_index = 2 },
+                { name = "nvim_lsp_signature_help", group_index = 2 },
             },
         },
 
@@ -570,17 +579,17 @@ return {
         },
         config = function(_, opts)
             require("codecompanion").setup({
-                strategies = {
-                    chat = {
-                        adapter = "ollama",
-                    },
-                    inline = {
-                        adapter = "ollama",
-                    },
-                    agent = {
-                        adapter = "ollama",
-                    },
-                },
+                -- strategies = {
+                --     chat = {
+                --         adapter = "ollama",
+                --     },
+                --     inline = {
+                --         adapter = "ollama",
+                --     },
+                --     agent = {
+                --         adapter = "ollama",
+                --     },
+                -- },
             })
         end,
     },

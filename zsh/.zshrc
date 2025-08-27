@@ -75,3 +75,8 @@ fi
 
 # Starship prompt
 eval "$(starship init zsh)"
+export PATH=$HOME/.local/bin:$PATH
+eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(devbox global shellenv)"
+eval "$(direnv hook zsh)"
+eval "`fnm env --use-on-cd --version-file-strategy=recursive --corepack-enabled`"

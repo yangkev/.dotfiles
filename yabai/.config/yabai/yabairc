@@ -27,17 +27,17 @@ setup_space() {
   yabai -m space "$idx" --label "$name"
 }
 
-setup_space 1 terminal
-setup_space 2 web
-setup_space 3 slack
-setup_space 4 other
-setup_space 5 scratch
+# setup_space 1 terminal
+# setup_space 2 web
+# setup_space 3 slack
+# setup_space 4 other
+# setup_space 5 scratch
 
-yabai -m rule --add app=".*" sub-layer=normal
-yabai -m rule --add app="^Alacritty$" space=terminal
-yabai -m rule --add app="^Firefox$" space=web
-yabai -m rule --add app="^Chrome$" space=web
-yabai -m rule --add app="^Slack$" space=slack
+# yabai -m rule --add app=".*" sub-layer=normal
+# yabai -m rule --add app="^Alacritty$" space=terminal
+# yabai -m rule --add app="^Firefox$" space=web
+# yabai -m rule --add app="^Chrome$" space=web
+# yabai -m rule --add app="^Slack$" space=slack
 
 yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^System Settings$" manage=off
@@ -49,6 +49,7 @@ yabai -m rule --add app="^licecap.*$" manage=off
 # Make it so popups/dialogs are not in tiled windows
 yabai -m rule --add app="^Firefox$" title="^Library.*$" manage=off
 yabai -m rule --add app="^Firefox$" title="^Extension.*$" manage=off
+
 # signals
 yabai -m signal --add event=window_destroyed active=yes action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null"
 yabai -m signal --add event=window_minimized active=yes action="if \$(yabai -m query --windows --window \$YABAI_WINDOW_ID | jq -r '.\"is-floating\"'); then yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null; fi"

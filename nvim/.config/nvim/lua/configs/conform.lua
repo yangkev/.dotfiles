@@ -24,6 +24,9 @@ local options = {
         yaml = {
             "yamlfmt",
         },
+        xml = {
+            "xmllint",
+        },
     },
 
     log_level = vim.log.levels.DEBUG,
