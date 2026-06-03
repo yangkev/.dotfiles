@@ -13,5 +13,5 @@ if [[ "${terminfo[kcbt]}" != "" ]]; then
   bindkey -M menuselect "${terminfo[kcbt]}" reverse-menu-complete
 fi
 
-# [Ctrl-P] to fzf and open file in vim
-bindkey -s "^P" 'vim $(fzf)\n'
+# [Ctrl-P] to fzf and open file in nvim
+bindkey -s "^P" 'nvim $(fzf)\n'

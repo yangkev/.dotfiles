@@ -1,11 +1,13 @@
 # Bring in common shell settings
 ZSH="$HOME/.zsh"
 DOTFILES="$HOME/.dotfiles"
-fpath+=("$ZSH/themes")
 
-autoload -Uz promptinit compinit add-zsh-hook
-promptinit
-compinit
+autoload -Uz compinit add-zsh-hook
+if [[ -n $HOME/.zcompdump(#qN.mh+24) ]]; then
+    compinit
+else
+    compinit -C
+fi
 zmodload -i zsh/complist
 
 # General options
@@ -58,20 +60,41 @@ zstyle ':completion:*' rehash true
 [ -f "$HOME/.zsh_local" ] && source "$HOME/.zsh_local"
 
 # fzf
-[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
+command -v fzf >/dev/null 2>&1 && source <(fzf --zsh)
 
 # suggestions when command isn't found
 [ -f "/etc/zsh_command_not_found" ] && source "/etc/zsh_command_not_found"
 
 # fish-like autocompletion
-if [ -f "$ZSH/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
+if [ -f "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
     ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
     ZSH_AUTOSUGGEST_USE_ASYNC=1
-    source "$ZSH/zsh-autosuggestions/zsh-autosuggestions.zsh"
+    source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 
 # syntax highlighting in the shell
-[ -f "$ZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && source "$ZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+[ -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # Starship prompt
-eval "$(starship init zsh)"
+command -v starship >/dev/null 2>&1 && eval "$(starship init zsh)"
+
+# Terminal theming (tinty) — applies the scheme from
+# ~/.config/tinted-theming/tinty/config.toml on startup. The wrapper sources the
+# generated *.sh artifacts (e.g. tinted-fzf's FZF_DEFAULT_OPTS colors) into the
+# current shell so env-var-based integrations update live on `tinty apply`.
+if command -v tinty >/dev/null 2>&1; then
+    tinty() {
+        local d="${XDG_DATA_HOME:-$HOME/.local/share}/tinted-theming/tinty"
+        command tinty "$@"
+        local r=$?
+        for f in "$d"/*.sh; do [ -e "$f" ] && . "$f"; done
+        return $r
+    }
+    tinty init >/dev/null 2>&1
+fi
+
+# NOTE: brew/devbox/bun/fnm PATH + shellenv setup lives in ~/.shell_local (sourced above).
+
+# Editor — set last so it wins over devbox's shellenv (which exports EDITOR=vi)
+export VISUAL=nvim
+export EDITOR=nvim

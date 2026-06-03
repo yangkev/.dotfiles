@@ -9,6 +9,17 @@ truncation_length = 8
 ahead = "⇡${count}"
 diverged = "⇕⇡${ahead_count}⇣${behind_count}"
 behind = "⇣${count}"
+untracked = ""
+stashed = ""
+
+[python]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[pijul_channel]
+disabled = true
 
 [battery]
 disabled = true
@@ -20,4 +31,10 @@ disabled = true
 disabled = true
 
 [pulumi]
+disabled = true
+
+[aws]
+disabled = true
+
+[nix_shell]
 disabled = true

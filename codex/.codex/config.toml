@@ -1,0 +1,158 @@
+# Source of truth: ~/.dotfiles/codex/.codex/config.toml
+# Live path: ~/.codex/config.toml should be a symlink to this file.
+
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+approval_policy = "on-request"
+sandbox_mode = "danger-full-access"
+personality = "pragmatic"
+
+notify = ["/Users/kyang/.dotfiles/codex/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
+
+[features]
+apps = true
+goals = true
+multi_agent = true
+plugins = true
+shell_snapshot = true
+tool_search = true
+js_repl = false
+
+# Use this when you want quicker iteration and are comfortable trading off depth:
+#   codex -p fast
+[profiles.fast]
+model = "gpt-5.4"
+model_reasoning_effort = "medium"
+service_tier = "fast"
+personality = "pragmatic"
+
+[plugins."github@openai-curated"]
+enabled = true
+
+[plugins."linear@openai-curated"]
+enabled = true
+
+[plugins."notion@openai-curated"]
+enabled = true
+
+[plugins."figma@openai-curated"]
+enabled = true
+
+[plugins."sentry@openai-curated"]
+enabled = false
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."slack@openai-curated"]
+enabled = true
+
+[plugins."gmail@openai-curated"]
+enabled = true
+
+[plugins."google-drive@openai-curated"]
+enabled = true
+
+[plugins."google-calendar@openai-curated"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[projects."/Users/kyang/Documents/Codex/2026-05-06/what-s-the-best-way-to"]
+trust_level = "trusted"
+
+[projects."/Users/kyang/Documents/Codex/2026-05-07/do-i-have-https-github-com"]
+trust_level = "trusted"
+
+[projects."/Users/kyang/Documents/Codex/2026-05-07/files-mentioned-by-the-user-screenshot"]
+trust_level = "trusted"
+
+[projects."/Users/kyang/Documents/Codex/2026-05-07/i-noticed-in-my-top-files"]
+trust_level = "trusted"
+
+[projects."/Users/kyang/Documents/Codex/2026-05-07/show-me-all-skills-installed-in"]
+trust_level = "trusted"
+
+[projects."/Users/kyang/Documents/Codex/2026-05-07/how-do-i-maximize-the-efficiency"]
+trust_level = "trusted"
+
+[projects."/Users/kyang/Documents/Codex/2026-05-11/fix-my-config-toml-and-also"]
+trust_level = "trusted"
+
+[projects."/Users/kyang/Documents/Codex/2026-05-11/profile-the-process-pid-90566-it"]
+trust_level = "trusted"
+
+[projects."/Users/kyang/Documents/Codex/2026-05-11/how-come-my-codex-app-does"]
+trust_level = "trusted"
+
+[projects."/Users/kyang/Documents/Codex/2026-05-15/take-a-look-at-this-tweet"]
+trust_level = "trusted"
+
+[projects."/Users/kyang/Documents/Codex/2026-05-18/turn-this-x-thread-into-codex"]
+trust_level = "trusted"
+
+[projects."/Users/kyang"]
+trust_level = "trusted"
+
+[projects."/Users/kyang/.dotfiles"]
+trust_level = "trusted"
+
+[marketplaces.openai-bundled]
+last_updated = "2026-06-02T05:20:24Z"
+source_type = "local"
+source = "/Users/kyang/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.openai-primary-runtime]
+last_updated = "2026-06-02T04:20:17Z"
+source_type = "local"
+source = "/Users/kyang/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+
+[apps.asdk_app_69a089a326dc8191b32a3f2553f5be2c.tools.linear_save_issue]
+approval_mode = "approve"
+
+[apps.asdk_app_69a089a326dc8191b32a3f2553f5be2c.tools.linear_research]
+approval_mode = "approve"
+
+[apps.asdk_app_69a089a326dc8191b32a3f2553f5be2c.tools.linear_delete_attachment]
+approval_mode = "approve"
+
+[desktop]
+ambient-suggestions-enabled = false
+appearanceTheme = "system"
+git-branch-prefix = "kyang/"
+git-create-pull-request-as-draft = true
+notifications-turn-mode = "off"
+conversationDetailMode = "STEPS_COMMANDS"
+worktree-auto-cleanup-enabled = true
+default-service-tier = "priority"
+
+[desktop.open-in-target-preferences]
+global = "ghostty"
+
+[mcp_servers.node_repl]
+args = []
+command = "/Applications/Codex.app/Contents/Resources/node_repl"
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = ""
+NODE_REPL_NODE_PATH = "/Applications/Codex.app/Contents/Resources/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/kyang/.codex"
+CODEX_HOME = "/Users/kyang/.codex"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "0b0d41e7a14a4903d2f95b0b3f427ed796b12c8edca2fa392a03df43997075ae"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+CODEX_CLI_PATH = "/Applications/Codex.app/Contents/Resources/codex"
