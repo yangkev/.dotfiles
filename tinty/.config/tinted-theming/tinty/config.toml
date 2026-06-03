@@ -1,0 +1,29 @@
+# tinty — terminal theming engine (https://github.com/tinted-theming/tinty)
+# Applied on shell startup via `tinty init` in .zshrc. Re-theme live with
+# `tinty apply <scheme>` (e.g. `tinty apply base16-gruvbox-dark-hard`).
+default-scheme = "base16-gruvbox-dark-medium"
+
+[[items]]
+name = "tinted-shell"
+path = "https://github.com/tinted-theming/tinted-shell"
+themes-dir = "scripts"
+hook = ". %f"
+supported-systems = ["base16"]
+
+[[items]]
+name = "tinted-tmux"
+path = "https://github.com/tinted-theming/tinted-tmux"
+themes-dir = "colors"
+hook = "tmux run 2> /dev/null && tmux source-file %f"
+supported-systems = ["base16", "base24"]
+
+[[items]]
+name = "tinted-fzf"
+path = "https://github.com/tinted-theming/tinted-fzf"
+themes-dir = "sh"
+hook = ". %f"
+supported-systems = ["base16", "base24"]
+
+# Global hooks run after all [[items]] — re-layer the codex/continuum statusline
+# on top of tinted-tmux. Guarded so it's a no-op when no tmux server is running.
+hooks = ["tmux run 2> /dev/null && tmux source-file ~/.config/tmux/tinty-codex.conf"]

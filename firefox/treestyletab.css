@@ -1,0 +1,148 @@
+:root {
+  /* This value should be updated here and in the userChrome.css */
+  --tst-sidepanel-hide-delay: 1s;
+}
+
+/* Hide border on tab bar, force its state to 'scroll', adjust margin-left for width of scrollbar. */
+#tabbar {
+  border: 0;
+  scrollbar-width: none;
+  overflow: scroll !important;
+  margin-top:  0 !important;
+}
+
+/* resolve extra space for scrollbar (scrollbar is hidden by this script) */
+.on-scrollbar-area #tabbar {
+  --shift-tabs-for-scrollbar-distance: 0px;
+}
+
+/* Include 'reveal' animation ... stagers by level */
+#tabbar .tab {
+  transition: 0.1s margin-top, 0.2s 0.1s visibility;
+}
+#tabbar tab-item-substance {
+  transition: 0.2s 0.1s margin-left;
+}
+
+
+/* delay transitions on open */
+#tabbar:not(:hover) tab-item-substance {
+  transition-delay: var(--tst-sidepanel-hide-delay);
+  margin-left: 0;
+}
+
+/* animate twisty reveal */
+#tabbar .tab .twisty {
+  transition: 0.2s margin;
+}
+
+/* general tabs */
+.tab {
+  background-color: transparent;
+}
+.tab,
+.tab.pinned {
+  height: 2.8em;
+}
+
+/* Push tab labels slightly to the right so they're completely hidden in collapsed state, but still look fine while expanded. */
+.tab .label {
+  margin-left: 1em;
+}
+
+/* fix closebox */
+.tab .closebox {
+  margin-left:  0;
+}
+
+.tab .counter {
+  margin-left:  auto;
+  display: inline-block !important;
+}
+
+/* Hide .twisty and adjust margins so favicons have 7px on left. */
+#tabbar:not(:hover) .tab .twisty {
+  visibility: hidden;
+  margin-left: -12px;
+  transition-delay: var(--tst-sidepanel-hide-delay);
+}
+
+
+/* hide closebox unless needed */
+.tab:not(:hover) .closebox {
+  visibility: hidden;
+}
+
+/* Hide sound playing/muted button. */
+.sound-button {
+  margin-left: 0;
+  display: inline-block;
+  visibility: collapse;
+}
+
+.tab.audible .sound-button {
+  visibility: visible;
+  margin-left: 0.25em;
+}
+
+.tab:not([data-child-ids]) .counter {
+  /* visibility: hidden; */
+}
+
+tab-item:not(.subtree-collapsed) .counter {
+  visibility: hidden;
+}
+
+/* Hide 'new tab' button. */
+.newtab-button {
+  display: none;
+}
+
+/* active tab */
+tab-item.active .background {
+  background-color: rgba(79,201,255,0.53) !important;
+}
+
+tab-item.active tab-item-substance {
+  border-left: 3px solid rgba(0,78,87,0.5) !important;
+}
+
+.tab.active {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+tab-item.active .highlighter::before {
+  background-color: #fffd !important;
+}
+
+.tab:hover,
+.tab.active:hover {
+  background-color: inherit;
+}
+.tab .label,
+.tab.active .label {
+  border-bottom:  1px solid transparent;
+}
+.tab:hover .label,
+.tab.active:hover .label {
+  border-bottom:  1px dotted;
+  min-width:  0 !important;
+  flex-shrink:  1 !important;
+  flex-grow:  unset !important;
+}
+
+/* Adjust style for tab that has sound playing. */
+.tab.sound-playing .favicon::after,
+.tab.muted .favicon::after {
+  content: '🔊';
+  z-index: var(--favicon-base-z-index);
+  position: absolute;
+  font-size: 0.5em;
+  bottom: -0.35em;
+  right: -0.7em;
+}
+
+/* Adjust style for tab that is muted. */
+.tab.muted .favicon::after {
+  content: '🔇';
+}

@@ -1,10 +1,15 @@
-vim/.vim/bundle/*
-vim/.vim/autoload/
-vim/.vim/plugged/
 .netrwhist
-ssh/.ssh/known_hosts
-vim/.vim/sessions/
 zsh/.zsh/zsh-autosuggestions
 zsh/.zsh/zsh-syntax-highlighting
 **/.zsh_history
 NvChad
+
+# Codex runtime state belongs in ~/.codex. Dotfiles tracks durable config
+# plus custom skills only.
+codex/.codex/*
+!codex/.codex/AGENTS.md
+!codex/.codex/RTK.md
+!codex/.codex/config.toml
+!codex/.codex/skills/
+!codex/.codex/skills/**
+codex/.codex/skills/.system/

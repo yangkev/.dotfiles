@@ -4,9 +4,9 @@
 [core]
     editor = nvim
     whitespace = trailing-space, space-before-tab
-    pager = delta
+	pager = hunk pager
     fileMode = false
-    excludesfile = /Users/kyang/.gitignore
+	excludesfile = /Users/kyang/.gitignore
     fsmonitor = true
     untrackedCache = true
 	preloadindex = true
@@ -42,7 +42,6 @@
     untracked = red
 [diff]
     renames = copies
-    mnemonicprefix = true
     renameLimit = 1571
 [merge]
     stat = true
@@ -67,6 +66,7 @@
     # Logging
     lg = log --graph --abbrev-commit --decorate --pretty=format:'%C(bold yellow)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(bold cyan)%d%C(reset)'
     l = log --abbrev-commit --decorate --pretty=format:'%C(bold yellow)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(bold cyan)%d%C(reset)'
+    lf = log --abbrev-commit --decorate --pretty=format:'%C(bold yellow)%h%C(reset) %C(white)%s%C(reset) %C(bold cyan)%d%C(reset)'
     lg2 = log --graph --abbrev-commit --decorate --pretty=format:'%C(bold yellow)%h%C(reset) - %C(bold blue)%aD%C(reset) %C(bold green)(%cr)%C(reset) %C(bold red)[%aN]%C(reset)%C(bold cyan)%d%C(reset)%n''          %C(white)%s%C(reset)%n' --all
     l2 = log --abbrev-commit --decorate --pretty=format:'%C(bold yellow)%h%C(reset) - %C(bold blue)%aD%C(reset) %C(bold green)(%cr)%C(reset) %C(bold red)[%aN]%C(reset)%C(bold cyan)%d%C(reset)%n''          %C(white)%s%C(reset)%n' --all
 
@@ -123,3 +123,16 @@
     hunk-header-file-style = red
     hunk-header-line-number-style = "#067a00"
     hunk-header-style = file line-number syntax
+[init]
+	templateDir = /Users/kyang/.git-template
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[credential "https://github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential

@@ -3,3 +3,6 @@ font-family = Hack Nerd Font Mono
 macos-titlebar-proxy-icon = "hidden"
 desktop-notifications = true
 adjust-cell-width = "-4%"
+keybind = shift+enter=text:\x1b\r
+scrollback-limit = 100000
+progress-style = false

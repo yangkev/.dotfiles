@@ -1,7 +1,7 @@
 DOTFILES=$HOME/.dotfiles
 
 # editor defaults
-export VISUAL=vi
+export VISUAL=nvim
 export EDITOR=$VISUAL
 
 # colorized manpages and elsewhere
@@ -20,16 +20,6 @@ export LSCOLORS="exfxcxdxcxegedabagacad"
 # draw UTF8 lines correctly
 export NCURSES_NO_UTF8_ACS=1
 
-# Base16 Shell https://github.com/chriskempson/base16-shell#bashzsh
-BASE16_SHELL="$HOME/.config/base16-shell/"
-[ -n "$PS1" ] && \
-    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-        source "$BASE16_SHELL/profile_helper.sh"
-
-# Gruvbox colors
-VIM_BUNDLE="$HOME/.vim/bundle"
-[ -n "$PS1" ] && [ -s "$VIM_BUNDLE/gruvbox/gruvbox_256palette.sh" ] && source "$VIM_BUNDLE/gruvbox/gruvbox_256palette.sh"
-
 [ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)"
 
 # env variables
@@ -39,12 +29,15 @@ export REVIEW_BASE="master"
 export GF_PREFERRED_PAGER="delta --theme=gruvbox --highlight-removed -w __WIDTH__" ssh agent
 export GF_GREP_COLOR='1;30;48;5;15'
 
+# dotfiles scripts on PATH
+export PATH="$DOTFILES/scripts:$PATH"
+
 # source common shell customizations
 source "$DOTFILES/shell/aliases.sh"
 source "$DOTFILES/shell/functions.sh"
 source "$DOTFILES/shell/fzf.sh"
 # source "$DOTFILES/shell/kubernetes.sh"
-source "$DOTFILES/git/git.sh"
+source "$DOTFILES/shell/git.sh"
 
 # Always keep ssh-agent running
 # if [ ! -S ~/.ssh/ssh_auth_sock ]; then

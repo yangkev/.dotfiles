@@ -45,6 +45,8 @@ yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^Okta Verify$" manage=off
 yabai -m rule --add app="^Installer$" manage=off
 yabai -m rule --add app="^licecap.*$" manage=off
+yabai -m rule --add app="^Bitwarden$" manage=off
+yabai -m rule --add app="^Finder$" manage=off
 
 # Make it so popups/dialogs are not in tiled windows
 yabai -m rule --add app="^Firefox$" title="^Library.*$" manage=off

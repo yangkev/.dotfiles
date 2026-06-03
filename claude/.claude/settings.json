@@ -1,0 +1,53 @@
+{
+  "respectGitignore": false,
+  "permissions": {
+    "allow": [
+      "Read(//Users/kyang/code/**)",
+      "Read(//Users/kyang/.config/**)",
+      "Read(//Users/kyang/.claude/**)",
+      "Read(//Users/kyang/.dotfiles/**)",
+      "Read(//Users/kyang/.zshrc)",
+      "Read(//Users/kyang/.gitconfig)",
+      "Edit(//Users/kyang/code/**)",
+      "Bash(*)",
+      "Bash(op item create:*)",
+      "WebFetch(domain:docs.pydantic.dev)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:google.com)",
+      "WebFetch(domain:notion.com)",
+      "WebFetch(domain:stackoverflow.com)",
+      "WebFetch(domain:www.notion.so)",
+      "WebSearch",
+      "mcp__buildkite",
+      "mcp__github",
+      "mcp__linear",
+      "mcp__notion",
+      "mcp__sentry",
+      "mcp__slack"
+    ],
+    "deny": [],
+    "ask": [],
+    "defaultMode": "auto"
+  },
+  "model": "opus[1m]",
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "buildkite",
+    "github",
+    "incident",
+    "linear",
+    "postgres",
+    "sentry",
+    "snowflake"
+  ],
+  "alwaysThinkingEnabled": true,
+  "skipDangerousModePermissionPrompt": true,
+  "editorMode": "vim",
+  "preferredNotifChannel": "terminal_bell",
+  "agentPushNotifEnabled": true,
+  "skipAutoPermissionPrompt": true,
+  "defaultDirectory": "/Users/kyang",
+  "enabledPlugins": {
+    "lua-lsp@claude-plugins-official": true
+  }
+}
